@@ -1,0 +1,643 @@
+/* Botão p/ abrir erro */
+.form {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background-color: #44749d;
+    border: none;
+    cursor: pointer;
+    right: 0;
+    padding: 10px;
+    padding-bottom: 8px;
+    padding-top: 5px;
+    border-radius: 20px 0 0 20px;
+}
+
+textarea{
+    display: grid;
+    resize:unset;
+    height: 200px;
+    overflow-y: auto;
+    width: 100%;  
+}
+
+#loadinganx,
+#loadinganxenv {
+    position: relative;
+    width: 30%;
+    background: #bdb8ad;
+    color: #000000;
+    border: 0;
+    border-radius: 5px;
+    font-size: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    z-index: 2;
+    text-align: center;
+    top: 25px;
+}
+
+.form:hover {
+    background-color: #bdb8ad;
+}
+
+#senhaContainer {
+    top: 50px;
+}
+
+#senhaInput {
+    border: none;
+    /* Remover sublinhado */
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#senhaInput:focus {
+    border: none;
+    /* Remover sublinhado */
+    background-color: #c5ffb0;
+}
+
+#verificarSenha {
+    margin-top: 2px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+#verificarSenha:hover {
+    background-color: #9de782;
+    margin-top: 2px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+#but_alert {
+    padding: 0px;
+    position: relative;
+    right: 0;
+}
+
+/* Desfoque quando tiver no FORM */
+#desfoque {
+    display: none;
+    position: absolute;
+    z-index: 9;
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+/* Fim Botão p/ abrir erro */
+
+/* Inicio Fomulario */
+.hidden {
+    margin-left: 38px;
+    position: absolute;
+    z-index: 10;
+    display: none;
+    background-color: #c6d4e1;
+    border: #44749d 2px solid;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 75%;
+    border-radius: 20px;
+    animation: FormAnim 0.5s linear ;
+}
+@keyframes FormAnim {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+.active {
+    color: #a10000;
+    background: #44749d;
+    /* Manter ativo botão */
+}
+
+.formulario1 {
+    top: -30px;
+    position: relative;
+    margin-left: 2.5;
+    display: block;
+    text-align: center;
+}
+
+.formulario2 {
+    top: -30px;
+    position: relative;
+    margin-left: 2.5;
+    display: none;
+    text-align: center;
+}
+
+.titulo_form_1,
+.titulo_form_2 {
+    cursor: pointer;
+    text-align: center;
+    background-color: #c6d4e1;
+    border: #44749d 2px solid;
+    width: 30%;
+    border-radius: 20px;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: -40px;
+    margin: 0 5px;
+    display: inline-block;
+}
+
+.titulo_form_1:hover,
+.titulo_form_2:hover {
+    background-color: #a7ffcf;
+}
+
+.titulo_form_div {
+    z-index: -5;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    top: -40px;
+}
+
+.titulo_form {
+    font-size: 90%;
+}
+
+.label1_1 {
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.label1_2 {
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* .label1_1 {
+    width: 45%;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.label1_2 {
+    width: 45%;
+    margin-bottom: 10px;
+    margin-left: 2.5%;
+    display: inline-block;
+    text-align: center;
+} */
+
+.label1_1,
+.label1_2 span {
+    color: #393838;
+    margin-bottom: 3px;
+}
+
+.label_1 {
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.label_2 {
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* .label_1 {
+    width: 45%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.label_2 {
+    width: 45%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 3.5%;
+    display: inline-block;
+    text-align: center;
+} */
+
+.label3 {
+    width: 93%;
+    display: inline-block;
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+
+    .hidden {
+        top: 5%;
+    }
+
+    .label1_1 {
+        width: 95%;
+        margin-bottom: 10px;
+    }
+
+    .label1_2 {
+        width: 95%;
+        margin-left: 0;
+    }
+
+    .label_1 {
+        width: 95%;
+        margin-top: 0;
+    }
+
+    .label_2 {
+        width: 95%;
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    textarea {
+        height: 150px;
+    }
+}
+
+
+.label2_2 {
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* INPUT IMAGEM */
+.label2_3 {
+    width: 46%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.campo_img {
+    position: relative;
+    display: flex;
+    color: #000000;
+    font-family: 'open_sansregular';
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #44749d;
+    transition: all 0.3s;
+/*     padding: 11px; */
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+    outline: 0;
+    border-radius: 10px;
+}
+
+.campo_anx{
+    position: relative;
+    display: flex;
+    color: #000000;
+    font-family: 'open_sansregular';
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #44749d;
+    transition: all 0.3s;
+/*     padding: 11px; */
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+    outline: 0;
+    border-radius: 10px;
+}
+
+
+.butt-img {
+    width: 60px;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+/*     align-self: center; */
+    cursor: pointer;
+    display: flex;
+    border-right: 2px solid #44749d;
+    padding: 20px 0;
+    font-size: 90%;
+    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+}
+
+.container-tituloanexo{
+    margin: 5px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.IMG-INPT1{
+    margin-top: 30px;
+    position: absolute;
+    display: flex;
+    width: 25px;
+    height: 25px;
+    align-self: center;
+}
+
+.butt-anx{
+    max-width: 70px;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+/*     align-self: center; */
+    cursor: pointer;
+    display: flex;
+    border-right: 2px solid #44749d;
+    padding: 20px 0;
+    font-size: 90%;
+    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+}
+
+.butt-img:hover, .butt-anx:hover{
+    background-color: #ebebebcc;
+    box-shadow: 0 #ebebebcc, 0 #ebebebcc;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+#imgimpt1 {
+    z-index: 50;
+    position: relative;
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+    height: 80px;
+    display: flex;
+}
+
+.excluirimg {
+    border-radius: 10px;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    right: 0;
+    top: 0;
+    background-color: #ffffff;
+/*     border: 2px solid rgb(0, 0, 0); */
+    cursor: url('IMG/cursor-X-small.png') 8 8, auto;
+    /* 16 16 é o ponto de destino no centro da imagem */
+}
+
+.excluiranx {
+    border-radius: 10px;
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    right: 0;
+    top: 0;
+    background-color: #ffffff;
+    /* border: 2px solid rgb(0, 0, 0); */
+    cursor: url('IMG/cursor-X-small.png') 8 8, auto;
+    /* 16 16 é o ponto de destino no centro da imagem */
+}
+
+#imgimpt-container{
+    z-index: 15;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    margin-right: 25px;
+
+/*     background-color: #000000; */
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.img-preview{
+    position: relative;
+    display: inline-block;
+    /*   box-shadow: 0px 0px 2vh black; */
+    background-color: #ebe7e0;
+    border: #000 solid 1px;
+    border-radius: 10px;
+    margin: 5px;
+    width: 150px;
+    max-height: 80px;
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+/*     left: 50%;
+    transform: translateX(-50%); */
+}
+
+.hr-form {
+    border: none;
+    background-color: #000000;
+    height: 0.5px;
+    margin: 5px 0;
+}
+
+.formulario .campo_anexo {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    color: #000000;
+    font-family: 'open_sansregular';
+    font-size: 12px;
+    /*     line-height: 20px; */
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #44749d;
+    transition: all 0.3s;
+    padding: 11px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: 0;
+    border-radius: 10px;
+    /*     margin-bottom: 20px; */
+}
+
+.lixo {
+    width: 25px;
+}
+
+#anexoList {
+    display: flex;
+    z-index: 15;
+    height: calc(100% - 10px); /* 10px é a soma da margem superior (5px) e inferior (5px) */
+    width: 100%;
+    margin-right: 25px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: left;
+    margin-left: 0; /* Define a margem para zero */
+    padding-left: 20px; /* Adiciona espaço à esquerda */
+    padding-top: 10px;
+}
+
+
+/* Remova a largura fixa da tag <span> dentro de .label2 */
+.label2_1,
+.label2_2 span {
+    color: #393838;
+    margin-bottom: 3px;
+}
+
+.formulario .campo {
+    position: relative;
+    display: grid;
+    color: #000000;
+    font-family: 'open_sansregular';
+    font-size: 14px;
+    border-radius: 3px;
+    line-height: 20px;
+    background-color: #ffffff;
+    border: 2px solid #44749d;
+    transition: all 0.3s;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: 0;
+    border-radius: 10px;
+}
+
+#select{
+    padding: 6.5px;
+}
+
+.campo_anx::-webkit-file-upload-button,
+.campo_img::-webkit-file-upload-button {
+    display: none;
+}
+
+.formulario .campo:focus,
+.campo_anx:focus,
+.campo_img:focus {
+    border: 2px solid #3744ff;
+    color: #00013b;
+}
+
+#file {
+    background-color: #00013b;
+}
+
+.formulario #texto {
+    height: 250px;
+    line-height: 100%;
+    resize: none;
+}
+
+.formulario .botao {
+    position: relative;
+    font-family: 'open_sansregular';
+    width: 30%;
+    background: #bdb8ad;
+    color: #000000;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    font-size: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s;
+    margin-top: -100%;
+    font-weight: 700;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.formulario .botao:hover {
+    background: #ebe7e0;
+}
+
+@media screen and (max-width: 480px) {
+
+    .titulo_form_1,
+    .titulo_form_2 {
+        width: 35%;
+    }
+
+    .but_card {
+        display: none;
+    }
+
+    .hidden {
+        margin: 20px auto;
+    }
+
+    .label2_3 {
+        width: 93%;
+        text-align: center;
+    }
+
+    .label2_2 {
+        width: 93%;
+        text-align: center;
+    }
+
+    .excluiranx {
+        z-index: 5;
+        position: absolute;
+        display: flex;
+        top: 0;
+        right: 0;
+    }
+
+    .excluirimg {
+        z-index: 5;
+        position: absolute;
+        display: flex;
+        top: 0;
+        right: 0;
+    }
+
+
+    /*     .excluirimg{
+        font-size: 100%;
+        text-align: start;
+        width: 5%;
+        position: relative;
+        display: inline-block;
+    } */
+
+}
+
+/* ------------------------------ */
+
+#campoSenha {
+    position: absolute;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-left: 500px;
+}
+
+
+#imgimpt2{
+    z-index: 1000;
+    position: absolute;
+
+}
