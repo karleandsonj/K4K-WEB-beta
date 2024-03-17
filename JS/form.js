@@ -392,7 +392,6 @@ form.addEventListener('submit', e => {
     e.preventDefault();
 
     addloading();
-
     let loadinganx = document.getElementById("loadinganx");
     loadinganx.style.display = 'block'; // Mostra o elemento de carregamento
 
@@ -400,40 +399,6 @@ form.addEventListener('submit', e => {
     let filesarq = filearq.files;
 
     const fileNames = [];
-
-
-    /* // Função para enviar uma única imagem para o Drive e processar a resposta
-    const sendImageToDrive = (file) => {
-        return new Promise((resolve, reject) => {
-            let fr = new FileReader();
-            fr.addEventListener('loadend', () => {
-                let res = fr.result;
-                let spt = res.split("base64,")[1];
-                let obj = {
-                    base64: spt,
-                    type: file.type,
-                    name: file.name
-                }
-                // Esta linha envia uma solicitação POST para o URL especificado na variável "url", com o objeto "obj" como corpo da solicitação.
-                fetch(url, {
-                    method: "POST",
-                    body: JSON.stringify(obj)
-                })
-                    // Esta linha aguarda a resposta do servidor e a converte para JSON
-                    .then(response => response.json())
-                    .then(data => {
-                        resolve(data);
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
-            });
-            fr.readAsDataURL(file);
-        });
-    }
- 
-    // Array de promessas para enviar todas as imagens
-    const imagePromises = Array.from(files).map(file => sendImageToDrive(file)); */
 
     // Função para enviar o arquivo anexo e processar a resposta
     const sendAttachmentToDrive = (filearq, index) => {
@@ -474,40 +439,47 @@ form.addEventListener('submit', e => {
     const attachmentPromises = Array.from(filesarq).map((filearq, index) => sendAttachmentToDrive(filearq, index));
 
     // Promessas para envio de imagens e anexos
-    const promises = [/* ...imagePromises, */ ...attachmentPromises];
-
+    const promises = [...attachmentPromises];
 
     Promise.all(promises)
         .then(data => {
+            return uploadImage()
+                .then(imageUrls => {
+                    // Aqui você tem as URLs das imagens, se houver, e pode fazer o que precisar com elas
+                    // Por exemplo, adicionar as URLs ao formulário
+                    const imgimpt2 = document.getElementById("imgimpt2");
+                    imgimpt2.value = imageUrls.join('§'); // Concatena os URLs das imagens em uma única string
 
-            // Agora você tem um array com os dados de imagens e anexos enviados
-            // Você pode processar esses dados conforme necessário
-            // Por exemplo, você pode gerar os URLs das imagens e anexos e atualizar o formulário
-            //const imageUrls = data.filter(item => item.imageId).map(item => "https://drive.google.com/uc?id=" + item.imageId);
-
-            const attachmentUrls = data.filter(item => item.anexoId).map(item => "https://drive.google.com/u/0/uc?id=" + item.anexoId + "&export=download");
-
-            const nomearq1 = document.getElementById("nomearq1");
-            nomearq1.value = fileNames.join('§'); // Concatena os nomes dos arquivos em uma única string
-
-            //const imgimpt2 = document.getElementById("imgimpt2");
-            //imgimpt2.value = imageUrls.join('§'); // Concatena os URLs das imagens em uma única string
-
-            const anexoimpt2 = document.getElementById("anexoimpt2");
-            anexoimpt2.value = attachmentUrls.join('§'); // Concatena os URLs dos anexos em uma única string
-
-            // Agora que as imagens e anexos foram enviados para o Drive e os URLs foram gerados, você pode enviar o formulário.
-
+                    // Agora que as imagens e anexos foram enviados, você pode enviar o formulário.
+                    sendForm();
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar imagens:', error);
+                    // Se ocorrer um erro no upload das imagens, continue enviando o formulário sem as imagens
+                    sendForm();
+                });
         })
         .catch(error => {
-            console.error('Erro ao enviar imagens e anexos:', error);
+            console.error('Erro ao enviar anexos:', error);
         });
-
 });
 
+function sendForm() {
 
-
-
+    // Aqui você deve colocar a lógica para enviar o formulário
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+            if (response.status === 200) {
+                // Atualize a imagem no formulário com o URL da imagem
+                // No caso de várias imagens, você pode atualizar uma área do formulário ou uma lista de miniaturas, por exemplo.
+                console.log('Formulário enviado com sucesso');
+                removeloading(); // Remova o alerta de sucesso após o sucesso
+            } else {
+                console.error('Erro no servidor:', response.status);
+            }
+        })
+        .catch(error => console.error('Erro na requisição:', error.message));
+}
 
 
 const addloading = () => {

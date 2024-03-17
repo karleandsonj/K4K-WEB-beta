@@ -151,7 +151,7 @@
                             <input type="file" name="imageUrl1" class="campo_img" multiple accept="image/*" id="imgimpt"
                                 title="Clique para Carregar Imagens"
                                 onchange="verificarInput('imgimpt', '.excluirimg'); exibirImagem(); getFile(event)"
-                                class="excluirimg" style="display: none;" onchange="getFile(event)" />
+                                class="excluirimg" style="display: none;" />
                             <p id="message" style="display: none;"></p>
 
                             <div id="imgimpt-container" style="display: none;"></div>
@@ -209,7 +209,7 @@
                     </div>
                     <div id="loadingarq" style="display: none;">Enviando arquivo...</div>
 
-                    <button type="submit" onclick="uploadImage()" id="submit" class="botao"> Enviar </button>
+                    <button type="submit" id="submit" class="botao"> Enviar </button>
 
                 </div>
 
@@ -709,14 +709,14 @@
     <script src="JS/Rotinas/etiquetas.js"></script>
     <script src="JS/Rotinas/dispositivo.js"></script>
     <script src="JS/Rotinas/tef.js"></script>
-    <script src="JS/script.js"></script>
-    <script src="JS/form.js"></script>
-    <script src="JS/removercarac.js"></script>
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
     <script src="JS/FireBase.js"></script>
     <!-- firebase FIM -->
+    <script src="JS/script.js"></script>
+    <script src="JS/form.js"></script>
+    <script src="JS/removercarac.js"></script>
 </body>
 
 </html>
