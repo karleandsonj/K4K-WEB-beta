@@ -20,6 +20,7 @@ textarea.addEventListener('keydown', function (e) {
     }
 });
 
+/* ------------------------------------------------------------------- */
 
 function exibirImagem() {
     var input1 = document.getElementById('imgimpt');
@@ -46,23 +47,56 @@ function exibirImagem() {
                     img.src = e.target.result;
                     img.className = 'img-preview';
 
-                    imgContainer.appendChild(img);
+                    // Cria um botão de exclusão para cada imagem
+                    var deleteButton = document.createElement('a');
+                    deleteButton.innerHTML = `<img src="IMG/lixo1.png" class="lixo1">`;
+                    deleteButton.className = 'lixeiraIMG';
+                    deleteButton.onclick = function () {
+                        excluirImagem(imgIndex);
+                    };
+
+
+                    // Cria um contêiner para a imagem e o botão de exclusão
+                    var container = document.createElement('div');
+                    container.className = 'image-container'; // Adiciona uma classe para o contêiner
+                    container.appendChild(img);
+                    container.appendChild(deleteButton);
+
+                    imgContainer.appendChild(container);
                 };
             })(i);
 
             reader.readAsDataURL(input1.files[i]);
         }
 
-        // Adiciona o botão de exclusão após o loop (apenas uma vez)
-        var deleteButton1 = document.createElement('a');
-
-        imgContainer.appendChild(deleteButton1);
-
-        imgContainer.style.display = 'flex'; // Exibe o contêiner
+        // Exibe o contêiner
+        imgContainer.style.display = 'flex';
     } else {
-        imgContainer.style.display = 'none'; // Oculta o contêiner se nenhum arquivo estiver selecionado
+        // Oculta o contêiner se nenhum arquivo estiver selecionado
+        imgContainer.style.display = 'none';
     }
 }
+
+function excluirImagem(imgIndex) {
+    var inputimg = document.getElementById("imgimpt");
+    inputimg.value = ""; // Limpa o valor do input
+    verificarInput('imgimpt', '.excluirimg'); // Oculta o botão novamente
+
+    var imgContainer = document.getElementById('imgimpt-container');
+
+    // Remove a imagem e o botão de exclusão correspondentes ao índice
+    var containerToRemove = document.getElementById('img-preview' + imgIndex);
+    imgContainer.removeChild(containerToRemove.parentNode); // Remove o contêiner que envolve a imagem e o botão
+
+    if (imgContainer.childElementCount === 0) {
+        // Se não houver mais imagens no contêiner, oculta-o
+        imgContainer.style.display = 'none';
+    }
+}
+
+
+
+/* ------------------------------------------------------------------- */
 
 
 function exibiranexo() {
@@ -81,15 +115,15 @@ function exibiranexo() {
 
             // Adiciona o botão de exclusão
             var deleteButton = document.createElement('a');
-            deleteButton.className = 'excluiranx';
+            deleteButton.className = 'excluiranx1';
+            deleteButton.textContent = '🗑️';
             deleteButton.onclick = function () {
-                excluirAnexo(listItem);
+                excluirAnexo(this.parentElement);
             };
-            deleteButton.innerHTML = '<img src="IMG/lixo2.png" class="lixo">';
 
             // Adiciona o item da lista e o botão de exclusão à lista de anexos
+            listItem.appendChild(deleteButton);
             anexoList.appendChild(listItem);
-            anexoList.appendChild(deleteButton);
 
             // Adiciona uma linha hr
             var hrElement = document.createElement('hr');
@@ -102,6 +136,35 @@ function exibiranexo() {
         anexoList.style.display = 'none'; // Oculta a lista se nenhum arquivo estiver selecionado
     }
 }
+
+function excluirAnexo(item) {
+    var inputanx = document.getElementById("anexoimpt");
+    inputanx.value = ""; // Limpa o valor do input
+
+    var anxContainer = document.getElementById('anexoList');
+
+    // Remove o item da lista
+    anxContainer.removeChild(item);
+
+    // Remove o próximo elemento se for um <hr>
+    var nextElement = item.nextSibling;
+    if (nextElement && nextElement.nodeType === 1 && nextElement.tagName.toLowerCase() === 'hr') {
+        anxContainer.removeChild(nextElement);
+    }
+
+    // Oculta o contêiner se não houver mais anexos
+    if (anxContainer.children.length === 0) {
+        anxContainer.style.display = 'none';
+    }
+}
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------- */
 
 const meuFormulario = document.getElementById('meu-formulario');
 const camposDeTexto = meuFormulario.querySelectorAll('input');
@@ -306,39 +369,6 @@ link2.addEventListener('click', () => {
 });
 
 /* Fim Ativar botão */
-
-/* função IMG ee ANEXO */
-
-function excluirImagem() {
-    var inputimg = document.getElementById("imgimpt");
-    inputimg.value = ""; // Limpa o valor do input
-    verificarInput('imgimpt', '.excluirimg'); // Oculta o botão novamente
-
-    var imgContainer = document.getElementById('imgimpt-container');
-
-    // Remove todas as imagens e botões de exclusão
-    while (imgContainer.firstChild) {
-        imgContainer.removeChild(imgContainer.firstChild);
-    }
-
-    imgContainer.style.display = 'none'; // Oculta o contêiner
-}
-
-function excluirAnexo() {
-    var inputanx = document.getElementById("anexoimpt");
-    inputanx.value = ""; // Limpa o valor do input
-    verificarInput('anexoimpt', '.excluiranx'); // Oculta o botão novamente
-
-    var anxContainer = document.getElementById('anexoList');
-
-    // Remove todas as imagens e botões de exclusão
-    while (anxContainer.firstChild) {
-        anxContainer.removeChild(anxContainer.firstChild);
-    }
-
-    anxContainer.style.display = 'none'; // Oculta o contêiner
-
-}
 
 
 function verificarInput(inputId, botaoSelector) {

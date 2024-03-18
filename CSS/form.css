@@ -13,12 +13,12 @@
     border-radius: 20px 0 0 20px;
 }
 
-textarea{
+textarea {
     display: grid;
-    resize:unset;
+    resize: unset;
     height: 200px;
     overflow-y: auto;
-    width: 100%;  
+    width: 100%;
 }
 
 #loadinganx,
@@ -114,16 +114,18 @@ textarea{
     padding: 10px;
     width: 75%;
     border-radius: 20px;
-    animation: FormAnim 0.5s linear ;
+    animation: FormAnim 0.5s linear;
 }
+
 @keyframes FormAnim {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
+
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
 
 .active {
     color: #a10000;
@@ -310,15 +312,16 @@ textarea{
     background-color: rgb(255, 255, 255);
     border: 2px solid #44749d;
     transition: all 0.3s;
-/*     padding: 11px; */
+    /*     padding: 11px; */
     width: 100%;
     height: 100px;
-    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+    box-sizing: border-box;
+    /* Garante que o padding e a borda estão incluídos na largura e altura */
     outline: 0;
     border-radius: 10px;
 }
 
-.campo_anx{
+.campo_anx {
     position: relative;
     display: flex;
     color: #000000;
@@ -327,10 +330,11 @@ textarea{
     background-color: rgb(255, 255, 255);
     border: 2px solid #44749d;
     transition: all 0.3s;
-/*     padding: 11px; */
+    /*     padding: 11px; */
     width: 100%;
     height: 100px;
-    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+    box-sizing: border-box;
+    /* Garante que o padding e a borda estão incluídos na largura e altura */
     outline: 0;
     border-radius: 10px;
 }
@@ -342,16 +346,17 @@ textarea{
     text-align: center;
     justify-content: center;
     align-content: center;
-/*     align-self: center; */
+    /*     align-self: center; */
     cursor: pointer;
     display: flex;
     border-right: 2px solid #44749d;
     padding: 20px 0;
     font-size: 90%;
-    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+    box-sizing: border-box;
+    /* Garante que o padding e a borda estão incluídos na largura e altura */
 }
 
-.container-tituloanexo{
+.container-tituloanexo {
     margin: 5px;
     display: flex;
     text-align: center;
@@ -359,7 +364,7 @@ textarea{
     align-content: center;
 }
 
-.IMG-INPT1{
+.IMG-INPT1 {
     margin-top: 30px;
     position: absolute;
     display: flex;
@@ -368,22 +373,24 @@ textarea{
     align-self: center;
 }
 
-.butt-anx{
+.butt-anx {
     max-width: 70px;
     position: relative;
     text-align: center;
     justify-content: center;
     align-content: center;
-/*     align-self: center; */
+    /*     align-self: center; */
     cursor: pointer;
     display: flex;
     border-right: 2px solid #44749d;
     padding: 20px 0;
     font-size: 90%;
-    box-sizing: border-box; /* Garante que o padding e a borda estão incluídos na largura e altura */
+    box-sizing: border-box;
+    /* Garante que o padding e a borda estão incluídos na largura e altura */
 }
 
-.butt-img:hover, .butt-anx:hover{
+.butt-img:hover,
+.butt-anx:hover {
     background-color: #ebebebcc;
     box-shadow: 0 #ebebebcc, 0 #ebebebcc;
     border-top-left-radius: 10px;
@@ -394,65 +401,88 @@ textarea{
 #imgimpt1 {
     z-index: 50;
     position: relative;
-    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+    max-width: 100%;
+    /* Garante que a imagem não ultrapasse a largura do contêiner */
     height: 80px;
     display: flex;
 }
 
-.excluirimg {
-    border-radius: 10px;
-    z-index: 10;
-    position: absolute;
-    display: flex;
-    right: 0;
-    top: 0;
-    background-color: #ffffff;
-/*     border: 2px solid rgb(0, 0, 0); */
-    cursor: url('IMG/cursor-X-small.png') 8 8, auto;
-    /* 16 16 é o ponto de destino no centro da imagem */
-}
 
-.excluiranx {
-    border-radius: 10px;
-    z-index: 10;
-    position: absolute;
-    display: flex;
-    right: 0;
-    top: 0;
-    background-color: #ffffff;
-    /* border: 2px solid rgb(0, 0, 0); */
-    cursor: url('IMG/cursor-X-small.png') 8 8, auto;
-    /* 16 16 é o ponto de destino no centro da imagem */
-}
 
-#imgimpt-container{
+
+
+#imgimpt-container {
     z-index: 15;
     display: inline-block;
     height: 100%;
     width: 100%;
     margin-right: 25px;
 
-/*     background-color: #000000; */
+    /*     background-color: #000000; */
     overflow-x: auto;
     overflow-y: hidden;
 }
 
-.img-preview{
+.img-preview {
     position: relative;
     display: inline-block;
-    /*   box-shadow: 0px 0px 2vh black; */
     background-color: #ebe7e0;
     border: #000 solid 1px;
     border-radius: 10px;
     margin: 5px;
     width: 150px;
-    max-height: 80px;
+    max-height: 70px;
     transition: .5s, color .10s;
     -webkit-transition: .5s, color .10s;
     -moz-transition: .5s, color .10s;
-/*     left: 50%;
-    transform: translateX(-50%); */
 }
+
+.image-container {
+    position: relative;
+}
+
+.lixeiraIMG {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 5px;
+    width: 150px;
+    border: #00000077 solid 1px;
+    background-color: #33333383;
+    border-radius: 10px;
+    margin: 5px;
+    margin-right: 0px;
+    height: 70px;
+    color: rgb(255, 0, 0);
+    font-size: 25px;
+    cursor: pointer;
+    z-index: 1;
+    /* Garante que o ícone da lixeira esteja acima da imagem */
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+    opacity: 0.2;
+    /* Inicialmente, a div está invisível */
+}
+
+/* Quando o mouse passa sobre a div, aumenta a opacidade para torná-la visível */
+.lixeiraIMG:hover {
+    opacity: 1;
+}
+
+.lixo1 {
+    align-content: center;
+    position: absolute;
+    margin: 0 auto;
+    width: 30%;
+    top: 20%;
+    transform: translate(-50%);
+}
+.lixo2 {
+    width: 50px;
+
+}
+
 
 .hr-form {
     border: none;
@@ -480,22 +510,56 @@ textarea{
     /*     margin-bottom: 20px; */
 }
 
-.lixo {
-    width: 25px;
+.excluiranx1 {
+    top: -2px;
+    right: 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    position:absolute;
+/*     display:flex; */
+    border: solid #ff0000 1px;
+    border-radius: 20px;
+    background-color: #550000;
+    cursor: pointer;
+    height: auto;
+    padding: 2px;
+    width: 40px;
+/*     margin-left: 10px;  */
 }
 
+.excluiranx1:hover{
+    border: solid #eeff00 1px;
+    border-radius: 20px;
+    background-color: #555300; 
+}
+
+.list-anx{
+    position: relative;
+    white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
+    width: auto;
+/*     cursor: pointer; */
+}
+
+
 #anexoList {
-    display: flex;
+    position: relative;
     z-index: 15;
-    height: calc(100% - 10px); /* 10px é a soma da margem superior (5px) e inferior (5px) */
+    height: calc(100% - 10px);
+    /* 10px é a soma da margem superior (5px) e inferior (5px) */
     width: 100%;
-    margin-right: 25px;
+ /*    margin-right: 25px; */
     overflow-x: hidden;
     overflow-y: auto;
     text-align: left;
-    margin-left: 0; /* Define a margem para zero */
-    padding-left: 20px; /* Adiciona espaço à esquerda */
+    margin-left: 0;
+    /* Define a margem para zero */
+    padding-left: 20px;
+    /* Adiciona espaço à esquerda */
     padding-top: 10px;
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens */
 }
 
 
@@ -524,7 +588,7 @@ textarea{
     border-radius: 10px;
 }
 
-#select{
+#select {
     padding: 6.5px;
 }
 
@@ -599,31 +663,6 @@ textarea{
         text-align: center;
     }
 
-    .excluiranx {
-        z-index: 5;
-        position: absolute;
-        display: flex;
-        top: 0;
-        right: 0;
-    }
-
-    .excluirimg {
-        z-index: 5;
-        position: absolute;
-        display: flex;
-        top: 0;
-        right: 0;
-    }
-
-
-    /*     .excluirimg{
-        font-size: 100%;
-        text-align: start;
-        width: 5%;
-        position: relative;
-        display: inline-block;
-    } */
-
 }
 
 /* ------------------------------ */
@@ -636,7 +675,7 @@ textarea{
 }
 
 
-#imgimpt2{
+#imgimpt2 {
     z-index: 1000;
     position: absolute;
 
