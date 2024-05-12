@@ -22,77 +22,8 @@ textarea.addEventListener('keydown', function (e) {
 
 /* ------------------------------------------------------------------- */
 
-function exibirImagem() {
-    var input1 = document.getElementById('imgimpt');
-    var imgContainer = document.getElementById('imgimpt-container');
-
-    // Limpa o conteúdo anterior
-    imgContainer.innerHTML = '';
-
-    // Verifica se algum arquivo foi selecionado
-    if (input1.files && input1.files.length > 0) {
-        for (var i = 0; i < input1.files.length; i++) {
-            var reader = new FileReader();
-
-            // Utiliza uma IIFE para capturar o valor correto de img
-            (function (imgIndex) {
-                reader.onload = function (e) {
-                    var img = document.createElement('img');
-
-                    img.title = input1.files[imgIndex].name; // Corrigido aqui
-
-                    // Atribui um id único para cada imagem
-                    img.id = 'img-preview' + imgIndex;
-
-                    img.src = e.target.result;
-                    img.className = 'img-preview';
-
-                    // Cria um botão de exclusão para cada imagem
-                    var deleteButton = document.createElement('a');
-                    deleteButton.innerHTML = `<img src="IMG/lixo1.png" class="lixo1">`;
-                    deleteButton.className = 'lixeiraIMG';
-                    deleteButton.onclick = function () {
-                        excluirImagem(imgIndex);
-                    };
 
 
-                    // Cria um contêiner para a imagem e o botão de exclusão
-                    var container = document.createElement('div');
-                    container.className = 'image-container'; // Adiciona uma classe para o contêiner
-                    container.appendChild(img);
-                    container.appendChild(deleteButton);
-
-                    imgContainer.appendChild(container);
-                };
-            })(i);
-
-            reader.readAsDataURL(input1.files[i]);
-        }
-
-        // Exibe o contêiner
-        imgContainer.style.display = 'flex';
-    } else {
-        // Oculta o contêiner se nenhum arquivo estiver selecionado
-        imgContainer.style.display = 'none';
-    }
-}
-
-function excluirImagem(imgIndex) {
-    var inputimg = document.getElementById("imgimpt");
-    inputimg.value = ""; // Limpa o valor do input
-    verificarInput('imgimpt', '.excluirimg'); // Oculta o botão novamente
-
-    var imgContainer = document.getElementById('imgimpt-container');
-
-    // Remove a imagem e o botão de exclusão correspondentes ao índice
-    var containerToRemove = document.getElementById('img-preview' + imgIndex);
-    imgContainer.removeChild(containerToRemove.parentNode); // Remove o contêiner que envolve a imagem e o botão
-
-    if (imgContainer.childElementCount === 0) {
-        // Se não houver mais imagens no contêiner, oculta-o
-        imgContainer.style.display = 'none';
-    }
-}
 
 
 
@@ -157,12 +88,6 @@ function excluirAnexo(item) {
         anxContainer.style.display = 'none';
     }
 }
-
-
-
-
-
-
 
 /* ------------------------------------------------------------------- */
 
@@ -473,6 +398,15 @@ form.addEventListener('submit', e => {
 
     Promise.all(promises)
         .then(data => {
+
+            const attachmentUrls = data.filter(item => item.anexoId).map(item => "https://drive.google.com/u/0/uc?id=" + item.anexoId + "&export=download");
+
+            const nomearq1 = document.getElementById("nomearq1");
+            nomearq1.value = fileNames.join('§'); // Concatena os nomes dos arquivos em uma única string
+
+            const anexoimpt2 = document.getElementById("anexoimpt2");
+            anexoimpt2.value = attachmentUrls.join('§'); // Concatena os URLs dos anexos em uma única string
+
             return uploadImage()
                 .then(imageUrls => {
                     // Aqui você tem as URLs das imagens, se houver, e pode fazer o que precisar com elas

@@ -398,6 +398,10 @@ textarea {
 
 }
 
+.campo_img1{
+    width: 100px;
+}
+
 #imgimpt1 {
     z-index: 50;
     position: relative;
@@ -406,10 +410,6 @@ textarea {
     height: 80px;
     display: flex;
 }
-
-
-
-
 
 #imgimpt-container {
     z-index: 15;
@@ -680,3 +680,8 @@ textarea {
     position: absolute;
 
 }
+
+
+/* --- */
+
+

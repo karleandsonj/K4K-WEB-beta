@@ -12,23 +12,19 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Variáveis globais
-var fileItem;
-var fileName;
-var uploadTask;
+var fileItem = [];
+var fileName = [];
 
-function getFile(e) {
-  fileItem = e.target.files;
+function getFile(event) {
+  fileItem = event.target.files;
   fileName = [];
-  
+
   for (let i = 0; i < fileItem.length; i++) {
     fileName.push(fileItem[i].name);
   }
 
   // Atualizando a interface com o nome dos arquivos
-  document.getElementById("imgimpt2").innerHTML = "";
-  for (let i = 0; i < fileName.length; i++) {
-    document.getElementById("imgimpt2").innerHTML += fileName[i] + "<br>";
-  }
+  document.getElementById("imgimpt2").innerHTML = fileName.join(", ");
 }
 
 function uploadImage() {
@@ -79,4 +75,111 @@ function uploadImage() {
       );
     }
   });
+}
+
+function exibirImagem() {
+  var input4 = document.getElementById("imgimpt");
+  var filenames1 = [];
+
+  // Coleta os nomes dos arquivos selecionados
+  for (var i = 0; i < input4.files.length; i++) {
+    filenames1.push(input4.files[i].name);
+  }
+
+  // Atualiza o título do input com os nomes dos arquivos selecionados
+  input4.title = "Imagens selecionadas: " + filenames1.join(", ");
+
+  var input1 = document.getElementById("imgimpt");
+  var imgContainer = document.getElementById("imgimpt-container");
+
+  // Limpa o conteúdo anterior
+  imgContainer.innerHTML = "";
+
+  // Verifica se algum arquivo foi selecionado
+  if (input1.files && input1.files.length > 0) {
+    for (var i = 0; i < input1.files.length; i++) {
+      var reader = new FileReader();
+
+      // Utiliza uma IIFE para capturar o valor correto de img
+      (function(imgIndex) {
+        reader.onload = function(e) {
+          var img = document.createElement("img");
+
+          img.title = input1.files[imgIndex].name;
+
+          // Atribui um id único para cada imagem
+          img.id = "img-preview" + imgIndex;
+
+          img.src = e.target.result;
+          img.className = "img-preview";
+
+          // Cria um botão de exclusão para cada imagem
+          var deleteButton = document.createElement("a");
+          deleteButton.innerHTML = `<img src="IMG/lixo1.png" class="lixo1">`;
+          deleteButton.className = "lixeiraIMG";
+          deleteButton.onclick = function() {
+            excluirImagem(imgIndex); // Correção aqui: removi o segundo argumento
+          };
+
+          // Cria um contêiner para a imagem e o botão de exclusão
+          var container = document.createElement("div");
+          container.className = "image-container";
+          container.id = "image-container-" + imgIndex;
+          container.appendChild(img);
+          container.appendChild(deleteButton);
+
+          imgContainer.appendChild(container);
+        };
+      })(i);
+
+      reader.readAsDataURL(input1.files[i]);
+    }
+
+    // Exibe o contêiner
+    imgContainer.style.display = "flex";
+  } else {
+    // Oculta o contêiner se nenhum arquivo estiver selecionado
+    imgContainer.style.display = "none";
+  }
+}
+
+function excluirImagem(imgIndex) {
+  var input1 = document.getElementById("imgimpt");
+  var files = input1.files;
+  var newFiles = [];
+  var newFileNames = []; // New array to store new file names
+
+  // Update fileName array by removing the deleted filename
+  fileName.splice(imgIndex, 1);
+
+  // Iterate through remaining files and add them to newFiles and newFileNames
+  for (var i = 0; i < files.length; i++) {
+    if (i !== imgIndex) {
+      newFiles.push(files[i]);
+      newFileNames.push(files[i].name);
+    }
+  }
+
+  // Update fileItem with newFiles
+  fileItem = newFiles;
+
+  // Set new files in the input
+  input1.value = ''; // Clear the input
+  if (newFiles.length > 0) {
+    var dataTransfer = new DataTransfer();
+    newFiles.forEach(function (file) {
+      dataTransfer.items.add(file);
+    });
+    input1.files = dataTransfer.files;
+  }
+
+  // Update image container and input title
+  var imgContainer = document.getElementById('imgimpt-container');
+  var containerToRemove = document.getElementById('image-container-' + imgIndex);
+  imgContainer.removeChild(containerToRemove);
+  if (imgContainer.childElementCount === 0) {
+    imgContainer.style.display = 'none';
+  }
+  // Update input title with new filenames (corrected typo)
+  input1.title = 'Imagens selecionadas: ' + newFileNames.join(', ');
 }
