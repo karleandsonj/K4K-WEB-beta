@@ -211,14 +211,19 @@ function loadsgaSheetData(url) {
                         submitButton.addEventListener('click', e => {
                             const textareaedit1 = document.getElementById('P_sga_edit');
                             const textareaedit2 = document.getElementById('P_sga1_edit');
+                            const textareaedit3 = document.getElementById('P_sga2_edit');
                             const textedit1 = textareaedit1.value;
                             const textedit2 = textareaedit2.value;
+                            const textedit3 = textareaedit3.value;
                             const linesedit1 = textedit1.split('\n');
                             const linesedit2 = textedit2.split('\n');
+                            const linesedit3 = textedit3.split('\n');
                             const formattedTextedit1 = linesedit1.join('§');
                             const formattedTextedit2 = linesedit2.join('§');
+                            const formattedTextedit3 = linesedit3.join('§');
                             textareaedit1.value = formattedTextedit1;
                             textareaedit2.value = formattedTextedit2;
+                            textareaedit3.value = formattedTextedit3;
 
                             e.preventDefault();
                             addloadingedit();
@@ -425,7 +430,7 @@ function loadsgaSheetData(url) {
                                 imagemAmpliada.innerHTML = `
                                 <div class="imagemborda2">
                                 <div class="img-amp-close">
-                                    <a href="#" id="fecharImagem">✖️</a> 
+                                    <a href="#" id="fecharImagem">❌</a> 
                                 </div>
                                 </div>
                                 <img src="${imagens[index]}" alt="">

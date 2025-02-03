@@ -425,7 +425,7 @@ function loadrobotSheetData(url) {
                                 imagemAmpliada.innerHTML = `
                                     <img src="${imagens[index]}" alt="">
                                     <div class="img-amp-close">
-                                        <a href="#" id="fecharImagem">✖️</a> 
+                                        <a href="#" id="fecharImagem">❌</a> 
                                     </div>
                                 `;
                                 modalContainer.appendChild(imagemAmpliada);

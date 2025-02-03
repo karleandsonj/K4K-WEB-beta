@@ -143,43 +143,32 @@ function exibirImagem() {
   }
 }
 
+function getFile(event) {
+  // Converte o FileList para um array
+  fileItem = Array.from(event.target.files);
+  fileName = fileItem.map(file => file.name);
+
+  // Atualizando a interface com o nome dos arquivos
+  document.getElementById("imgimpt2").innerHTML = fileName.join(", ");
+}
+
 function excluirImagem(imgIndex) {
   var input1 = document.getElementById("imgimpt");
-  var files = input1.files;
-  var newFiles = [];
-  var newFileNames = []; // New array to store new file names
 
-  // Update fileName array by removing the deleted filename
+  // Remove o arquivo do array global
+  fileItem.splice(imgIndex, 1);
   fileName.splice(imgIndex, 1);
 
-  // Iterate through remaining files and add them to newFiles and newFileNames
-  for (var i = 0; i < files.length; i++) {
-    if (i !== imgIndex) {
-      newFiles.push(files[i]);
-      newFileNames.push(files[i].name);
-    }
-  }
+  // Atualiza o input de arquivos usando DataTransfer
+  var dataTransfer = new DataTransfer();
+  fileItem.forEach(function(file) {
+    dataTransfer.items.add(file);
+  });
+  input1.files = dataTransfer.files;
 
-  // Update fileItem with newFiles
-  fileItem = newFiles;
+  // Atualiza o título do input com os nomes restantes
+  input1.title = 'Imagens selecionadas: ' + fileName.join(', ');
 
-  // Set new files in the input
-  input1.value = ''; // Clear the input
-  if (newFiles.length > 0) {
-    var dataTransfer = new DataTransfer();
-    newFiles.forEach(function (file) {
-      dataTransfer.items.add(file);
-    });
-    input1.files = dataTransfer.files;
-  }
-
-  // Update image container and input title
-  var imgContainer = document.getElementById('imgimpt-container');
-  var containerToRemove = document.getElementById('image-container-' + imgIndex);
-  imgContainer.removeChild(containerToRemove);
-  if (imgContainer.childElementCount === 0) {
-    imgContainer.style.display = 'none';
-  }
-  // Update input title with new filenames (corrected typo)
-  input1.title = 'Imagens selecionadas: ' + newFileNames.join(', ');
+  // Atualiza a exibição das imagens
+  exibirImagem();
 }

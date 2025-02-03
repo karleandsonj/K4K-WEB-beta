@@ -949,8 +949,8 @@ ol {
     border: #000 solid 1px;
     border-radius: 10px;
     margin: 5px;
-    width: 150px;
-    max-height: 80px;
+    width: 130px;
+    height: 80px;
     transition: .5s, color .10s;
     -webkit-transition: .5s, color .10s;
     -moz-transition: .5s, color .10s;
@@ -974,31 +974,36 @@ ol {
     overflow-x: auto;
 }
 
-.imagem-ampliada img {
-/*     margin: 0 auto; */
-/*     top: 25px; */
-    position: absolute;
-    width: 70%;
+/* Container que centraliza os elementos na tela */
+.imagem-ampliada {
+    position: fixed;      /* ou absolute, conforme a necessidade */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;   /* centraliza o conteúdo inline-block */
+  }
+  
+  /* Imagem que se adapta ao tamanho da viewport, mantendo a proporção */
+  .imagem-ampliada img {
+    display: block;              /* remove espaços em branco abaixo da imagem */
+    max-width: 90vw;             /* largura máxima: 90% da largura da viewport */
+    max-height: 90vh;            /* altura máxima: 90% da altura da viewport */
+    width: auto;
     height: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: #000 0 0 2px 2px;
-    background-color: white;
-}
-
-.imagemborda2{
-    background-color: #0d4941;
-    top: 50px;
-/*     margin-bottom: 100px; */
-    margin: 0 auto;
-    position: absolute;
-    width: 70%;
-    height: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: #000 0 0 2px 2px;
-    background-color: rgb(0, 0, 0);
-}
+    box-shadow: 0 0 2px 2px #000; /* sombra conforme desejado */
+    background-color: #fff;
+    margin: 0 auto;              /* garante centralização se necessário */
+  }
+  
+  /* Elemento adicional com largura relativa à imagem */
+  .imagem-ampliada .imagemborda2 {
+    width: 100%;                 /* assume a mesma largura da imagem */
+    height: 25px;                /* altura fixa, conforme exemplo */
+    background-color: #000;
+    box-shadow: 0 0 2px 2px #000;
+    margin-top: 10px;            /* espaço entre a imagem e este elemento */
+  }
+  
 
 .img-amp-close {
     margin: 0;
@@ -1060,6 +1065,7 @@ ol {
 }
 
 #fecharImagem {
+    right: 0;
     font-size: 15px;
     text-decoration: none;
     position: absolute;
@@ -1124,6 +1130,9 @@ h3 {
 }
 
 .buttonDownload {
+    white-space: normal; /* Permite quebra de linha */
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Alternativa para forçar a quebra */
     justify-content: center;
     left: 50%;
     transform: translateX(-50%);

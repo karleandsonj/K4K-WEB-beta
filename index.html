@@ -23,7 +23,9 @@
     </a>
 
     <header>
-        <label><h1 class="titulo">Karl4Knows</h1></label>
+        <label>
+            <h1 class="titulo">Karl4Knows</h1>
+        </label>
         <div id="openForm" class="form">
             <a class="but_card" id="but_card">Cad. Erro</a> <a id="but_alert">⚠️</a>
             <div id="senhaContainer" style="display: none;">
@@ -236,12 +238,16 @@
                     <a target="_blank"
                         href="http://nfe.sefaz.ba.gov.br/servicos/nfce/Modulos/Geral/NFCEC_consulta_chave_acesso.aspx"
                         class="homefacil"><img src="icones home/NFCe.png" alt="" class="iconehome">Consultar NFC-e</a>
-                    <a target="_blank" href="https://portal.sefaz.ba.gov.br/scripts/cadastro/cadastroBa/consultaBa.asp"
-                        class="homefacil"><img src="icones home/cnpj.png" alt="" class="iconehome">Consultar CNPJ</a>
+
+                    <a href="#" onclick="consultarCNPJ('secConsultaCNPJ')" class="homefacil">
+                        <img src="icones home/cnpj.png" alt="" class="iconehome">Consultar CNPJ</a>
+
+                    <!-- <a target="_blank" href="https://portal.sefaz.ba.gov.br/scripts/cadastro/cadastroBa/consultaBa.asp"
+                        class="homefacil"><img src="icones home/cnpj.png" alt="" class="iconehome">Consultar CNPJ</a> -->
+
                     <a href="#" onclick="showSection('caracteres')" class="homefacil" class="iconehome"><img
                             src="icones home/REMOVEDOR-CARACTERE.png" alt="" class="iconehome">Remover Caracteres</a>
-                    <a target="_blank"
-                        href="https://www.nfe.fazenda.gov.br/portal/disponibilidade.aspx?"
+                    <a target="_blank" href="https://www.nfe.fazenda.gov.br/portal/disponibilidade.aspx?"
                         class="homefacil"><img src="icones home/Dispo-SEFAZ.png" alt="" class="iconehome">Ociosidade
                         Sefaz NF-e</a>
                     <a target="_blank" class="homefacil"><img src="#" alt="" class="iconehome">TESTE</a>
@@ -267,6 +273,78 @@
                                 onclick="copyToClipboard()">COPIAR</button>
                             <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
                         </div>
+                    </div>
+                </main>
+            </section>
+
+            <section id="secConsultaCNPJ" style="display: none;">
+                <main class="mainConsultaCNPJ">
+                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                            src="IMG/excluir.png" class="fecharcaracteres"></span>
+                    <h2 class="titleCNPJ">Consulta CNPJ</h2>
+                    <input type="text" class="inpCNPJ" id="inpCNPJid" method="POST">
+                    <div class="consultabtn">
+                        <button id="pesquisarCNPJ" onclick="pesquisaCNPJ()">consultar</button>
+                        <button id="limparPesquisa" onclick="limparPesquisa()" style="display: none;">limpar</button>
+                    </div>
+                    <div class="divSitesConsulta" style="display: block;">
+                        <div class="regiaosite">
+                            <h4 class="titulosite">Nordeste</h4>
+                            <hr>
+                            <div class="sites">
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/AL.png" alt="" style="height: 70px;">ALAGOAS</a>
+                                <a target="_blank" href="https://portal.sefaz.ba.gov.br/scripts/cadastro/cadastroBa/consultaBa.asp" class="regioes"><img src="IMG BANDEIRAS/BA.png" alt="" style="height: 70px;">BAHIA</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/CE.png" alt="" style="height: 70px;">CEARÁ</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/MA.png" alt="" style="height: 70px;">MARANHÃO</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/PA.png" alt="" style="height: 70px;">PARAIBA</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/PE.png" alt="" style="height: 70px;">PERNAMBUCO</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/PI.png" alt="" style="height: 70px;">PIAUI</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/RN.png" alt="" style="height: 70px;">RIO G. DO N.</a>
+                                <a  href="" class="regioes"><img src="IMG BANDEIRAS/SE.png" alt="" style="height: 70px;">SERGIPE</a>
+                            </div>
+                        </div>
+                        <div class="regiaosite">
+                            <h4 class="titulosite">Norte</h4>
+                            <hr>
+                            <div class="sites">
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/AC.png" alt="" style="height: 70px;">ACRE</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/AM.png" alt="" style="height: 70px;">AMAZONIA</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/AP.png" alt="" style="height: 70px;">AMAPA</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/PA.png" alt="" style="height: 70px;">PARA</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/RO.png" alt="" style="height: 70px;">RONDONIA</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/RR.png" alt="" style="height: 70px;">RORAIMA</a>
+                                <a target="_blank"href="" class="regioes"><img src="IMG BANDEIRAS/TO.png" alt="" style="height: 70px;">TOCANTINS</a>
+                            </div>
+                        </div>
+                        <div class="regiaosite">
+                            <h4 class="titulosite">Centro-Oeste</h4>
+                            <hr>
+                            <div class="sites">
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/DF.png" alt="" style="height: 70px;">DISTRITO FEDERAL</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/GO.png" alt="" style="height: 70px;">GOIAS</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/MS.png" alt="" style="height: 70px;">MATO GROSSO SUL</a>
+                                <a target="_blank" href="" class="regioes"><img src="IMG BANDEIRAS/MT.png" alt="" style="height: 70px;">MATO GROSSO</a>
+                            </div>
+                        </div>
+                        <div class="regiaosite">
+                            <h4 class="titulosite">Sudeste</h4>
+                            <hr>
+                            <div class="sites">
+                                
+                            </div>
+                        </div>
+                        <div class="regiaosite">
+                            <h4 class="titulosite">Sul</h4>
+                            <hr>
+                            <div class="sites">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divPesquisaCNPJ" style="display: none;">
+                        <div class="empresaInp"></div>
+                        <div class="enderInp"></div>
                     </div>
                 </main>
             </section>

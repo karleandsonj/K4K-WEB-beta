@@ -26,6 +26,16 @@ function showSection(sectionId) {
     sections[i].style.display = "none";
   }
   document.getElementById(sectionId).style.display = "block";
+  
+}
+
+function consultarCNPJ(secConsultaCNPJ) {
+  
+  var sections = document.querySelectorAll("section");
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].style.display = "none";
+  }
+  document.getElementById(secConsultaCNPJ).style.display = "block";
 }
 
 /* FIM DO Ativar SECTION */
@@ -161,12 +171,112 @@ const container = document.querySelector('.imagem-div-main');
 const scrollLeftButton = document.getElementById('scrollLeftButton');
 const scrollRightButton = document.getElementById('scrollRightButton');
 
-/* scrollLeftButton.addEventListener('click', () => {
-  // Define a quantidade de rolagem para a esquerda
-  const scrollAmount = 50; // Ajuste conforme necessário
-  container.scrollLeft -= scrollAmount;
-}); */
+/* Function do CNPJ */
+
+function removeCaracterCNPJ() {
+  let inpCNPJ = document.querySelector('#inpCNPJid').value;
+
+  let removeCaracCNPJ = inpCNPJ.replace(/[\.\,\-\/\\_\*\!\'\"\:\#\(\)\;\ ]/g, '');
+
+  document.querySelector('#inpCNPJid').value = removeCaracCNPJ;
+
+/*   console.log(removeCaracCNPJ); */
+  
+}
 
 
+function pesquisaCNPJ() {
 
+    removeCaracterCNPJ();
 
+    let sites = document.querySelector('.divSitesConsulta');
+    let pesquisa = document.querySelector('.divPesquisaCNPJ');
+    let btnlimparPesquisa = document.querySelector('#limparPesquisa');
+    let btnConsulta = document.querySelector('#pesquisarCNPJ');
+    let inpCNPJ = document.querySelector('#inpCNPJid');
+    let EmpresaInput = document.querySelector('.empresaInp');
+    let EnderecoInput = document.querySelector('.enderInp');
+
+    let CNPJ1 = inpCNPJ.value;
+
+    if (CNPJ1 != '') {
+
+      consultarCNPJ(CNPJ1);
+
+      async function consultarCNPJ(cnpjconst) {
+        try {
+          // Monta a URL com o CNPJ desejado
+          const url = `https://brasilapi.com.br/api/cnpj/v1/`;
+          let urlcnpj = url + cnpjconst;
+          
+          // Faz a requisição à API
+          const response = await fetch(urlcnpj);
+          
+          // Verifica se a resposta foi bem-sucedida
+          if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+          }
+          
+          // Converte a resposta para JSON
+          const dados = await response.json();
+          
+          // Exibe os dados no console ou faça o que desejar com eles
+
+          const consCNPJ = dados;
+
+          const {cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = consCNPJ;
+          const { cep, municipio, logradouro, codigo_municipio, numero, bairro, uf } = consCNPJ;
+
+          EmpresaInput.innerHTML += `<h4>EMPRESA</h4>` +
+          `<p>CNPJ: ${cnpj}</p>` + 
+          `<p>Razão Social: ${razao_social}</p>` + 
+          `<p>Fantasia: ${nome_fantasia}</p>` + 
+          `<p>Telefone: ${ddd_telefone_1}</p>` + 
+          `<p>Data Abertura: ${data_inicio_atividade}</p>` + 
+          `<p>Situação: ${descricao_situacao_cadastral}</p> <hr>` 
+
+          EnderecoInput.innerHTML += `<h4>ENDEREÇO</h4>` +
+          `<p>CEP: ${cep}</p>` +
+          `<p>Cidade: ${municipio} - ${uf}</p>` +
+          `<p>Cod. Municipio: ${codigo_municipio}</p>` +
+          `<p>Logradouro: ${logradouro}</p>` +
+          `<p>Bairro: ${bairro}</p>` +
+          `<p>Numero: ${numero}</p>`
+
+          sites.style.display = 'none';
+          pesquisa.style.display = 'block';
+          btnlimparPesquisa.style.display = 'flex';
+          btnConsulta.style.display = 'none';
+
+        } catch (erro) {
+          alert(`Erro ao consultar o CNPJ`, erro);
+          console.log(`Erro ao consultar o CNPJ`, erro);
+          limparPesquisa();
+        }
+      }
+
+    } else {
+      alert('Precisa informar um CNPJ valido!')
+    }
+
+}
+
+function limparPesquisa() {
+    let sites = document.querySelector('.divSitesConsulta');
+    let EmpresaInput = document.querySelector('.empresaInp');
+    let EnderecoInput = document.querySelector('.enderInp');
+    let pesquisa = document.querySelector('.divPesquisaCNPJ');
+    let btnlimparPesquisa = document.querySelector('#limparPesquisa');
+    let btnConsulta = document.querySelector('#pesquisarCNPJ');
+    let inpCNPJ = document.querySelector('#inpCNPJid');
+
+    sites.style.display = 'block';
+    pesquisa.style.display = 'none';
+    EmpresaInput.innerHTML = '';
+    EnderecoInput.innerHTML = '';
+    btnlimparPesquisa.style.display = 'none';
+    btnConsulta.style.display = 'flex';
+    inpCNPJ.value = '';
+}
+
+/* FIM Function do CNPJ */

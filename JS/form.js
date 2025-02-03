@@ -30,6 +30,7 @@ textarea.addEventListener('keydown', function (e) {
 /* ------------------------------------------------------------------- */
 
 
+// Função para exibir a lista de anexos
 function exibiranexo() {
     var input2 = document.getElementById('anexoimpt');
     var anexoList = document.getElementById('anexoList');
@@ -37,57 +38,65 @@ function exibiranexo() {
     // Limpa o conteúdo anterior
     anexoList.innerHTML = '';
 
-    // Verifica se algum arquivo foi selecionado
+    // Verifica se há arquivos selecionados
     if (input2.files && input2.files.length > 0) {
-        for (var i = 0; i < input2.files.length; i++) {
+        // Converte o FileList para um array para facilitar o manuseio
+        let filesArray = Array.from(input2.files);
+
+        filesArray.forEach((file, index) => {
+            // Cria o item da lista para cada arquivo
             var listItem = document.createElement('li');
-            listItem.textContent = input2.files[i].name;
+            listItem.textContent = file.name;
             listItem.classList.add('list-anx');
 
-            // Adiciona o botão de exclusão
+            // Cria o botão de exclusão e associa a função passando o índice
             var deleteButton = document.createElement('a');
             deleteButton.className = 'excluiranx1';
             deleteButton.textContent = '🗑️';
+            deleteButton.style.cursor = 'pointer';
             deleteButton.onclick = function () {
-                excluirAnexo(this.parentElement);
+                excluirAnexo(index);
             };
 
-            // Adiciona o item da lista e o botão de exclusão à lista de anexos
+            // Adiciona o botão ao item e o item à lista
             listItem.appendChild(deleteButton);
             anexoList.appendChild(listItem);
 
-            // Adiciona uma linha hr
+            // Adiciona um separador (linha horizontal) após o item
             var hrElement = document.createElement('hr');
-            hrElement.className = 'hr-form'; // Substitua 'suaClasse' pelo nome da classe desejada
+            hrElement.className = 'hr-form';
             anexoList.appendChild(hrElement);
-        }
+        });
 
-        anexoList.style.display = 'block'; // Exibe a lista de anexos
+        anexoList.style.display = 'block'; // Exibe a lista
     } else {
-        anexoList.style.display = 'none'; // Oculta a lista se nenhum arquivo estiver selecionado
+        anexoList.style.display = 'none'; // Oculta se não houver arquivos
     }
 }
 
-function excluirAnexo(item) {
+// Função para excluir um anexo pelo seu índice
+function excluirAnexo(index) {
     var inputanx = document.getElementById("anexoimpt");
-    inputanx.value = ""; // Limpa o valor do input
 
-    var anxContainer = document.getElementById('anexoList');
+    // Converte o FileList para um array
+    let filesArray = Array.from(inputanx.files);
 
-    // Remove o item da lista
-    anxContainer.removeChild(item);
+    // Remove o arquivo no índice informado
+    filesArray.splice(index, 1);
 
-    // Remove o próximo elemento se for um <hr>
-    var nextElement = item.nextSibling;
-    if (nextElement && nextElement.nodeType === 1 && nextElement.tagName.toLowerCase() === 'hr') {
-        anxContainer.removeChild(nextElement);
-    }
+    // Cria um novo DataTransfer para recriar o FileList
+    var dataTransfer = new DataTransfer();
+    filesArray.forEach(function(file) {
+        dataTransfer.items.add(file);
+    });
 
-    // Oculta o contêiner se não houver mais anexos
-    if (anxContainer.children.length === 0) {
-        anxContainer.style.display = 'none';
-    }
+    // Atualiza o input com os arquivos restantes
+    inputanx.files = dataTransfer.files;
+
+    // Atualiza a exibição da lista de anexos
+    exibiranexo();
 }
+
 
 /* ------------------------------------------------------------------- */
 
