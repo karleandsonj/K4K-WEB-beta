@@ -654,7 +654,7 @@ main {
 
 .modal-content {
     background-color: #c6d4e1;
-/*     margin: 0 auto; */
+    /*     margin: 0 auto; */
     top: 50px;
     padding: 20px;
     border-radius: 10px;
@@ -667,22 +667,25 @@ main {
     animation: slide-in-fwd-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
- @-webkit-keyframes slide-in-fwd-center {
+@-webkit-keyframes slide-in-fwd-center {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
+
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  @keyframes slide-in-fwd-center {
+}
+
+@keyframes slide-in-fwd-center {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
+
     100% {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
 
 
 p {
@@ -976,34 +979,44 @@ ol {
 
 /* Container que centraliza os elementos na tela */
 .imagem-ampliada {
-    position: fixed;      /* ou absolute, conforme a necessidade */
+    position: fixed;
+    /* ou absolute, conforme a necessidade */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;   /* centraliza o conteúdo inline-block */
-  }
-  
-  /* Imagem que se adapta ao tamanho da viewport, mantendo a proporção */
-  .imagem-ampliada img {
-    display: block;              /* remove espaços em branco abaixo da imagem */
-    max-width: 90vw;             /* largura máxima: 90% da largura da viewport */
-    max-height: 90vh;            /* altura máxima: 90% da altura da viewport */
+    text-align: center;
+    /* centraliza o conteúdo inline-block */
+}
+
+/* Imagem que se adapta ao tamanho da viewport, mantendo a proporção */
+.imagem-ampliada img {
+    display: block;
+    /* remove espaços em branco abaixo da imagem */
+    max-width: 90vw;
+    /* largura máxima: 90% da largura da viewport */
+    max-height: 90vh;
+    /* altura máxima: 90% da altura da viewport */
     width: auto;
     height: auto;
-    box-shadow: 0 0 2px 2px #000; /* sombra conforme desejado */
+    box-shadow: 0 0 2px 2px #000;
+    /* sombra conforme desejado */
     background-color: #fff;
-    margin: 0 auto;              /* garante centralização se necessário */
-  }
-  
-  /* Elemento adicional com largura relativa à imagem */
-  .imagem-ampliada .imagemborda2 {
-    width: 100%;                 /* assume a mesma largura da imagem */
-    height: 25px;                /* altura fixa, conforme exemplo */
+    margin: 0 auto;
+    /* garante centralização se necessário */
+}
+
+/* Elemento adicional com largura relativa à imagem */
+.imagem-ampliada .imagemborda2 {
+    width: 100%;
+    /* assume a mesma largura da imagem */
+    height: 25px;
+    /* altura fixa, conforme exemplo */
     background-color: #000;
     box-shadow: 0 0 2px 2px #000;
-    margin-top: 10px;            /* espaço entre a imagem e este elemento */
-  }
-  
+    margin-top: 10px;
+    /* espaço entre a imagem e este elemento */
+}
+
 
 .img-amp-close {
     margin: 0;
@@ -1012,7 +1025,7 @@ ol {
 }
 
 #modalContainer {
-/*     background-color: #076fe5; */
+    /*     background-color: #076fe5; */
     /*   position: relative;
   justify-content: center;
   align-items: center; */
@@ -1130,9 +1143,12 @@ h3 {
 }
 
 .buttonDownload {
-    white-space: normal; /* Permite quebra de linha */
-    word-wrap: break-word; /* Quebra palavras longas */
-    overflow-wrap: break-word; /* Alternativa para forçar a quebra */
+    white-space: normal;
+    /* Permite quebra de linha */
+    word-wrap: break-word;
+    /* Quebra palavras longas */
+    overflow-wrap: break-word;
+    /* Alternativa para forçar a quebra */
     justify-content: center;
     left: 50%;
     transform: translateX(-50%);

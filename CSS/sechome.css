@@ -344,7 +344,7 @@
     transform: translateX(-50%);
     background-color: #bdb8ad;
     width: 75vw;
-    height: 70vh;
+    height: 75vh;
     text-align: center;
 }
 
@@ -354,7 +354,7 @@ select#registro {
     border-radius: 5px;
     margin-bottom: 15px;
     margin-top: 10px;
-    border: 1px solid #ccc;
+/*     border: 1px solid #ccc; */
 }
 
 .txterros {
@@ -363,7 +363,7 @@ select#registro {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 0 auto;
-    height: 200px;
+    height: 180px;
     width: 90%;
     margin-bottom: 10px;
     resize: none;
@@ -401,13 +401,11 @@ select#registro {
     background-color: #922200;
 }
 
-.sec1_gerado {
-    margin-top: 15px;
+.sec1_gerar {
+/*     margin-top: 20px; */
     padding: 15px;
     border-radius: 10px;
-    background-color: #f8f8f8;
     text-align: center;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #resultadoDiv {
@@ -469,3 +467,37 @@ select#registro {
 #copyResultSPED:hover {
     background-color: #83fabe
 }
+
+.sectionSped {
+    background-color: #000;
+    position: relative;
+    display: flex;
+}
+
+.navbarSPED {
+    position: relative;
+    height: auto;
+    display: flex;
+    list-style: none;
+    font-size: 12px;
+    justify-content: start;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: none;
+}
+
+.navbarSPED li {
+    cursor: pointer;
+    color: #000000;
+    background-color: #5cabff;
+    margin-left: 5px;
+    padding: 2px;
+    border-top-left-radius: 10px;
+}
+
+#spedAvisosAssit {
+/*     border-top:solid 1px #5cabff; */
+    margin-top: -10px;
+}
+

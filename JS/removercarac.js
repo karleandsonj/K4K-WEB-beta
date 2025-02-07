@@ -41,11 +41,11 @@
   copiar();
 });
 
-const fecharcaractere = document.getElementById('closeModalcaracteres');
+// const fecharcaractere = document.getElementById('closeModalcaracteres');
 const caracteres = document.getElementById('caracteres');
 const HOME = document.getElementById('HOME');
 
-fecharcaractere.addEventListener('click', () => {
+/* fecharcaractere.addEventListener('click', () => {
   caracteres.style.display = 'none';
   HOME.style.display = 'block';
-});
+}); */
