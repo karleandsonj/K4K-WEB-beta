@@ -39,12 +39,13 @@ function consultarCNPJ(secConsultaCNPJ) {
 }
 
 function showSpedModific(spedModificaçao) {
-  
+  let mainSpedModificaçao = document.querySelector('.mainSpedModificaçao')
   var sections = document.querySelectorAll("section");
   for (var i = 0; i < sections.length; i++) {
     sections[i].style.display = "none";
   }
   document.getElementById(spedModificaçao).style.display = "block";
+  mainSpedModificaçao.style.display = 'block';
 }
 
 /* FIM DO Ativar SECTION */
@@ -293,58 +294,84 @@ function limparPesquisa() {
 /* ASSISTENTE SPED */
 
 let txterros = document.getElementById("txterros");
-        let btnerros = document.getElementById("btnerros");
-        let btnlimpar = document.getElementById("btnlimpar");
-        let result = document.getElementById("resultado");
-        let registro = document.getElementById("registro");
+let btnerros = document.getElementById("btnerros");
+let btnlimpar = document.getElementById("btnlimpar");
+let result = document.getElementById("resultado");
+let resultDiv = document.getElementById("resultadoDiv");
+let registro = document.getElementById("registro");
+btnerros.addEventListener("click", () => {
+    // Obtém o texto inserido no campo txterros
+    let texto = txterros.value;
+    let registro1 = registro.value;
+    const input = texto;
+    const marker = `|${registro1}|`;
+    let startIndex = input.indexOf(marker); // Localiza a primeira ocorrência de |C170|
+    let resultados = [];
+    if (marker === '|C170|') {
+      // Conjunto para armazenar valores únicos
+      let resultadosSet = new Set();
+
+      while (startIndex !== -1) {
+          // Localiza o primeiro '|' após |C170|
+          let primeiroPipe = input.indexOf("|", startIndex + marker.length);
+          if (primeiroPipe !== -1) {
+              // Localiza o segundo '|' após |C170| (o valor que queremos está entre esses dois pipes)
+              let segundoPipe = input.indexOf("|", primeiroPipe + 1);
+              if (segundoPipe !== -1) {
+                  // Captura o valor entre os pipes
+                  let resultado = input.substring(primeiroPipe + 1, segundoPipe).trim();
+                  // Adiciona ao Set apenas se o valor não estiver vazio
+                  if (resultado !== "") {
+                      resultadosSet.add(resultado);
+                  }
+              }
+          }
+          // Procura a próxima ocorrência de |C170| após a atual
+          startIndex = input.indexOf(marker, primeiroPipe + 1);
+      }
+
+      // Converte o Set para um array e exibe os resultados
+      if (resultadosSet.size > 0) {
+          result.innerHTML = Array.from(resultadosSet).join(", "); // Exibe cada resultado separado por vírgula
+      } else {
+          result.innerHTML = `Registro não encontrado! ${registro1}`;
+      }
+
+      resultDiv.style.display = 'block';
+
+    } else {
+      result.innerHTML = `DEU ERRO AI MENÓ!`;
+      resultDiv.style.display = 'block';
+    }
+    
+});
+// Limpa o campo de texto ao clicar no botão "btnlimpar"
+btnlimpar.addEventListener("click", () => {
+    txterros.value = '';
+    resultDiv.style.display = 'none';
+    result.innerText = '';
+});
 
 
-        btnerros.addEventListener("click", () => {
-            // Obtém o texto inserido no campo txterros
-            let texto = txterros.value;
-            let registro1 = registro.value;
-
-            const input = texto;
-            const marker = `|${registro1}|`;
-            let startIndex = input.indexOf(marker); // Localiza a primeira ocorrência de |C170|
-            let resultados = [];
-
-            while (startIndex !== -1) {
-                // Localiza o primeiro '|' após |C170|
-                let primeiroPipe = input.indexOf("|", startIndex + marker.length);
-
-                if (primeiroPipe !== -1) {
-                    // Localiza o segundo '|' após |C170| (o valor que queremos está entre esses dois pipes)
-                    let segundoPipe = input.indexOf("|", primeiroPipe + 1);
-
-                    if (segundoPipe !== -1) {
-                        // Captura o valor entre os pipes
-                        let resultado = input.substring(primeiroPipe + 1, segundoPipe).trim();
-
-                        // Adiciona ao array apenas se o valor não estiver vazio
-                        if (resultado !== "") {
-                            resultados.push(resultado);
-                        }
-                    }
-                }
-
-                // Procura a próxima ocorrência de |C170| após a atual
-                startIndex = input.indexOf(marker, primeiroPipe + 1);
-            }
-
-            // Exibe os resultados ou mensagem se nenhum foi encontrado
-            if (resultados.length > 0) {
-                result.innerHTML = resultados.join(", "); // Exibe cada resultado separado por vírgula
-            } else {
-                result.innerHTML = `Registro não encontrado! ${registro1}`;
-            }
-
-            result.style.display = 'block';
-        });
-
-        // Limpa o campo de texto ao clicar no botão "btnlimpar"
-        btnlimpar.addEventListener("click", () => {
-            txterros.value = '';
-            result.style.display = 'none';
-            result.innerHTML = '';
-        });
+function copyResSPED() {
+  var resultado = document.getElementById("resultado");
+  if (!resultado || !resultado.textContent.trim()) {
+      alert("Nada para copiar!");
+      return;
+  }
+  
+  var tempInput = document.createElement("textarea");
+  tempInput.value = resultado.textContent;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+  
+  var iconCopySped = document.getElementById("iconCopySped");
+  if (iconCopySped) {
+      iconCopySped.textContent = "✔️";
+      setTimeout(() => {
+          iconCopySped.textContent = "📄";
+      }, 2000);
+  }
+}

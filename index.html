@@ -259,25 +259,31 @@
             </section>
 
             <section id="spedModificaçao" style="display: none;">
-                <main class="mainSpedModificaçao">
-                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
-                            src="IMG/excluir.png" class="fecharcaracteres"></span>
-                    <h2 class="titleSPED">Assistente SPED</h2>
-                    <div class="sec1_gerar">
-                        <h4>Buscador de cod. produto</h4>
-                        <select id="registro">
-                            <option>C170</option>
-                            <option>C150</option>
-                            <option>C175</option>
-                        </select>
-                        <textarea class="txterros" id="txterros"></textarea>
-                        <div id="resultado" style="display: none;">  </div>
-                        <div class="botoes">
-                            <button id="btnerros" class="btnerros" type="button">GERAR</button>
-                            <button id="btnlimpar" class="btnerros" type="button">LIMPAR</button>
-                        </div>     
-                    </div>
-                </main>
+                <div class="sectionSped">
+
+                    <section class="mainSpedModificaçao">
+                        <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                                src="IMG/excluir.png" class="fecharcaracteres"></span>
+                        <h2 class="titleSPED">Assistente SPED</h2>
+                        <div class="sec1_gerar">
+                            <h4>Buscador de cod. produto</h4>
+                            <select id="registro">
+                                <option>C170</option>
+                                <!-- <option>C150</option> -->
+                                <!-- <option>C175</option> -->
+                            </select>
+                            <textarea class="txterros" id="txterros"></textarea>
+                            <div id="resultadoDiv" style="display: none;">
+                                <div id="copyResultSPED" onclick="copyResSPED()"><span id="iconCopySped">📄</span></div>
+                                <p id="resultado"></p>
+                            </div>
+                            <div class="botoes">
+                                <button id="btnerros" class="btnerros" type="button">GERAR</button>
+                                <button id="btnlimpar" class="btnerros" type="button">LIMPAR</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </section>
 
             <section id="caracteres" style="display: none;">
