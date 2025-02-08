@@ -364,6 +364,7 @@ select#registro {
     border-radius: 5px;
     margin: 0 auto;
     height: 180px;
+    min-height: 50px;
     width: 90%;
     margin-bottom: 10px;
     resize: none;
@@ -480,24 +481,48 @@ select#registro {
     display: flex;
     list-style: none;
     font-size: 12px;
-    justify-content: start;
-    margin: 0;
+    justify-content: center;
+    margin: 0 auto;
     margin-top: 10px;
     margin-left: 10px;
-    display: none;
+    z-index: -1;
+}
+
+.spedAtivo {
+    border: 1px solid #a7a298;
+    background-color: #a7a298;
+    margin-top: -8px;
 }
 
 .navbarSPED li {
     cursor: pointer;
     color: #000000;
-    background-color: #5cabff;
-    margin-left: 5px;
-    padding: 2px;
+/*     background-color: #c9c6bf; */
+    margin-left: -1px;
     border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 2px;
+    border: 1px solid #5b635c;
+    border-bottom: none;
+    width: 100px;
+    text-align: center;
+    margin-bottom: 5px;
+    z-index: 1;
+    align-content: center;
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 5px;
+
 }
 
 #spedAvisosAssit {
-/*     border-top:solid 1px #5cabff; */
+    border-top: 2px solid #a7a298;
     margin-top: -10px;
+    z-index: 9;
+    background-color: #a7a298;
+    position: static;
+    margin-bottom: 0;
 }
+
+/* #bdb8ad */
 

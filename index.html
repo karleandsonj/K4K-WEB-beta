@@ -229,7 +229,7 @@
     <main>
         <div class="section_main">
 
-            <section id="HOME" class="rotinas" style="display: none;">
+            <section id="HOME" class="rotinas" style="display: block;">
                 <h2 class="bemvindo"> Bem Vindo ao Karl4Knows </h2>
                 <div class="home" id="HOMEK">
                     <a target="_blank"
@@ -258,22 +258,22 @@
                 </div>
             </section>
 
-            <section id="spedModificaçao" style="display: block;">
+            <section id="spedModificaçao" style="display: none;">
                 <section class="mainSpedModificaçao">
                     <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
                     <h2 class="titleSPED">Assistente SPED</h2>
                     <ul class="navbarSPED">
-                        <li>Assist. Aviso</li>
-                        <li>Assist. Aviso</li>
-                        <li>Assist. Aviso</li>
+                        <li class="spedAtivo" onclick="ativarAbasSped(this)">Avisos</li>
+                        <li onclick="ativarAbasSped(this)">Teste 1</li>
+                        <li onclick="ativarAbasSped(this)">Teste 2</li>
                     </ul>
                     <div id="spedAvisosAssit">
                         <div class="sec1_gerar">
                             <h4>Buscador de cod. produto</h4>
                             <select id="registro">
                                 <option>C170</option>
-                                <!-- <option>C150</option> -->
+                                <option>C150</option>
                                 <!-- <option>C175</option> -->
                             </select>
                             <textarea class="txterros" id="txterros"></textarea>

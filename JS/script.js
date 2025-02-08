@@ -375,3 +375,12 @@ function copyResSPED() {
       }, 2000);
   }
 }
+
+function ativarAbasSped(element) {
+  // Remove a classe 'spedAtivo' de todos os <li>
+  document.querySelectorAll('.navbarSPED li').forEach(li => li.classList.remove('spedAtivo'));
+
+  // Adiciona a classe 'spedAtivo' ao item clicado
+  element.classList.add('spedAtivo');
+
+}
