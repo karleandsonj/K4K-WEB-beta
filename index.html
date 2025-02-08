@@ -264,11 +264,11 @@
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
                     <h2 class="titleSPED">Assistente SPED</h2>
                     <ul class="navbarSPED">
-                        <li class="spedAtivo" onclick="ativarAbasSped(this)">Avisos</li>
-                        <li onclick="ativarAbasSped(this)">Teste 1</li>
-                        <li onclick="ativarAbasSped(this)">Teste 2</li>
+                        <li class="spedAtivo" onclick="ativarAbasSped(this)" id="avisosSpedNav">Avisos</li>
+                        <li onclick="ativarAbasSped(this)" id="avisosSpedNav2">Erros</li>
+                        <li onclick="ativarAbasSped(this)" id="avisosSpedNav3">Outros</li>
                     </ul>
-                    <div id="spedAvisosAssit">
+                    <div id="spedAvisosAssit" class="desativar">
                         <div class="sec1_gerar">
                             <h4>Buscador de cod. produto</h4>
                             <select id="registro">
@@ -287,6 +287,8 @@
                             </div>
                         </div>
                     </div>
+                    <div id="spedErrosAssit" class="desativar">ERROS</div>
+                    <div id="spedOutrosAssit" class="desativar">OUTROS</div>
                 </section>
             </section>
 

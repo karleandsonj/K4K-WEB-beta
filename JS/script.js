@@ -46,6 +46,8 @@ function showSpedModific(spedModificaçao) {
   }
   document.getElementById(spedModificaçao).style.display = "block";
   mainSpedModificaçao.style.display = 'block';
+
+  abrirAbasSped();
 }
 
 /* FIM DO Ativar SECTION */
@@ -338,10 +340,12 @@ btnerros.addEventListener("click", () => {
       }
 
       resultDiv.style.display = 'block';
+      txterros.style.height = 'calc(250px - 75px)';
 
     } else {
       result.innerHTML = `DEU ERRO AI MENÓ!`;
       resultDiv.style.display = 'block';
+      txterros.style.height = 'calc(250px - 75px)';
     }
     
 });
@@ -349,6 +353,7 @@ btnerros.addEventListener("click", () => {
 btnlimpar.addEventListener("click", () => {
     txterros.value = '';
     resultDiv.style.display = 'none';
+    txterros.style.height = '250px';
     result.innerText = '';
 });
 
@@ -376,11 +381,45 @@ function copyResSPED() {
   }
 }
 
+
 function ativarAbasSped(element) {
-  // Remove a classe 'spedAtivo' de todos os <li>
+  // Remove a classe 'spedAtivo' de todos os <li> da navbar
   document.querySelectorAll('.navbarSPED li').forEach(li => li.classList.remove('spedAtivo'));
 
   // Adiciona a classe 'spedAtivo' ao item clicado
   element.classList.add('spedAtivo');
 
+  abrirAbasSped();
 }
+
+function abrirAbasSped() {
+  let spedAtivo = document.querySelector('.spedAtivo');
+  let spedAvisosAssit = document.querySelector('#spedAvisosAssit');
+  let spedErrosAssit = document.querySelector('#spedErrosAssit');
+  let spedOutrosAssit = document.querySelector('#spedOutrosAssit');
+  let desativar = document.querySelectorAll('.desativar');
+
+  spedAtivo = spedAtivo.textContent;
+
+  console.log(spedAtivo);
+  
+  if (spedAtivo === 'Avisos') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    spedAvisosAssit.style.display = 'block';
+
+  } else if (spedAtivo === 'Erros') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    spedErrosAssit.style.display = 'block';
+
+  } else if (spedAtivo === 'Outros') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    spedOutrosAssit.style.display = 'block';
+  }
+}
+
