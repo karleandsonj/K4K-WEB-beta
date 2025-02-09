@@ -57,17 +57,6 @@ function loadsgaSheetData(url) {
                         const descricao_anexo = columns[7].textContent.trim();
                         const anexo = columns[8].textContent.trim();
 
-                        /*                         // Selecionando os inputs pelos IDs
-                                                const errosInput = document.getElementById('P_sga-edit');
-                                                const solucoesInput = document.getElementById('P_sga1-edit');
-                                                const scriptInput = document.getElementById('P_sga2-edit');
-                        
-                                                // Atribuindo os valores das constantes aos inputs
-                                                errosInput.value = erros;
-                                                solucoesInput.value = solucoes;
-                                                scriptInput.value = script; */
-
-                        /* console.log(anexo) */
 
                         // Dividir a variável imagemLink em várias imagens usando o ponto e vírgula como separador
 
@@ -269,8 +258,6 @@ function loadsgaSheetData(url) {
                             </div>`;
                         }
 
-                        /* const reloadButtonedit = document.querySelector('#reloadButtonedit'); */
-                        /* const divToCloseedit = document.getElementById('#alertaedit'); */
                         const removeloadingedit = () => {
                             let loadinganxedit = document.getElementById("loadinganx-edit");
                             loadinganxedit.style.display = 'none'; // Mostra o elemento de carregamento
@@ -401,24 +388,11 @@ function loadsgaSheetData(url) {
 
 
                         // Adicionar um evento de clique ao link "Clique para trocar a imagem"
-                        /* const trocarImagemLink = document.getElementById('trocarImagem'); */
                         const imagemDivs = document.querySelectorAll('.imagem-div');
                         const modalContainer = document.getElementById('modalContainer');
 
                         const modalContainerborda = document.getElementById('modalContainer-borda');
 
-                        /* let imagemAtual = 0; */
-
-                        /* trocarImagemLink.addEventListener('click', () => {
-                            // Ocultar a imagem atual
-                            imagemDivs[imagemAtual].style.display = 'none';
-                
-                            // Avançar para a próxima imagem
-                            imagemAtual = (imagemAtual + 1) % imagens.length;
-                
-                            // Exibir a nova imagem
-                            imagemDivs[imagemAtual].style.display = 'block';
-                        }); */
 
                         imagemDivs.forEach((imagemDiv, index) => {
                             const imagem = imagemDiv.querySelector('img');
@@ -529,7 +503,6 @@ function loadsgaSheetData(url) {
                                 elemento.style.wordWrap = 'break-word'; // Força quebra de palavra em caso de overflow
                             }
                         }
-
 
                         // Para usar a função com outro campo, basta chamar a função com o ID do novo elemento:
                         formatarTextoComQuebrasDeLinha('P_sga');
