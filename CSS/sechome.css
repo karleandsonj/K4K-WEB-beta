@@ -50,75 +50,73 @@
     color: black;
     width: 100%;
     margin-bottom: 10px;
+    border: 1px black dashed;
 }
 
 #removecaracteres {
-    border: 2px solid lightgray;
-    background-color: gray;
-    color: black;
-    height: 50px;
-    width: 100%;
-    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    cursor: pointer;
+    width: 100%;
+    background-color: #7c7c7c;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    transition: background-color 0.3s;
+    height: 40px;
 }
 
 #removecaracteres:hover {
-    background-color: lightgray;
+    border: 1px solid black;
+    background-color: rgb(175, 175, 175);
 }
 
 #buttonsContainercaracteres {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    /* O valor máximo que você deseja que os botões ocupem (ajuste conforme necessário) */
+    width: 50%;
     margin: 0 auto;
     margin-top: 10px;
 }
 
 #copyButtoncaracteres {
-    display: block;
-    justify-content: space-around;
-    width: 100%;
-    height: 50px;
-    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    border: 2px solid white;
+    cursor: pointer;
+    background-color: #007bff;
     color: white;
-    font-size: 16px;
-    margin-right: 25px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    height: 40px;
+    width: 150px;
+    margin-right: 10px;
 }
 
-#limparcaracteres {
-    display: block;
-    justify-content: space-around;
-    width: 100%;
-    height: 50px;
-    cursor: pointer;
+#limparcaracteres { 
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    border: 2px solid white;
+    cursor: pointer;
+    background-color: #007bff;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    height: 40px;
+    width: 150px;
+    margin-left: 10px;
 }
 
 #removecaracteres button {
     display: block;
     justify-content: space-around;
     width: 100%;
-    height: 50px;
     cursor: pointer;
     border-radius: 5px;
     border: 2px solid white;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
 }
 
-#copyButtoncaracteres {
-    background-color: #0004d4;
-    /* Cor de fundo para o botão COPIAR */
-}
 
 #copyButtoncaracteres:hover {
     background-color: #396285;
@@ -331,6 +329,28 @@
     /* Cor do indicador de rolagem ao passar o mouse */
 }
 
+.inpLoadConsultCNPJ {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Espaço entre os elementos */
+}
+
+.loadConsultCNPJ {
+    position: absolute;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+    margin-top: -5px;
+    left: 50%;
+    transform: translate(-50%);
+    height: auto;
+    width: 170px;
+    text-align: center;
+    padding: 5px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 5px;
+    background-color: #baffac;
+}
+
 /*  */
 
 .mainSpedModificaçao {
@@ -500,13 +520,7 @@ select#registro {
     z-index: -1;
 }
 
-.spedAtivo {
-    border: 1px solid  #969089;
-    background-color: #a7a298;
-    margin-top: -8px;
-}
-
-li {
+.liSPED {
     cursor: pointer;
     color: #000000;
 /*     background-color: #c9c6bf; */
@@ -524,7 +538,12 @@ li {
     align-self: center;
     margin-left: 5px;
     margin-right: 5px;
+}
 
+.spedAtivo {
+    border: 1px solid  #969089;
+    background-color: #a7a298;
+    margin-top: -8px;
 }
 
 #spedAvisosAssit, #spedErrosAssit, #spedOutrosAssit {

@@ -265,9 +265,9 @@
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
                     <h2 class="titleSPED">Assistente SPED</h2>
                     <ul class="navbarSPED">
-                        <li class="spedAtivo" onclick="ativarAbasSped(this)" id="avisosSpedNav">Avisos</li>
-                        <li onclick="ativarAbasSped(this)" id="avisosSpedNav2">Erros</li>
-                        <li onclick="ativarAbasSped(this)" id="avisosSpedNav3">Outros</li>
+                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)" id="avisosSpedNav">Avisos</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)" id="avisosSpedNav2">Erros</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)" id="avisosSpedNav3">Outros</li>
                     </ul>
                     <div id="spedAvisosAssit" class="desativar">
                         <div class="sec1_gerar">
@@ -318,7 +318,12 @@
                     <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
                     <h2 class="titleCNPJ">Consulta CNPJ</h2>
-                    <input type="text" class="inpCNPJ" id="inpCNPJid" method="POST">
+                    <div class="inpLoadConsultCNPJ">
+                        <input type="text" class="inpCNPJ" id="inpCNPJid" method="POST">
+                        <div class="loadConsultCNPJ" style="display: none;">
+                            <p>Carregando...</p>
+                        </div>
+                    </div>
                     <div class="consultabtn">
                         <button id="pesquisarCNPJ" onclick="pesquisaCNPJ()">consultar</button>
                         <button id="limparPesquisa" onclick="limparPesquisa()" style="display: none;">limpar</button>

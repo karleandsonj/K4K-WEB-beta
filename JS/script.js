@@ -54,13 +54,13 @@ function showSpedModific(spedModificaçao) {
 
 /* ------------------------------------------------------------------------------------------------------- */
 
-/* Reload ao clicar na LOGO */
+/* Reload ao clicar na LOGO ou nos X */
 
 function reloadPage() {
   location.reload();
 }
 
-/* FIM DO Reload ao clicar na LOGO */
+/* FIM DO Reload ao clicar na LOGO ou nos X */
 
 /* ------------------------------------------------------------------------------------------------------- */
 
@@ -208,10 +208,13 @@ function pesquisaCNPJ() {
     let inpCNPJ = document.querySelector('#inpCNPJid');
     let EmpresaInput = document.querySelector('.empresaInp');
     let EnderecoInput = document.querySelector('.enderInp');
+    let loading = document.querySelector('.loadConsultCNPJ');
 
     let CNPJ1 = inpCNPJ.value;
 
     if (CNPJ1 != '') {
+
+      loading.style.display = 'block';
 
       consultarCNPJ(CNPJ1);
 
@@ -236,7 +239,7 @@ function pesquisaCNPJ() {
 
           const consCNPJ = dados;
 
-          const {cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = consCNPJ;
+          const { cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = consCNPJ;
           const { cep, municipio, logradouro, codigo_municipio, numero, bairro, uf } = consCNPJ;
 
           EmpresaInput.innerHTML += `<h4>EMPRESA</h4>` +
@@ -264,12 +267,14 @@ function pesquisaCNPJ() {
           alert(`Erro ao consultar o CNPJ`, erro);
           console.log(`Erro ao consultar o CNPJ`, erro);
           limparPesquisa();
+        } finally {
+          loading.style.display = 'none';
         }
       }
 
     } else {
       alert('Precisa informar um CNPJ valido!')
-    }
+    } 
 
 }
 
