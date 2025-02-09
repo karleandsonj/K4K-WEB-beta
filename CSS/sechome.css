@@ -501,12 +501,12 @@ select#registro {
 }
 
 .spedAtivo {
-    border: 1px solid #a7a298;
+    border: 1px solid  #969089;
     background-color: #a7a298;
     margin-top: -8px;
 }
 
-.navbarSPED li {
+li {
     cursor: pointer;
     color: #000000;
 /*     background-color: #c9c6bf; */
