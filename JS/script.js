@@ -198,102 +198,157 @@ function removeCaracterCNPJ() {
 
 
 function pesquisaCNPJ() {
+  removeCaracterCNPJ();
 
-    removeCaracterCNPJ();
+  let sites = document.querySelector('.divSitesConsulta');
+  let pesquisa = document.querySelector('.divPesquisaCNPJ');
+  let btnlimparPesquisa = document.querySelector('#limparPesquisa');
+  let btnConsulta = document.querySelector('#pesquisarCNPJ');
+  let inpCNPJ = document.querySelector('#inpCNPJid');
+  let EmpresaInput = document.querySelector('.empresaInp');
+  let EnderecoInput = document.querySelector('.enderInp');
+  let loading = document.querySelector('.loadConsultCNPJ');
+  let progressBar = document.querySelector('.progressbar');
 
-    let sites = document.querySelector('.divSitesConsulta');
-    let pesquisa = document.querySelector('.divPesquisaCNPJ');
-    let btnlimparPesquisa = document.querySelector('#limparPesquisa');
-    let btnConsulta = document.querySelector('#pesquisarCNPJ');
-    let inpCNPJ = document.querySelector('#inpCNPJid');
-    let EmpresaInput = document.querySelector('.empresaInp');
-    let EnderecoInput = document.querySelector('.enderInp');
-    let loading = document.querySelector('.loadConsultCNPJ');
+  let CNPJ1 = inpCNPJ.value;
 
-    let CNPJ1 = inpCNPJ.value;
-
-    if (CNPJ1 != '') {
-
+  if (CNPJ1 !== '') {
+      // Reseta a barra de progresso e exibe o loading
       loading.style.display = 'block';
+      resetProgressBar(); // Função para resetar a barra de progresso
 
+
+      // Inicia a consulta
       consultarCNPJ(CNPJ1);
 
       async function consultarCNPJ(cnpjconst) {
-        try {
-          // Monta a URL com o CNPJ desejado
-          const url = `https://brasilapi.com.br/api/cnpj/v1/`;
-          let urlcnpj = url + cnpjconst;
-          
-          // Faz a requisição à API
-          const response = await fetch(urlcnpj);
-          
-          // Verifica se a resposta foi bem-sucedida
-          if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
+          try {
+              // Monta a URL com o CNPJ desejado
+              const url = `https://brasilapi.com.br/api/cnpj/v1/`;
+              let urlcnpj = url + cnpjconst;
+
+              // Atualiza a barra de progresso para 20%
+              updateProgressBar(20);
+
+              // Faz a requisição à API
+              const response = await fetch(urlcnpj);
+
+              // Verifica se a resposta foi bem-sucedida
+              if (!response.ok) {
+                  throw new Error(`Erro na requisição: ${response.status}`);
+              }
+
+              // Atualiza a barra de progresso para 40%
+              updateProgressBar(40);
+
+              // Converte a resposta para JSON
+              const dados = await response.json();
+
+              // Atualiza a barra de progresso para 60%
+              updateProgressBar(60);
+
+              // Extrai os dados da resposta
+              const { cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = dados;
+              const { cep, municipio, logradouro, codigo_municipio, numero, bairro, uf } = dados;
+
+              // Exibe os dados da empresa
+              EmpresaInput.innerHTML = `
+                  <h4>EMPRESA</h4>
+                  <p>CNPJ: ${cnpj}</p>
+                  <p>Razão Social: ${razao_social}</p>
+                  <p>Fantasia: ${nome_fantasia}</p>
+                  <p>Telefone: ${ddd_telefone_1}</p>
+                  <p>Data Abertura: ${data_inicio_atividade}</p>
+                  <p>Situação: ${descricao_situacao_cadastral}</p>
+                  <hr>
+              `;
+
+              // Exibe os dados do endereço
+              EnderecoInput.innerHTML = `
+                  <h4>ENDEREÇO</h4>
+                  <p>CEP: ${cep}</p>
+                  <p>Cidade: ${municipio} - ${uf}</p>
+                  <p>Cod. Municipio: ${codigo_municipio}</p>
+                  <p>Logradouro: ${logradouro}</p>
+                  <p>Bairro: ${bairro}</p>
+                  <p>Numero: ${numero}</p>
+              `;
+
+              // Atualiza a barra de progresso para 80%
+              updateProgressBar(80);
+
+              // Exibe a seção de pesquisa e oculta a seção de sites
+              sites.style.display = 'none';
+              pesquisa.style.display = 'block';
+              btnlimparPesquisa.style.display = 'flex';
+              btnConsulta.style.display = 'none';
+
+              // Completa a barra de progresso
+              updateProgressBar(100);
+          } catch (erro) {
+              // Em caso de erro, exibe uma mensagem e reseta a interface
+              updateProgressBar(100, true); // Barra de erro
+              setTimeout(() => {
+                  alert('Erro ao consultar o CNPJ. Verifique o console para mais detalhes.');
+                  console.error('Erro ao consultar o CNPJ:', erro);
+                  limparPesquisa();
+              }, 1000);
+          } finally {
+              // Reseta a barra de progresso e oculta o loading após 1 segundo
+              setTimeout(() => {
+                  resetProgressBar();
+                  loading.style.display = 'none';
+              }, 1000);
           }
-          
-          // Converte a resposta para JSON
-          const dados = await response.json();
-          
-          // Exibe os dados no console ou faça o que desejar com eles
-
-          const consCNPJ = dados;
-
-          const { cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = consCNPJ;
-          const { cep, municipio, logradouro, codigo_municipio, numero, bairro, uf } = consCNPJ;
-
-          EmpresaInput.innerHTML += `<h4>EMPRESA</h4>` +
-          `<p>CNPJ: ${cnpj}</p>` + 
-          `<p>Razão Social: ${razao_social}</p>` + 
-          `<p>Fantasia: ${nome_fantasia}</p>` + 
-          `<p>Telefone: ${ddd_telefone_1}</p>` + 
-          `<p>Data Abertura: ${data_inicio_atividade}</p>` + 
-          `<p>Situação: ${descricao_situacao_cadastral}</p> <hr>` 
-
-          EnderecoInput.innerHTML += `<h4>ENDEREÇO</h4>` +
-          `<p>CEP: ${cep}</p>` +
-          `<p>Cidade: ${municipio} - ${uf}</p>` +
-          `<p>Cod. Municipio: ${codigo_municipio}</p>` +
-          `<p>Logradouro: ${logradouro}</p>` +
-          `<p>Bairro: ${bairro}</p>` +
-          `<p>Numero: ${numero}</p>`
-
-          sites.style.display = 'none';
-          pesquisa.style.display = 'block';
-          btnlimparPesquisa.style.display = 'flex';
-          btnConsulta.style.display = 'none';
-
-        } catch (erro) {
-          alert(`Erro ao consultar o CNPJ`, erro);
-          console.log(`Erro ao consultar o CNPJ`, erro);
-          limparPesquisa();
-        } finally {
-          loading.style.display = 'none';
-        }
       }
-
-    } else {
-      alert('Precisa informar um CNPJ valido!')
-    } 
-
+  } else {
+      alert('Por favor, informe um CNPJ válido!');
+  }
 }
 
-function limparPesquisa() {
-    let sites = document.querySelector('.divSitesConsulta');
-    let EmpresaInput = document.querySelector('.empresaInp');
-    let EnderecoInput = document.querySelector('.enderInp');
-    let pesquisa = document.querySelector('.divPesquisaCNPJ');
-    let btnlimparPesquisa = document.querySelector('#limparPesquisa');
-    let btnConsulta = document.querySelector('#pesquisarCNPJ');
-    let inpCNPJ = document.querySelector('#inpCNPJid');
+// Função para resetar a barra de progresso
+function resetProgressBar() {
+  let progressBar = document.querySelector('.progressbar');
+  progressBar.value = 0;
+  progressBar.classList.remove('progressbarErr');
+}
 
-    sites.style.display = 'block';
-    pesquisa.style.display = 'none';
-    EmpresaInput.innerHTML = '';
-    EnderecoInput.innerHTML = '';
-    btnlimparPesquisa.style.display = 'none';
-    btnConsulta.style.display = 'flex';
-    inpCNPJ.value = '';
+// Função para atualizar a barra de progresso
+function updateProgressBar(value, isError = false) {
+  let progressBar = document.querySelector('.progressbar');
+  progressBar.value = value;
+  if (isError) {
+      progressBar.classList.add('progressbarErr');
+  } else {
+      progressBar.classList.remove('progressbarErr');
+  }
+}
+
+// Função para limpar a pesquisa e resetar a interface
+function limparPesquisa() {
+  let sites = document.querySelector('.divSitesConsulta');
+  let pesquisa = document.querySelector('.divPesquisaCNPJ');
+  let btnlimparPesquisa = document.querySelector('#limparPesquisa');
+  let btnConsulta = document.querySelector('#pesquisarCNPJ');
+  let EmpresaInput = document.querySelector('.empresaInp');
+  let EnderecoInput = document.querySelector('.enderInp');
+  let inpCNPJ = document.querySelector('#inpCNPJid');
+
+  // Limpa os campos de exibição
+  EmpresaInput.innerHTML = '';
+  EnderecoInput.innerHTML = '';
+
+  // Reseta o campo de entrada
+  inpCNPJ.value = '';
+
+  // Restaura a interface para o estado inicial
+  sites.style.display = 'block';
+  pesquisa.style.display = 'none';
+  btnlimparPesquisa.style.display = 'none';
+  btnConsulta.style.display = 'flex';
+
+  // Reseta a barra de progresso
+  resetProgressBar();
 }
 
 /* FIM Function do CNPJ */
@@ -428,3 +483,62 @@ function abrirAbasSped() {
   }
 }
 
+/*  */
+
+function ativarAbasSgaCia(element) {
+  // Remove a classe 'sgaeCiaAtivo' apenas dos elementos da navbar SGA/CIA
+  document.querySelectorAll('.navSgaCia li').forEach(li => li.classList.remove('sgaeCiaAtivo'));
+
+  // Adiciona a classe 'sgaeCiaAtivo' ao item clicado
+  element.classList.add('sgaeCiaAtivo');
+
+  abrirAbasSGAeCIA(); // Certifique-se de que essa função não interfere na outra aba
+}
+
+function abrirAbasSGAeCIA() {
+  let sgaeCiaAtivo = document.querySelector('.sgaeCiaAtivo');
+  let abaServSGA = document.querySelector('.abaServSGA');
+  let abaSgaPDV = document.querySelector('.abaSgaPDV');
+  let abaSOBOX = document.querySelector('.abaSOBOX');
+  let abasgabox = document.querySelector('.abasgabox');
+  let abadispositivo = document.querySelector('.abadispositivo');
+  let desativar = document.querySelectorAll('.desativar');
+
+  sgaeCiaAtivo = sgaeCiaAtivo.textContent;
+
+  console.log(sgaeCiaAtivo);
+  
+  if (sgaeCiaAtivo === 'Servidor(SGA)') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    abaServSGA.style.display = 'block';
+
+  } 
+  else if (sgaeCiaAtivo === 'SGAPDV') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    abaSgaPDV.style.display = 'block';
+
+  } 
+  else if (sgaeCiaAtivo === 'SOBOX(2010)') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    abaSOBOX.style.display = 'block';
+  }
+  else if (sgaeCiaAtivo === 'SGABOX(2010)') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    abasgabox.style.display = 'block';
+  }
+  else if (sgaeCiaAtivo === 'Dispositivo') {
+    for (var i = 0; i < desativar.length; i++) {
+      desativar[i].style.display = "none";
+    }
+    abadispositivo.style.display = 'block';
+  }
+   
+}

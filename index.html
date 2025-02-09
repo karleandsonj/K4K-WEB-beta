@@ -230,7 +230,7 @@
     <main>
         <div class="section_main">
 
-            <section id="HOME" class="rotinas" style="display: block;">
+            <section id="HOME" class="rotinas" style="display: none;">
                 <h2 class="bemvindo"> Bem Vindo ao Karl4Knows </h2>
                 <div class="home" id="HOMEK">
                     <a target="_blank"
@@ -252,8 +252,11 @@
                             src="icones home/REMOVEDOR-CARACTERE.png" alt="" class="iconehome">Remover Caracteres</a>
 
                     <a href="#" onclick="showSpedModific('spedModificaçao')" class="homefacil"><img
-                            src="icones home/SPED_Config.png" alt="" class="iconehome">Assistente SPED</a>
-                    <a target="_blank" class="homefacil"><img src="#" alt="" class="iconehome">TESTE</a>
+                            src="icones home/SPED_Config.png" alt="" class="iconehome">Assistente <br> SPED</a>
+
+                    <a href="#" onclick="showSgaCiaAssist()" class="homefacil"><img src="icones home/SGA & CIA.png"
+                            alt="" class="iconehome">Assitente <br> SGA & CIA</a>
+
                     <a target="_blank" class="homefacil"><img src="#" alt="" class="iconehome">TESTE</a>
                     <!-- <a target="_blank" class="homefacil"><img src="#" alt="" class="iconehome">TESTE</a> -->
                 </div>
@@ -265,9 +268,9 @@
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
                     <h2 class="titleSPED">Assistente SPED</h2>
                     <ul class="navbarSPED">
-                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)" id="avisosSpedNav">Avisos</li>
-                        <li class="liSPED" onclick="ativarAbasSped(this)" id="avisosSpedNav2">Erros</li>
-                        <li class="liSPED" onclick="ativarAbasSped(this)" id="avisosSpedNav3">Outros</li>
+                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)">Avisos</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)">Erros</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)">Outros</li>
                     </ul>
                     <div id="spedAvisosAssit" class="desativar">
                         <div class="sec1_gerar">
@@ -321,7 +324,7 @@
                     <div class="inpLoadConsultCNPJ">
                         <input type="text" class="inpCNPJ" id="inpCNPJid" method="POST">
                         <div class="loadConsultCNPJ" style="display: none;">
-                            <p>Carregando...</p>
+                            <progress class="progressbar" value="0"></progress>
                         </div>
                     </div>
                     <div class="consultabtn">
@@ -408,6 +411,58 @@
                     <div class="divPesquisaCNPJ" style="display: none;">
                         <div class="empresaInp"></div>
                         <div class="enderInp"></div>
+                    </div>
+                </main>
+            </section>
+
+            <section id="secSgaCiaAssist" class="rotinas">
+                <main class="mainSgaCiaAssist">
+                    <h2 class="titleSgaCia">Assistente SGA & CIA <br> Configurações</h2>
+                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                            src="IMG/excluir.png" class="fecharcaracteres"></span>
+                    <ul class="navSgaCia">
+                        <li class="navSGAeCIA sgaeCiaAtivo" onclick="ativarAbasSgaCia(this)">Servidor(SGA)</li>
+                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGAPDV</li>
+                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SOBOX(2010)</li>
+                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGABOX(2010)</li>
+                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">Dispositivo</li>
+                    </ul>
+                    <div class="corpoSgaCia">
+                        <div class="abaServSGA desativar" style="display: block;">
+                            <h4>CONFIG SERV</h4>
+                            <div class="corpoabas">
+                                <label for="">
+                                    <p>Portas FireWall <span title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">ℹ️</span></p>
+                                    <div class="portafirewallOcult">
+                                    </div>
+                                    <button>Download</button>
+                                </label>
+                                <label for="">
+                                    <p>Portas FireWall <span title="Copie o script e insira no CMD como ADMINISTRADOR">ℹ️</span></p>
+                                    <button>Copiar</button>
+                                </label>
+                                <label for="">
+                                    <p>Portas FireWall <span title="Copie o script e insira no CMD como ADMINISTRADOR">ℹ️</span></p>
+                                    <button>Copiar</button>
+                                </label>
+                                <label for="">
+                                    <p>Portas FireWall <span title="Copie o script e insira no CMD como ADMINISTRADOR">ℹ️</span></p>
+                                    <button>Copiar</button>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="abaSgaPDV desativar">
+                            <h4>CONFIG SGA-PDV</h4>
+                        </div>
+                        <div class="abaSOBOX desativar">
+                            <h4>CONFIG SOBOX</h4>
+                        </div>
+                        <div class="abasgabox desativar">
+                            <h4>CONFIG SGA-BOX(2010)</h4>
+                        </div>
+                        <div class="abadispositivo desativar">
+                            <h4>CONFIG DISPOSITIVOS</h4>
+                        </div>
                     </div>
                 </main>
             </section>
