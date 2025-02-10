@@ -254,8 +254,8 @@
                     <a href="#" onclick="showSpedModific('spedModificaçao')" class="homefacil"><img
                             src="icones home/SPED_Config.png" alt="" class="iconehome">Assistente <br> SPED</a>
 
-                    <a href="#" onclick="showSgaCiaAssist('secSgaCiaAssist')" class="homefacil"><img src="icones home/SGA & CIA.png"
-                            alt="" class="iconehome">Assitente <br> SGA & CIA</a>
+                    <a href="#" onclick="showSgaCiaAssist('secSgaCiaAssist')" class="homefacil"><img
+                            src="icones home/SGA & CIA.png" alt="" class="iconehome">Assitente <br> SGA & CIA</a>
 
                     <a target="_blank" class="homefacil"><img src="#" alt="" class="iconehome">TESTE</a>
                     <!-- <a target="_blank" class="homefacil"><img src="#" alt="" class="iconehome">TESTE</a> -->
@@ -420,35 +420,69 @@
                     <h2 class="titleSgaCia">Assistente SGA & CIA <br> Configurações</h2>
                     <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
-                    <ul class="navSgaCia">
-                        <li class="navSGAeCIA sgaeCiaAtivo" onclick="ativarAbasSgaCia(this)">Servidor(SGA)</li>
-                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGAPDV</li>
-                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SOBOX(2010)</li>
-                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGABOX(2010)</li>
-                        <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">Dispositivo</li>
-                    </ul>
+                    <div class="mainNavSgaCIA">
+                        <ul class="navSgaCia">
+                            <li class="navSGAeCIA sgaeCiaAtivo" onclick="ativarAbasSgaCia(this)">Servidor(SGA)</li>
+                            <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGAPDV</li>
+                            <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SOBOX(2010)</li>
+                            <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGABOX(2010)</li>
+                            <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">Dispositivo</li>
+                        </ul>
+                    </div>
                     <div class="corpoSgaCia">
+                        <div class="avisoDiv" style="display: block;"></div>
                         <div class="abaServSGA desativar" style="display: block;">
                             <h4>CONFIG SERV</h4>
                             <div class="corpoabas">
-                                <label for="">
-                                    <p>Portas FireWall <span title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">ℹ️</span></p>
-                                    <div class="portafirewallOcult">
+                                <div class="camposSgaeCIA">
+                                    <div class="topcamposSgaeCIA">
+                                        <p>Portas FireWall</p>
+                                        <span class="spanInfoSGAeCIA"
+                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
+                                            <img width="15" height="15" class="avisoSGAeCIA"
+                                                src="https://img.icons8.com/office/40/info-squared.png"
+                                                alt="info-squared" />
+                                        </span>
                                     </div>
                                     <button>Download</button>
-                                </label>
-                                <label for="">
-                                    <p>Portas FireWall <span title="Copie o script e insira no CMD como ADMINISTRADOR">ℹ️</span></p>
+                                </div>
+                                <div class="camposSgaeCIA">
+                                    <div class="topcamposSgaeCIA">
+                                        <p>Portas FireWall</p>
+                                        <span class="spanInfoSGAeCIA"
+                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
+                                            <img width="15" height="15" class="avisoSGAeCIA"
+                                                src="https://img.icons8.com/office/40/info-squared.png"
+                                                alt="info-squared" />
+                                        </span>
+                                    </div>
+
                                     <button>Copiar</button>
-                                </label>
-                                <label for="">
-                                    <p>Portas FireWall <span title="Copie o script e insira no CMD como ADMINISTRADOR">ℹ️</span></p>
+                                </div>
+                                <div class="camposSgaeCIA">
+                                    <div class="topcamposSgaeCIA">
+                                        <p>Portas FireWall</p>
+                                        <span class="spanInfoSGAeCIA"
+                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
+                                            <img width="15" height="15" class="avisoSGAeCIA"
+                                                src="https://img.icons8.com/office/40/info-squared.png"
+                                                alt="info-squared" />
+                                        </span>
+                                    </div>
                                     <button>Copiar</button>
-                                </label>
-                                <label for="">
-                                    <p>Portas FireWall <span title="Copie o script e insira no CMD como ADMINISTRADOR">ℹ️</span></p>
+                                </div>
+                                <div class="camposSgaeCIA">
+                                    <div class="topcamposSgaeCIA">
+                                        <p>Portas FireWall</p>
+                                        <span class="spanInfoSGAeCIA"
+                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
+                                            <img width="15" height="15" class="avisoSGAeCIA"
+                                                src="https://img.icons8.com/office/40/info-squared.png"
+                                                alt="info-squared" />
+                                        </span>
+                                    </div>
                                     <button>Copiar</button>
-                                </label>
+                                </div>
                             </div>
                         </div>
                         <div class="abaSgaPDV desativar">

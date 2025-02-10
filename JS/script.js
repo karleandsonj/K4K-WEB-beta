@@ -554,3 +554,29 @@ function abrirAbasSGAeCIA() {
   }
    
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  let avisoDiv = document.querySelector('.avisoDiv');
+  let avisoSGAeCIAList = document.querySelectorAll('.avisoSGAeCIA'); // Seleciona todos
+
+  if (!avisoDiv) return; // Evita erros se avisoDiv não existir
+
+  document.addEventListener('click', (e) => {
+    // Verifica se o clique foi fora do avisoDiv e se ele está visível
+    if (!avisoDiv.contains(e.target) && avisoDiv.style.display === 'block') {
+      avisoDiv.style.display = 'none';
+      // avisoDiv.classList.remove('transicaoAvisoDiv');
+      console.log('Fechando avisoDiv', e.target);
+    }
+
+    // Verifica se o clique foi em algum dos elementos avisoSGAeCIA
+    avisoSGAeCIAList.forEach((element) => {
+      if (e.target === element) {
+        avisoDiv.style.display = 'block';
+        // avisoDiv.classList.add('transicaoAvisoDiv'); // Adiciona a classe de transição
+        console.log('Exibindo avisoDiv', e.target);
+      }
+    });
+  });
+});
+
