@@ -485,6 +485,18 @@ function abrirAbasSped() {
 
 /*  */
 
+function showSgaCiaAssist(secSgaCiaAssist) {
+  let mainSgaCiaAssist = document.querySelector('.mainSgaCiaAssist')
+  var sections = document.querySelectorAll("section");
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].style.display = "none";
+  }
+  document.getElementById(secSgaCiaAssist).style.display = "block";
+  mainSgaCiaAssist.style.display = 'block';
+
+  abrirAbasSGAeCIA();
+}
+
 function ativarAbasSgaCia(element) {
   // Remove a classe 'sgaeCiaAtivo' apenas dos elementos da navbar SGA/CIA
   document.querySelectorAll('.navSgaCia li').forEach(li => li.classList.remove('sgaeCiaAtivo'));
