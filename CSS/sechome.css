@@ -737,9 +737,11 @@ select#registro {
     z-index: 999;
     border: #000 solid 1px;
     border-radius: 10px;
+    display: none;
 }
 
 .transicaoAvisoDiv {
     display: block;
     transition: background-color 1.0s ease;
 }
+
