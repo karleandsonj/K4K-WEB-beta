@@ -31,7 +31,8 @@
     /* Adiciona uma transição suave de 0.5 segundos para a mudança de cor do fundo */
 }
 
-.titulocaracteres, .titleCNPJ {
+.titulocaracteres,
+.titleCNPJ {
     margin-top: 10px;
     color: rgb(0, 0, 0);
     position: relative;
@@ -73,17 +74,20 @@
 
 #buttonsContainercaracteres {
     display: flex;
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    align-items: center; /* Alinha verticalmente */
+    justify-content: center;
+    /* Centraliza os botões horizontalmente */
+    align-items: center;
+    /* Alinha verticalmente */
     width: 100%;
     margin-top: 10px;
     height: 40px;
-  /*   background-color: #b0d6ff; */
-    gap: 10px; /* Adiciona um espaçamento entre os botões */
+    /*   background-color: #b0d6ff; */
+    gap: 10px;
+    /* Adiciona um espaçamento entre os botões */
 }
 
-#copyButtoncaracteres, 
-#limparcaracteres { 
+#copyButtoncaracteres,
+#limparcaracteres {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -94,7 +98,8 @@
     transition: background-color 0.3s;
     height: 40px;
     width: 150px;
-    text-align: center; /* Garante que o texto fique centralizado */
+    text-align: center;
+    /* Garante que o texto fique centralizado */
 }
 
 
@@ -181,18 +186,23 @@
 .consultabtn {
     position: relative;
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;     /* Centraliza verticalmente */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
     margin: 0 auto;
     width: 20%;
 }
 
-#pesquisarCNPJ, #limparPesquisa {
+#pesquisarCNPJ,
+#limparPesquisa {
     position: relative;
     margin-left: 2px;
     margin-right: 2px;
 }
-#pesquisarCNPJ:hover, #limparPesquisa:hover {
+
+#pesquisarCNPJ:hover,
+#limparPesquisa:hover {
     cursor: pointer;
 }
 
@@ -209,7 +219,7 @@
     box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.753);
     position: fixed;
     margin-top: 15px;
-/*     background-color: #396285; */
+    /*     background-color: #396285; */
     right: 0;
     left: 0;
     bottom: 0;
@@ -220,10 +230,10 @@
     text-align: left;
     overflow-x: hidden;
     box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.753);
-/*     border-top: solid 1px black; */
+    /*     border-top: solid 1px black; */
     position: fixed;
     margin-top: 15px;
-/*     background-color: #396285; */
+    /*     background-color: #396285; */
     right: 0;
     left: 0;
     bottom: 0;
@@ -235,8 +245,8 @@
     text-align: center;
 }
 
-.divPesquisaCNPJ p{
-    padding: 10px;  
+.divPesquisaCNPJ p {
+    padding: 10px;
 }
 
 .regiaosite {
@@ -244,7 +254,7 @@
     border-bottom: solid 1.5px black;
 }
 
-.sites{
+.sites {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -255,7 +265,7 @@
 }
 
 .regioes {
-    gap:  10px;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     background-color: #336692a2;
@@ -323,8 +333,10 @@
 
 .inpLoadConsultCNPJ {
     display: flex;
-    align-items: center; /* Alinha verticalmente */
-    gap: 10px; /* Espaço entre os elementos */
+    align-items: center;
+    /* Alinha verticalmente */
+    gap: 10px;
+    /* Espaço entre os elementos */
     border-radius: 10px;
 }
 
@@ -333,7 +345,7 @@
     height: 15px;
     background-color: #f3f3f3;
     border-radius: 5px;
-/*     margin-top: 10px; */
+    /*     margin-top: 10px; */
 }
 
 .progressbar::-webkit-progress-bar {
@@ -398,7 +410,7 @@ select#registro {
     border-radius: 5px;
     margin-bottom: 15px;
     margin-top: 10px;
-/*     border: 1px solid #ccc; */
+    /*     border: 1px solid #ccc; */
 }
 
 .txterros {
@@ -407,7 +419,7 @@ select#registro {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 0 auto;
-/*     height: 250px;
+    /*     height: 250px;
     min-height: 50px; */
     height: 67%;
     width: 90%;
@@ -444,8 +456,8 @@ select#registro {
     background-color: #0056b3;
 }
 
-#btnlimpar{
-    background-color: #b32a00; 
+#btnlimpar {
+    background-color: #b32a00;
 }
 
 #btnlimpar:hover {
@@ -453,12 +465,12 @@ select#registro {
 }
 
 .sec1_gerar {
-/*     margin-top: 20px; */
+    /*     margin-top: 20px; */
     position: fixed;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
-/*     height: 100%; */
+    /*     height: 100%; */
     right: 0;
     left: 0;
     bottom: 0;
@@ -479,13 +491,14 @@ select#registro {
     overflow-x: hidden;
 }
 
-#resultado{
+#resultado {
     text-align: start;
     margin-left: 30px;
     margin-right: 5px;
 }
 
-#resultadoDiv::-webkit-scrollbar, .txterros::-webkit-scrollbar {
+#resultadoDiv::-webkit-scrollbar,
+.txterros::-webkit-scrollbar {
     /* Raio de borda do indicador de rolagem */
     background-color: transparent;
     /* Define o fundo da barra de rolagem como transparente */
@@ -495,7 +508,8 @@ select#registro {
     /* Altura da barra de rolagem horizontal */
 }
 
-#resultadoDiv::-webkit-scrollbar-thumb, .txterros::-webkit-scrollbar-thumb {
+#resultadoDiv::-webkit-scrollbar-thumb,
+.txterros::-webkit-scrollbar-thumb {
     background: #747373;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -503,13 +517,14 @@ select#registro {
     /* Raio de borda do indicador de rolagem */
 }
 
-#resultadoDiv::-webkit-scrollbar-thumb:hover, .txterros::-webkit-scrollbar-thumb:hover {
+#resultadoDiv::-webkit-scrollbar-thumb:hover,
+.txterros::-webkit-scrollbar-thumb:hover {
     background-color: #3d3d3d;
     cursor: default;
     /* Cor do indicador de rolagem ao passar o mouse */
 }
 
-#copyResultSPED{
+#copyResultSPED {
     background-color: #0080ff;
     border: 1px solid black;
     position: fixed;
@@ -547,7 +562,7 @@ select#registro {
 .liSPED {
     cursor: pointer;
     color: #000000;
-/*     background-color: #c9c6bf; */
+    /*     background-color: #c9c6bf; */
     margin-left: -1px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -565,12 +580,14 @@ select#registro {
 }
 
 .spedAtivo {
-    border: 1px solid  #969089;
+    border: 1px solid #969089;
     background-color: #a7a298;
     margin-top: -8px;
 }
 
-#spedAvisosAssit, #spedErrosAssit, #spedOutrosAssit {
+#spedAvisosAssit,
+#spedErrosAssit,
+#spedOutrosAssit {
     border-top: 2px solid #a7a298;
     margin-top: -10px;
     z-index: 9;
@@ -596,20 +613,23 @@ select#registro {
 }
 
 .mainNavSgaCIA {
-    overflow-x: auto; /* Permite rolagem horizontal se necessário */
-    overflow-y: hidden; /* Esconde a rolagem vertical */
+    overflow-x: auto;
+    /* Permite rolagem horizontal se necessário */
+    overflow-y: hidden;
+    /* Esconde a rolagem vertical */
     width: 100%;
     position: relative;
-    z-index: -1; /* Ajuste o z-index conforme necessário */
+    z-index: -1;
+    /* Ajuste o z-index conforme necessário */
 }
 
-.mainNavSgaCIA::-webkit-scrollbar{
+.mainNavSgaCIA::-webkit-scrollbar {
     /* Raio de borda do indicador de rolagem */
     background-color: #a7a298;
     /* Define o fundo da barra de rolagem como transparente */
     width: 6px;
     /* Largura da barra de rolagem */
-/*     height: 15px; */
+    /*     height: 15px; */
     /* Altura da barra de rolagem horizontal */
 }
 
@@ -631,13 +651,16 @@ select#registro {
     display: flex;
     list-style: none;
     font-size: 12px;
-    justify-content: flex-start; /* Alinha os itens à esquerda */
+    justify-content: flex-start;
+    /* Alinha os itens à esquerda */
     margin: 0 auto;
     margin-top: 10px;
     gap: 5px;
-/*     margin-left: 10px; */
-    padding: 0; /* Remove padding padrão da lista */
-    white-space: nowrap; /* Impede que os itens quebrem para a próxima linha */
+    /*     margin-left: 10px; */
+    padding: 0;
+    /* Remove padding padrão da lista */
+    white-space: nowrap;
+    /* Impede que os itens quebrem para a próxima linha */
 }
 
 .navSGAeCIA {
@@ -660,19 +683,20 @@ select#registro {
     margin-left: 5px;
     margin-right: 5px;
     margin: 4px auto;
-    flex-shrink: 0; /* Impede que os itens encolham */
+    flex-shrink: 0;
+    /* Impede que os itens encolham */
 }
 
 @media screen and (max-width: 732px) {
-   .navSGAeCIA {
-     margin-bottom: -6px;
-   } 
+    .navSGAeCIA {
+        margin-bottom: -6px;
+    }
 }
 
 .sgaeCiaAtivo {
-    border-top: 1px solid  #969089;
-    border-right: 1px solid  #969089;
-    border-left: 1px solid  #969089;
+    border-top: 1px solid #969089;
+    border-right: 1px solid #969089;
+    border-left: 1px solid #969089;
     background-color: #a7a298;
     margin-top: -8px;
 }
@@ -685,7 +709,7 @@ select#registro {
     height: 100%;
 }
 
-.desativar{
+.desativar {
     display: none;
 }
 
@@ -712,19 +736,25 @@ select#registro {
 }
 
 .topcamposSgaeCIA {
-/*     background-color: #0056b3; */
+    /*     background-color: #0056b3; */
     justify-content: center;
-/*     display: grid;
+    /*     display: grid;
     grid-template-columns: repeat(2, 1fr); */
-    position: relative; /* Adicionado para permitir posicionamento absoluto do ícone */
+    position: relative;
+    /* Adicionado para permitir posicionamento absoluto do ícone */
 }
 
 .avisoSGAeCIA {
-    position: absolute; /* Posiciona o ícone em relação à div pai */
-    top: 0; /* Alinha no topo */
-    right: 0; /* Alinha à direita */
-    width: 15px; /* Mantém o tamanho do ícone */
-    height: 15px; /* Mantém o tamanho do ícone */
+    position: absolute;
+    /* Posiciona o ícone em relação à div pai */
+    top: 0;
+    /* Alinha no topo */
+    right: 0;
+    /* Alinha à direita */
+    width: 15px;
+    /* Mantém o tamanho do ícone */
+    height: 15px;
+    /* Mantém o tamanho do ícone */
 }
 
 .avisoDiv {
@@ -744,4 +774,3 @@ select#registro {
     display: block;
     transition: background-color 1.0s ease;
 }
-

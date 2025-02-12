@@ -20,17 +20,17 @@ scrollDown.addEventListener('click', () => {
 /* Ativar SECTION */
 
 function showSection(sectionId) {
-  
+
   var sections = document.querySelectorAll("section");
   for (var i = 0; i < sections.length; i++) {
     sections[i].style.display = "none";
   }
   document.getElementById(sectionId).style.display = "block";
-  
+
 }
 
 function consultarCNPJ(secConsultaCNPJ) {
-  
+
   var sections = document.querySelectorAll("section");
   for (var i = 0; i < sections.length; i++) {
     sections[i].style.display = "none";
@@ -192,8 +192,8 @@ function removeCaracterCNPJ() {
 
   document.querySelector('#inpCNPJid').value = removeCaracCNPJ;
 
-/*   console.log(removeCaracCNPJ); */
-  
+  /*   console.log(removeCaracCNPJ); */
+
 }
 
 
@@ -213,46 +213,46 @@ function pesquisaCNPJ() {
   let CNPJ1 = inpCNPJ.value;
 
   if (CNPJ1 !== '') {
-      // Reseta a barra de progresso e exibe o loading
-      loading.style.display = 'block';
-      resetProgressBar(); // Função para resetar a barra de progresso
+    // Reseta a barra de progresso e exibe o loading
+    loading.style.display = 'block';
+    resetProgressBar(); // Função para resetar a barra de progresso
 
 
-      // Inicia a consulta
-      consultarCNPJ(CNPJ1);
+    // Inicia a consulta
+    consultarCNPJ(CNPJ1);
 
-      async function consultarCNPJ(cnpjconst) {
-          try {
-              // Monta a URL com o CNPJ desejado
-              const url = `https://brasilapi.com.br/api/cnpj/v1/`;
-              let urlcnpj = url + cnpjconst;
+    async function consultarCNPJ(cnpjconst) {
+      try {
+        // Monta a URL com o CNPJ desejado
+        const url = `https://brasilapi.com.br/api/cnpj/v1/`;
+        let urlcnpj = url + cnpjconst;
 
-              // Atualiza a barra de progresso para 20%
-              updateProgressBar(20);
+        // Atualiza a barra de progresso para 20%
+        updateProgressBar(0);
 
-              // Faz a requisição à API
-              const response = await fetch(urlcnpj);
+        // Faz a requisição à API
+        const response = await fetch(urlcnpj);
 
-              // Verifica se a resposta foi bem-sucedida
-              if (!response.ok) {
-                  throw new Error(`Erro na requisição: ${response.status}`);
-              }
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+          throw new Error(`Erro na requisição: ${response.status}`);
+        }
 
-              // Atualiza a barra de progresso para 40%
-              updateProgressBar(40);
+        // Atualiza a barra de progresso para 40%
+        updateProgressBar(40);
 
-              // Converte a resposta para JSON
-              const dados = await response.json();
+        // Converte a resposta para JSON
+        const dados = await response.json();
 
-              // Atualiza a barra de progresso para 60%
-              updateProgressBar(60);
+        // Atualiza a barra de progresso para 60%
+        updateProgressBar(60);
 
-              // Extrai os dados da resposta
-              const { cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = dados;
-              const { cep, municipio, logradouro, codigo_municipio, numero, bairro, uf } = dados;
+        // Extrai os dados da resposta
+        const { cnpj, razao_social, nome_fantasia, ddd_telefone_1, data_inicio_atividade, descricao_situacao_cadastral } = dados;
+        const { cep, municipio, logradouro, codigo_municipio, numero, bairro, uf } = dados;
 
-              // Exibe os dados da empresa
-              EmpresaInput.innerHTML = `
+        // Exibe os dados da empresa
+        EmpresaInput.innerHTML = `
                   <h4>EMPRESA</h4>
                   <p>CNPJ: ${cnpj}</p>
                   <p>Razão Social: ${razao_social}</p>
@@ -261,10 +261,10 @@ function pesquisaCNPJ() {
                   <p>Data Abertura: ${data_inicio_atividade}</p>
                   <p>Situação: ${descricao_situacao_cadastral}</p>
                   <hr>
-              `;
+        `;
 
-              // Exibe os dados do endereço
-              EnderecoInput.innerHTML = `
+        // Exibe os dados do endereço
+        EnderecoInput.innerHTML = `
                   <h4>ENDEREÇO</h4>
                   <p>CEP: ${cep}</p>
                   <p>Cidade: ${municipio} - ${uf}</p>
@@ -272,37 +272,37 @@ function pesquisaCNPJ() {
                   <p>Logradouro: ${logradouro}</p>
                   <p>Bairro: ${bairro}</p>
                   <p>Numero: ${numero}</p>
-              `;
+        `;
 
-              // Atualiza a barra de progresso para 80%
-              updateProgressBar(80);
+        // Atualiza a barra de progresso para 80%
+        updateProgressBar(80);
 
-              // Exibe a seção de pesquisa e oculta a seção de sites
-              sites.style.display = 'none';
-              pesquisa.style.display = 'block';
-              btnlimparPesquisa.style.display = 'flex';
-              btnConsulta.style.display = 'none';
+        // Exibe a seção de pesquisa e oculta a seção de sites
+        sites.style.display = 'none';
+        pesquisa.style.display = 'block';
+        btnlimparPesquisa.style.display = 'flex';
+        btnConsulta.style.display = 'none';
 
-              // Completa a barra de progresso
-              updateProgressBar(100);
-          } catch (erro) {
-              // Em caso de erro, exibe uma mensagem e reseta a interface
-              updateProgressBar(100, true); // Barra de erro
-              setTimeout(() => {
-                  alert('Erro ao consultar o CNPJ. Verifique o console para mais detalhes.');
-                  console.error('Erro ao consultar o CNPJ:', erro);
-                  limparPesquisa();
-              }, 1000);
-          } finally {
-              // Reseta a barra de progresso e oculta o loading após 1 segundo
-              setTimeout(() => {
-                  resetProgressBar();
-                  loading.style.display = 'none';
-              }, 1000);
-          }
+        // Completa a barra de progresso
+        updateProgressBar(100);
+      } catch (erro) {
+        // Em caso de erro, exibe uma mensagem e reseta a interface
+        updateProgressBar(100, true); // Barra de erro
+        setTimeout(() => {
+          alert('Erro ao consultar o CNPJ. Verifique o console para mais detalhes.');
+          console.error('Erro ao consultar o CNPJ:', erro);
+          limparPesquisa();
+        }, 1000);
+      } finally {
+        // Reseta a barra de progresso e oculta o loading após 1 segundo
+        setTimeout(() => {
+          resetProgressBar();
+          loading.style.display = 'none';
+        }, 1000);
       }
+    }
   } else {
-      alert('Por favor, informe um CNPJ válido!');
+    alert('Por favor, informe um CNPJ válido!');
   }
 }
 
@@ -318,9 +318,9 @@ function updateProgressBar(value, isError = false) {
   let progressBar = document.querySelector('.progressbar');
   progressBar.value = value;
   if (isError) {
-      progressBar.classList.add('progressbarErr');
+    progressBar.classList.add('progressbarErr');
   } else {
-      progressBar.classList.remove('progressbarErr');
+    progressBar.classList.remove('progressbarErr');
   }
 }
 
@@ -362,82 +362,82 @@ let result = document.getElementById("resultado");
 let resultDiv = document.getElementById("resultadoDiv");
 let registro = document.getElementById("registro");
 btnerros.addEventListener("click", () => {
-    // Obtém o texto inserido no campo txterros
-    let texto = txterros.value;
-    let registro1 = registro.value;
-    const input = texto;
-    const marker = `|${registro1}|`;
-    let startIndex = input.indexOf(marker); // Localiza a primeira ocorrência de |C170|
-    let resultados = [];
-    if (marker === '|C170|') {
-      // Conjunto para armazenar valores únicos
-      let resultadosSet = new Set();
+  // Obtém o texto inserido no campo txterros
+  let texto = txterros.value;
+  let registro1 = registro.value;
+  const input = texto;
+  const marker = `|${registro1}|`;
+  let startIndex = input.indexOf(marker); // Localiza a primeira ocorrência de |C170|
+  let resultados = [];
+  if (marker === '|C170|') {
+    // Conjunto para armazenar valores únicos
+    let resultadosSet = new Set();
 
-      while (startIndex !== -1) {
-          // Localiza o primeiro '|' após |C170|
-          let primeiroPipe = input.indexOf("|", startIndex + marker.length);
-          if (primeiroPipe !== -1) {
-              // Localiza o segundo '|' após |C170| (o valor que queremos está entre esses dois pipes)
-              let segundoPipe = input.indexOf("|", primeiroPipe + 1);
-              if (segundoPipe !== -1) {
-                  // Captura o valor entre os pipes
-                  let resultado = input.substring(primeiroPipe + 1, segundoPipe).trim();
-                  // Adiciona ao Set apenas se o valor não estiver vazio
-                  if (resultado !== "") {
-                      resultadosSet.add(resultado);
-                  }
-              }
+    while (startIndex !== -1) {
+      // Localiza o primeiro '|' após |C170|
+      let primeiroPipe = input.indexOf("|", startIndex + marker.length);
+      if (primeiroPipe !== -1) {
+        // Localiza o segundo '|' após |C170| (o valor que queremos está entre esses dois pipes)
+        let segundoPipe = input.indexOf("|", primeiroPipe + 1);
+        if (segundoPipe !== -1) {
+          // Captura o valor entre os pipes
+          let resultado = input.substring(primeiroPipe + 1, segundoPipe).trim();
+          // Adiciona ao Set apenas se o valor não estiver vazio
+          if (resultado !== "") {
+            resultadosSet.add(resultado);
           }
-          // Procura a próxima ocorrência de |C170| após a atual
-          startIndex = input.indexOf(marker, primeiroPipe + 1);
+        }
       }
-
-      // Converte o Set para um array e exibe os resultados
-      if (resultadosSet.size > 0) {
-          result.innerHTML = Array.from(resultadosSet).join(", "); // Exibe cada resultado separado por vírgula
-      } else {
-          result.innerHTML = `Registro não encontrado! ${registro1}`;
-      }
-
-      resultDiv.style.display = 'block';
-      txterros.style.height = 'calc(250px - 75px)';
-
-    } else {
-      result.innerHTML = `DEU ERRO AI MENÓ!`;
-      resultDiv.style.display = 'block';
-      txterros.style.height = 'calc(250px - 75px)';
+      // Procura a próxima ocorrência de |C170| após a atual
+      startIndex = input.indexOf(marker, primeiroPipe + 1);
     }
-    
+
+    // Converte o Set para um array e exibe os resultados
+    if (resultadosSet.size > 0) {
+      result.innerHTML = Array.from(resultadosSet).join(", "); // Exibe cada resultado separado por vírgula
+    } else {
+      result.innerHTML = `Registro não encontrado! ${registro1}`;
+    }
+
+    resultDiv.style.display = 'block';
+    txterros.style.height = 'calc(250px - 75px)';
+
+  } else {
+    result.innerHTML = `DEU ERRO AI MENÓ!`;
+    resultDiv.style.display = 'block';
+    txterros.style.height = 'calc(250px - 75px)';
+  }
+
 });
 // Limpa o campo de texto ao clicar no botão "btnlimpar"
 btnlimpar.addEventListener("click", () => {
-    txterros.value = '';
-    resultDiv.style.display = 'none';
-    txterros.style.height = '250px';
-    result.innerText = '';
+  txterros.value = '';
+  resultDiv.style.display = 'none';
+  txterros.style.height = '250px';
+  result.innerText = '';
 });
 
 
 function copyResSPED() {
   var resultado = document.getElementById("resultado");
   if (!resultado || !resultado.textContent.trim()) {
-      alert("Nada para copiar!");
-      return;
+    alert("Nada para copiar!");
+    return;
   }
-  
+
   var tempInput = document.createElement("textarea");
   tempInput.value = resultado.textContent;
   document.body.appendChild(tempInput);
   tempInput.select();
   document.execCommand("copy");
   document.body.removeChild(tempInput);
-  
+
   var iconCopySped = document.getElementById("iconCopySped");
   if (iconCopySped) {
-      iconCopySped.textContent = "✔️";
-      setTimeout(() => {
-          iconCopySped.textContent = "📄";
-      }, 2000);
+    iconCopySped.textContent = "✔️";
+    setTimeout(() => {
+      iconCopySped.textContent = "📄";
+    }, 2000);
   }
 }
 
@@ -462,7 +462,7 @@ function abrirAbasSped() {
   spedAtivo = spedAtivo.textContent;
 
   console.log(spedAtivo);
-  
+
   if (spedAtivo === 'Avisos') {
     for (var i = 0; i < desativar.length; i++) {
       desativar[i].style.display = "none";
@@ -519,21 +519,21 @@ function abrirAbasSGAeCIA() {
   sgaeCiaAtivo = sgaeCiaAtivo.textContent;
 
   console.log(sgaeCiaAtivo);
-  
+
   if (sgaeCiaAtivo === 'Servidor(SGA)') {
     for (var i = 0; i < desativar.length; i++) {
       desativar[i].style.display = "none";
     }
     abaServSGA.style.display = 'block';
 
-  } 
+  }
   else if (sgaeCiaAtivo === 'SGAPDV') {
     for (var i = 0; i < desativar.length; i++) {
       desativar[i].style.display = "none";
     }
     abaSgaPDV.style.display = 'block';
 
-  } 
+  }
   else if (sgaeCiaAtivo === 'SOBOX(2010)') {
     for (var i = 0; i < desativar.length; i++) {
       desativar[i].style.display = "none";
@@ -552,7 +552,7 @@ function abrirAbasSGAeCIA() {
     }
     abadispositivo.style.display = 'block';
   }
-   
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
