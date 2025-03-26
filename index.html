@@ -262,60 +262,6 @@
                 </div>
             </section>
 
-            <section id="spedModificaçao" class="rotinas" style="display: none;">
-                <section class="mainSpedModificaçao">
-                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
-                            src="IMG/excluir.png" class="fecharcaracteres"></span>
-                    <h2 class="titleSPED">Assistente SPED</h2>
-                    <ul class="navbarSPED">
-                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)">Avisos</li>
-                        <li class="liSPED" onclick="ativarAbasSped(this)">Erros</li>
-                        <li class="liSPED" onclick="ativarAbasSped(this)">Outros</li>
-                    </ul>
-                    <div id="spedAvisosAssit" class="desativar">
-                        <div class="sec1_gerar">
-                            <h4>Buscador de cod. produto</h4>
-                            <select id="registro">
-                                <option>C170</option>
-                                <option>C150</option>
-                                <!-- <option>C175</option> -->
-                            </select>
-                            <textarea class="txterros" id="txterros"></textarea>
-                            <div id="resultadoDiv" style="display: none;">
-                                <div id="copyResultSPED" onclick="copyResSPED()"><span id="iconCopySped">📄</span></div>
-                                <p id="resultado"></p>
-                            </div>
-                            <div class="botoes">
-                                <button id="btnerros" class="btnerros" type="button">GERAR</button>
-                                <button id="btnlimpar" class="btnerros" type="button">LIMPAR</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="spedErrosAssit" class="desativar">ERROS</div>
-                    <div id="spedOutrosAssit" class="desativar">OUTROS</div>
-                </section>
-            </section>
-
-            <section id="caracteres" class="rotinas" style="display: none;">
-                <main class="caracteres1">
-                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
-                            src="IMG/excluir.png" class="fecharcaracteres"></span>
-                    <h2 class="titulocaracteres">Remover caracteres</h2>
-                    <div class="containercaracteres">
-                        <input type="text" id="numeroOriginalcaracteres" placeholder="Digite o número original">
-                        <button id="removecaracteres" class="btn-limparcaracteres"
-                            onclick="removerCaracteres()"><b>REMOVER
-                                CARACTERES</b></button>
-                        <p id="numeroResultadocaracteres"></p>
-                        <div id="buttonsContainercaracteres">
-                            <button id="copyButtoncaracteres" class="btn-copiarcaracteres"
-                                onclick="copyToClipboard()">COPIAR</button>
-                            <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
-                        </div>
-                    </div>
-                </main>
-            </section>
-
             <section id="secConsultaCNPJ" class="rotinas" style="display: none;">
                 <main class="mainConsultaCNPJ">
                     <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
@@ -411,6 +357,78 @@
                     <div class="divPesquisaCNPJ" style="display: none;">
                         <div class="empresaInp"></div>
                         <div class="enderInp"></div>
+                    </div>
+                </main>
+            </section>
+
+            <section id="spedModificaçao" class="rotinas" style="display: none;">
+                <section class="mainSpedModificaçao">
+                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                            src="IMG/excluir.png" class="fecharcaracteres"></span>
+                    <h2 class="titleSPED">Assistente SPED</h2>
+                    <ul class="navbarSPED">
+                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)">Erros</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)">Avisos</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)">Outros</li>
+                    </ul>
+                    <div id="spedAvisosAssit" class="desativar">
+                        <div class="sec1_gerar">
+                            <h4>Buscador (AVISOS)</h4>
+                            <div class="divRegistros">
+                                <select id="registro">
+                                    <option value="C170">C170 - Aviso CST Pis e Cofins</option>
+                                    <option value="C100">C100 - Nota Fiscal</option>
+                                    <option value="C190">C190 - Consolidação</option>
+                                </select>
+                                <a class="ajudaSpedMod" id="ajudaAvisoSped">❔</a>
+                                <span class="spanAvisoSped desativar">
+                                    <h3>Ajuda!</h3>
+                                    <h4 class="fechar-aba">X</h4>
+                                    <p class="pAvisoSped"></p>
+                                </span>
+                            </div>
+                            <div class="input-xml-aviso">
+                                <label for="xmlFileInput-avisoSped" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload">Selecione o XML</i>
+                                </label>
+                                <input type="file" id="xmlFileInput-avisoSped" accept=".xml, .jrpxml" class="txterros">
+                                <span id="fileName">Nenhum arquivo selecionado</span>
+                            </div>
+                            <!-- <textarea class="txtXMLSped" id="txtxmlAviso"></textarea> -->
+                            <div id="resultadoDiv" style="display: none;">
+                                <div class="divresult"><p id="resultado"></p></div>
+                                <button id="copyResultSPED" class="btnerros" onclick="copyResSPED()"><span id="iconCopySped">📄 COPIAR</span></button>         
+                            </div>
+                                
+                            <div class="botoes">
+                                <button id="btnerros" class="btnerros" type="button">GERAR</button>
+                                <button id="btnlimpar" class="btnerros" type="button">LIMPAR</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="spedErrosAssit" class="desativar">
+                        ERROS
+                    </div>
+                    <div id="spedOutrosAssit" class="desativar">OUTROS</div>
+                </section>
+            </section>
+
+            <section id="caracteres" class="rotinas" style="display: none;">
+                <main class="caracteres1">
+                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                            src="IMG/excluir.png" class="fecharcaracteres"></span>
+                    <h2 class="titulocaracteres">Remover caracteres</h2>
+                    <div class="containercaracteres">
+                        <input type="text" id="numeroOriginalcaracteres" placeholder="Digite o número original">
+                        <button id="removecaracteres" class="btn-limparcaracteres"
+                            onclick="removerCaracteres()"><b>REMOVER
+                                CARACTERES</b></button>
+                        <p id="numeroResultadocaracteres"></p>
+                        <div id="buttonsContainercaracteres">
+                            <button id="copyButtoncaracteres" class="btn-copiarcaracteres"
+                                onclick="copyToClipboard()">COPIAR</button>
+                            <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
+                        </div>
                     </div>
                 </main>
             </section>

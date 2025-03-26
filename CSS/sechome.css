@@ -403,42 +403,163 @@
     text-align: center;
 }
 
-
-select#registro {
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
+/* Container principal dos registros - agora com flexbox */
+.divRegistros {
+    padding: 5px;
     margin-bottom: 15px;
-    margin-top: 10px;
-    /*     border: 1px solid #ccc; */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre os elementos */
 }
 
-.txterros {
+/* Select ocupando a maior parte do espaço */
+select#registro {
+    flex: 1; /* Ocupa todo o espaço disponível */
+    padding: 2px 12px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: white;
+    color: #495057;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0; /* Removemos as margens anteriores */
+    min-width: 120px; /* Largura mínima */
+}
+
+/* Elemento de ajuda/modificação compacto */
+.ajudaSpedMod {
+    margin-top: -3px;
+    background-color: #000000;
+    border-radius: 5px;
+    height: 17px; /* Aumentamos para alinhar com o select */
+    padding: 0 1px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+    white-space: nowrap; /* Impede quebra de texto */
+    flex-shrink: 0; /* Impede que diminua */
+    cursor: pointer;
+}
+
+/* Container do texto/área XML */
+.txtXMLSped {
+    position: relative;
     padding: 10px;
     text-align: justify;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 0 auto;
-    /*     height: 250px;
-    min-height: 50px; */
-    height: 67%;
-    width: 90%;
-    margin-bottom: 10px;
+    height: 100%; /* Altura ajustável */
+    width: 100%;
     resize: none;
     overflow-y: auto;
     box-sizing: border-box;
+    background-color: white;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
+.input-xml-aviso {
+    margin: 5px;
+/*     background-color: #0080ff; */
+    display: grid;
+}
+
+#xmlFileInput-avisoSped {
+    display: none;
+}
+
+#fileName {
+    font-size: 14px;
+    color: rgb(68, 68, 68);
+    padding: 1px 5px;
+    border: 2px dashed rgb(128, 128, 128);
+    border-radius: 5px;
+    white-space: nowrap;       /* Impede quebra de linha */
+    overflow: hidden;         /* Esconde o texto que ultrapassar */
+    text-overflow: ellipsis;  /* Adiciona "..." quando cortado */
+    max-width: 100%;        /* Largura máxima antes de cortar */
+    display: inline-block;    /* Necessário para width funcionar */
+    vertical-align: middle;  /* Alinhamento vertical */
+    text-align: center;
+}
+
+.custom-file-upload {
+    border: 2px dashed #ccc;
+    display: inline-block;
+    padding: 1px 1px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #f8f9fa;
+    color: #000000;
+    transition: all 0.3s;
+    font-family: Arial;
+    font-size: 14px;
+}
+
+.custom-file-upload:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.spanAvisoSped {
+    background-color: #495057;
+    position: absolute;
+    width: 250px;
+    height: auto;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 10px;
+}
+
+.fechar-aba {
+    position: fixed;
+/*     background-color: #000000; */
+    cursor: pointer;
+    top: 2px;
+    right: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: red;
+}
+
+.pAvisoSped {
+    text-align: center;
+    margin: 15px;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 12px;
+}
+
+/* Container dos botões fixos */
 .botoes {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    gap: 10px;
-    margin-bottom: 5px;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* 2 colunas */
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+#copyResultSPED {
+    position: relative;
+    background-color: #0080ff;
+/*     border: 1px solid black; */
+    text-align: start;
+    border-radius: 5px;
+    cursor: copy;
+    padding: 2px 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
 }
 
 .btnerros {
@@ -466,7 +587,7 @@ select#registro {
 
 .sec1_gerar {
     /*     margin-top: 20px; */
-    position: fixed;
+    position: relative;
     padding: 15px;
     border-radius: 10px;
     text-align: center;
@@ -474,66 +595,70 @@ select#registro {
     right: 0;
     left: 0;
     bottom: 0;
-    top: 50px;
+/*     top: 50px; */
 }
 
 #resultadoDiv {
     background-color: #e1f0ff;
     position: relative;
     margin: 0 auto;
+    margin-top: 5px;
     margin-bottom: 5px;
-    width: 90%;
+    width: 99%;
     border-radius: 5px;
-    border: 0.5px solid black;
+/*     border: 0.5px solid black; */
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.753);
+/*     padding: 5px 1px; */
+    min-height: 10px;
+    max-height: 200px;
+    overflow: hidden;;
+}
+
+.divresult {
+    background-color: #e1f0ff;
+    position: relative;
+    margin: 0;
+    width: 100%;
+/*     border: 0.5px  black; */
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.753);
     padding: 5px 1px;
-    height: 60px;
+    min-height: 10px;
+    max-height: 150px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 #resultado {
-    text-align: start;
-    margin-left: 30px;
+    text-align: justify;
+    margin-left: 5px;
     margin-right: 5px;
 }
 
-#resultadoDiv::-webkit-scrollbar,
+.divresult::-webkit-scrollbar,
 .txterros::-webkit-scrollbar {
     /* Raio de borda do indicador de rolagem */
     background-color: transparent;
     /* Define o fundo da barra de rolagem como transparente */
-    width: 6px;
+    width: 8px;
     /* Largura da barra de rolagem */
     height: 15px;
     /* Altura da barra de rolagem horizontal */
 }
 
-#resultadoDiv::-webkit-scrollbar-thumb,
+.divresult::-webkit-scrollbar-thumb,
 .txterros::-webkit-scrollbar-thumb {
     background: #747373;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+/*     border-top-right-radius: 5px; */
+/*     border-bottom-right-radius: 5px; */
     /* Cor do indicador de rolagem */
     /* Raio de borda do indicador de rolagem */
 }
 
-#resultadoDiv::-webkit-scrollbar-thumb:hover,
+.divresult::-webkit-scrollbar-thumb:hover,
 .txterros::-webkit-scrollbar-thumb:hover {
     background-color: #3d3d3d;
     cursor: default;
     /* Cor do indicador de rolagem ao passar o mouse */
-}
-
-#copyResultSPED {
-    background-color: #0080ff;
-    border: 1px solid black;
-    position: fixed;
-    margin-top: -6px;
-    text-align: start;
-    padding-bottom: 2px;
-    margin-left: -2px;
-    border-radius: 5px;
-    cursor: copy;
 }
 
 #copyResultSPED:hover {

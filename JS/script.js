@@ -353,102 +353,168 @@ function limparPesquisa() {
 
 /* FIM Function do CNPJ */
 
-/* ASSISTENTE SPED */
+document.addEventListener('DOMContentLoaded', function() {
+  const xmlFileInput = document.getElementById("xmlFileInput-avisoSped");
+  const fileNameSpan = document.getElementById("fileName");
+  
+  // Atualiza o nome do arquivo quando um arquivo é selecionado
+  xmlFileInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+          fileNameSpan.textContent = `Nome: ${this.files[0].name}`;
+      } else {
+          fileNameSpan.textContent = 'Nenhum arquivo selecionado';
+      }
+  });
+});
 
-let txterros = document.getElementById("txterros");
-let btnerros = document.getElementById("btnerros");
-let btnlimpar = document.getElementById("btnlimpar");
-let result = document.getElementById("resultado");
-let resultDiv = document.getElementById("resultadoDiv");
-let registro = document.getElementById("registro");
-btnerros.addEventListener("click", () => {
-  // Obtém o texto inserido no campo txterros
-  let texto = txterros.value;
-  let registro1 = registro.value;
-  const input = texto;
+/* ASSISTENTE SPED - VERSÃO COM INPUT DE ARQUIVO */
+
+// Elementos atualizados
+const xmlFileInput = document.getElementById("xmlFileInput-avisoSped");
+const btnerros = document.getElementById("btnerros");
+const btnlimpar = document.getElementById("btnlimpar");
+const result = document.getElementById("resultado");
+const resultDiv = document.getElementById("resultadoDiv");
+const registro = document.getElementById("registro");
+
+btnerros.addEventListener("click", async () => {
+  if (!xmlFileInput.files.length) {
+    alert("Por favor, selecione um arquivo XML/JRPXML primeiro!");
+    return;
+  }
+
+  const file = xmlFileInput.files[0];
+  const registro1 = registro.value;
+  
+  try {
+    const fileContent = await readFileContent(file);
+    processXMLContent(fileContent, registro1);
+  } catch (error) {
+    console.error("Erro ao processar arquivo:", error);
+    result.innerHTML = `Erro ao processar arquivo: ${error.message}`;
+    resultDiv.style.display = 'block';
+  }
+});
+
+// Função para ler o conteúdo do arquivo
+function readFileContent(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    
+    reader.onload = (event) => resolve(event.target.result);
+    reader.onerror = (error) => reject(error);
+    
+    reader.readAsText(file);
+  });
+}
+
+// Função principal de processamento
+function processXMLContent(input, registro1) {
   const marker = `|${registro1}|`;
-  let startIndex = input.indexOf(marker); // Localiza a primeira ocorrência de |C170|
+  let startIndex = input.indexOf(marker);
   let resultados = [];
+
   if (marker === '|C170|') {
-    // Conjunto para armazenar valores únicos
     let resultadosSet = new Set();
 
     while (startIndex !== -1) {
-      // Localiza o primeiro '|' após |C170|
       let primeiroPipe = input.indexOf("|", startIndex + marker.length);
       if (primeiroPipe !== -1) {
-        // Localiza o segundo '|' após |C170| (o valor que queremos está entre esses dois pipes)
         let segundoPipe = input.indexOf("|", primeiroPipe + 1);
         if (segundoPipe !== -1) {
-          // Captura o valor entre os pipes
           let resultado = input.substring(primeiroPipe + 1, segundoPipe).trim();
-          // Adiciona ao Set apenas se o valor não estiver vazio
           if (resultado !== "") {
             resultadosSet.add(resultado);
           }
         }
       }
-      // Procura a próxima ocorrência de |C170| após a atual
       startIndex = input.indexOf(marker, primeiroPipe + 1);
     }
 
-    // Converte o Set para um array e exibe os resultados
     if (resultadosSet.size > 0) {
-      result.innerHTML = Array.from(resultadosSet).join(", "); // Exibe cada resultado separado por vírgula
+      result.innerHTML = Array.from(resultadosSet).join(", ");
     } else {
-      result.innerHTML = `Registro não encontrado! ${registro1}`;
+      result.innerHTML = `Registro ${registro1} não encontrado no arquivo!`;
     }
-
-    resultDiv.style.display = 'block';
-    txterros.style.height = 'calc(250px - 75px)';
-
   } else {
-    result.innerHTML = `DEU ERRO AI MENÓ!`;
-    resultDiv.style.display = 'block';
-    txterros.style.height = 'calc(250px - 75px)';
+    result.innerHTML = `Processamento para o registro ${registro1} não implementado!`;
   }
 
-});
-// Limpa o campo de texto ao clicar no botão "btnlimpar"
-btnlimpar.addEventListener("click", () => {
-  txterros.value = '';
-  resultDiv.style.display = 'none';
-  txterros.style.height = '250px';
-  result.innerText = '';
-});
-
-
-function copyResSPED() {
-  var resultado = document.getElementById("resultado");
-  if (!resultado || !resultado.textContent.trim()) {
-    alert("Nada para copiar!");
-    return;
-  }
-
-  var tempInput = document.createElement("textarea");
-  tempInput.value = resultado.textContent;
-  document.body.appendChild(tempInput);
-  tempInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-
-  var iconCopySped = document.getElementById("iconCopySped");
-  if (iconCopySped) {
-    iconCopySped.textContent = "✔️";
-    setTimeout(() => {
-      iconCopySped.textContent = "📄";
-    }, 2000);
-  }
+  resultDiv.style.display = 'block';
 }
 
+// Limpeza do formulário
+btnlimpar.addEventListener("click", () => {
+  try {
+    const xmlFileInput = document.getElementById("xmlFileInput-avisoSped");
+    const fileNameSpan = document.getElementById("fileName");
+    
+    if (!xmlFileInput || !fileNameSpan) {
+      throw new Error("Elementos do formulário não encontrados");
+    }
+    
+    xmlFileInput.value = '';
+    fileNameSpan.textContent = 'Nenhum arquivo selecionado';
+    resultDiv.style.display = 'none';
+    result.innerText = '';
+    
+  } catch (error) {
+    console.error("Erro ao limpar formulário:", error);
+    alert("Erro para limpar!");
+  }
+});
+
+function copyResSPED() {
+
+  const result = document.getElementById("resultado");
+  
+  if (!result || !result.textContent.trim()) {
+      alert("Show, Copiou nada!");
+      return;
+  }
+
+  navigator.clipboard.writeText(result.textContent)
+      .then(() => {
+          const iconCopySped = document.getElementById("iconCopySped");
+          if (iconCopySped) {
+              iconCopySped.textContent = "✓ COPIADO";
+              setTimeout(() => {
+                  iconCopySped.textContent = "📄 COPIAR";
+              }, 2000);
+          }
+      })
+      .catch(err => {
+          console.error("Falha ao copiar:", err);
+          
+          const textArea = document.createElement("textarea");
+          textArea.value = result.textContent;
+          document.body.appendChild(textArea);
+          textArea.select();
+          
+          try {
+              const successful = document.execCommand('copy');
+              if (successful) {
+                  const iconCopySped = document.getElementById("iconCopySped");
+                  if (iconCopySped) {
+                      iconCopySped.textContent = "✓ COPIADO";
+                      setTimeout(() => {
+                          iconCopySped.textContent = "📄 COPIAR";
+                      }, 2000);
+                  }
+              } else {
+                  alert("DEU ERRO AI MENO, SE VIRA");
+              }
+          } catch (err) {
+              alert("DEU ERRO AI MENO, SE VIRA");
+          }
+          
+          document.body.removeChild(textArea);
+      });
+}
 
 function ativarAbasSped(element) {
-  // Remove a classe 'spedAtivo' de todos os <li> da navbar
   document.querySelectorAll('.navbarSPED li').forEach(li => li.classList.remove('spedAtivo'));
-
-  // Adiciona a classe 'spedAtivo' ao item clicado
   element.classList.add('spedAtivo');
-
   abrirAbasSped();
 }
 
@@ -461,122 +527,109 @@ function abrirAbasSped() {
 
   spedAtivo = spedAtivo.textContent;
 
-  console.log(spedAtivo);
-
   if (spedAtivo === 'Avisos') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
+    desativar.forEach(el => el.style.display = "none");
     spedAvisosAssit.style.display = 'block';
-
   } else if (spedAtivo === 'Erros') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
+    desativar.forEach(el => el.style.display = "none");
     spedErrosAssit.style.display = 'block';
-
   } else if (spedAtivo === 'Outros') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
+    desativar.forEach(el => el.style.display = "none");
     spedOutrosAssit.style.display = 'block';
   }
 }
 
-/*  */
-
 function showSgaCiaAssist(secSgaCiaAssist) {
   let mainSgaCiaAssist = document.querySelector('.mainSgaCiaAssist')
-  var sections = document.querySelectorAll("section");
-  for (var i = 0; i < sections.length; i++) {
-    sections[i].style.display = "none";
-  }
+  document.querySelectorAll("section").forEach(s => s.style.display = "none");
   document.getElementById(secSgaCiaAssist).style.display = "block";
   mainSgaCiaAssist.style.display = 'block';
-
   abrirAbasSGAeCIA();
 }
 
 function ativarAbasSgaCia(element) {
-  // Remove a classe 'sgaeCiaAtivo' apenas dos elementos da navbar SGA/CIA
   document.querySelectorAll('.navSgaCia li').forEach(li => li.classList.remove('sgaeCiaAtivo'));
-
-  // Adiciona a classe 'sgaeCiaAtivo' ao item clicado
   element.classList.add('sgaeCiaAtivo');
-
-  abrirAbasSGAeCIA(); // Certifique-se de que essa função não interfere na outra aba
+  abrirAbasSGAeCIA();
 }
 
 function abrirAbasSGAeCIA() {
   let sgaeCiaAtivo = document.querySelector('.sgaeCiaAtivo');
-  let abaServSGA = document.querySelector('.abaServSGA');
-  let abaSgaPDV = document.querySelector('.abaSgaPDV');
-  let abaSOBOX = document.querySelector('.abaSOBOX');
-  let abasgabox = document.querySelector('.abasgabox');
-  let abadispositivo = document.querySelector('.abadispositivo');
   let desativar = document.querySelectorAll('.desativar');
-
+  
+  if (!sgaeCiaAtivo) return;
+  
   sgaeCiaAtivo = sgaeCiaAtivo.textContent;
+  desativar.forEach(el => el.style.display = "none");
 
-  console.log(sgaeCiaAtivo);
-
-  if (sgaeCiaAtivo === 'Servidor(SGA)') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
-    abaServSGA.style.display = 'block';
-
+  switch(sgaeCiaAtivo) {
+    case 'Servidor(SGA)':
+      document.querySelector('.abaServSGA').style.display = 'block';
+      break;
+    case 'SGAPDV':
+      document.querySelector('.abaSgaPDV').style.display = 'block';
+      break;
+    case 'SOBOX(2010)':
+      document.querySelector('.abaSOBOX').style.display = 'block';
+      break;
+    case 'SGABOX(2010)':
+      document.querySelector('.abasgabox').style.display = 'block';
+      break;
+    case 'Dispositivo':
+      document.querySelector('.abadispositivo').style.display = 'block';
+      break;
   }
-  else if (sgaeCiaAtivo === 'SGAPDV') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
-    abaSgaPDV.style.display = 'block';
-
-  }
-  else if (sgaeCiaAtivo === 'SOBOX(2010)') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
-    abaSOBOX.style.display = 'block';
-  }
-  else if (sgaeCiaAtivo === 'SGABOX(2010)') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
-    abasgabox.style.display = 'block';
-  }
-  else if (sgaeCiaAtivo === 'Dispositivo') {
-    for (var i = 0; i < desativar.length; i++) {
-      desativar[i].style.display = "none";
-    }
-    abadispositivo.style.display = 'block';
-  }
-
 }
 
+// Gerenciamento de avisos
 document.addEventListener('DOMContentLoaded', () => {
   let avisoDiv = document.querySelector('.avisoDiv');
-  let avisoSGAeCIAList = document.querySelectorAll('.avisoSGAeCIA'); // Seleciona todos
+  let avisoSGAeCIAList = document.querySelectorAll('.avisoSGAeCIA');
 
-  if (!avisoDiv) return; // Evita erros se avisoDiv não existir
+  if (!avisoDiv) return;
 
   document.addEventListener('click', (e) => {
-    // Verifica se o clique foi fora do avisoDiv e se ele está visível
     if (!avisoDiv.contains(e.target) && avisoDiv.style.display === 'block') {
       avisoDiv.style.display = 'none';
-      // avisoDiv.classList.remove('transicaoAvisoDiv');
-      console.log('Fechando avisoDiv', e.target);
     }
 
-    // Verifica se o clique foi em algum dos elementos avisoSGAeCIA
     avisoSGAeCIAList.forEach((element) => {
       if (e.target === element) {
         avisoDiv.style.display = 'block';
-        // avisoDiv.classList.add('transicaoAvisoDiv'); // Adiciona a classe de transição
-        console.log('Exibindo avisoDiv', e.target);
       }
     });
   });
+});
+
+let ajudaSpedAviso = document.querySelector('#ajudaAvisoSped');
+let spanAvisoSped = document.querySelector('.spanAvisoSped');
+let pAvisoSped = document.querySelector('.pAvisoSped');
+let fecharAba = document.querySelector('.fechar-aba');
+let registro1 = document.querySelector('#registro');
+
+// Abre o aviso quando clicar no ajudaSpedAviso
+ajudaSpedAviso.addEventListener('click', (event) => {
+  event.stopPropagation(); // Impede que o clique propague para o document
+  if (registro1.value === 'C170') {
+    spanAvisoSped.style.display = 'block';
+    pAvisoSped.innerHTML = `Essa opção ira trazer todos os produtos que constam o 'CST PIS e COFINS' invalido para a operação!`
+  }
+});
+
+// Fecha o aviso quando clicar no botão fechar
+fecharAba.addEventListener('click', () => {
+  spanAvisoSped.style.display = 'none';
+});
+
+// Fecha o aviso quando clicar em qualquer lugar fora dele
+document.addEventListener('click', (event) => {
+  if (!spanAvisoSped.contains(event.target)) {
+    spanAvisoSped.style.display = 'none';
+  }
+});
+
+// Impede que o clique dentro do spanAvisoSped feche o aviso
+spanAvisoSped.addEventListener('click', (event) => {
+  event.stopPropagation();
 });
 
