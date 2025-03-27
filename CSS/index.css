@@ -512,6 +512,12 @@ main::-webkit-scrollbar-thumb:hover{
     align-self: center;
 }
 
+.sistemas h2 {
+    margin-top: 10px;
+    margin-bottom: -10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .containerD1 {
     /* background-color: rgb(0, 255, 55); */
     position: relative;

@@ -231,7 +231,7 @@
         <div class="section_main">
 
             <section id="HOME" class="rotinas" style="display: block;">
-                <h2 class="bemvindo"> Bem Vindo ao Karl4Knows </h2>
+                <h2 class="bemvindo"> Bem Vindo! </h2>
                 <div class="home" id="HOMEK">
                     <a target="_blank"
                         href="https://www.nfe.fazenda.gov.br/portal/consultaRecaptcha.aspx?tipoConsulta=resumo&tipoConteudo=7PhJ+gAVw2g="
@@ -367,20 +367,23 @@
                             src="IMG/excluir.png" class="fecharcaracteres"></span>
                     <h2 class="titleSPED">Assistente SPED</h2>
                     <ul class="navbarSPED">
-                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)">Erros</li>
-                        <li class="liSPED" onclick="ativarAbasSped(this)">Avisos</li>
+                        <li class="liSPED" onclick="ativarAbasSped(this)">Erros</li>
+                        <li class="liSPED spedAtivo" onclick="ativarAbasSped(this)">Avisos</li>
                         <li class="liSPED" onclick="ativarAbasSped(this)">Outros</li>
                     </ul>
+                    <div id="spedErrosAssit" class="desativar">
+                        ERRO
+                    </div>
                     <div id="spedAvisosAssit" class="desativar">
                         <div class="sec1_gerar">
                             <h4>Buscador (AVISOS)</h4>
                             <div class="divRegistros">
                                 <select id="registro">
-                                    <option value="C170">C170 - Aviso CST Pis e Cofins</option>
+                                    <option value="C170">C170 - CST Pis e Cofins (Contribução)</option>
                                     <option value="C100">C100 - Nota Fiscal</option>
                                     <option value="C190">C190 - Consolidação</option>
                                 </select>
-                                <a class="ajudaSpedMod" id="ajudaAvisoSped">❔</a>
+                                <a class="ajudaSpedMod" id="ajudaAvisoSped" title="Ajuda!">❔</a>
                                 <span class="spanAvisoSped desativar">
                                     <h3>Ajuda!</h3>
                                     <h4 class="fechar-aba">X</h4>
@@ -406,31 +409,8 @@
                             </div>
                         </div>
                     </div>
-                    <div id="spedErrosAssit" class="desativar">
-                        ERROS
-                    </div>
                     <div id="spedOutrosAssit" class="desativar">OUTROS</div>
                 </section>
-            </section>
-
-            <section id="caracteres" class="rotinas" style="display: none;">
-                <main class="caracteres1">
-                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
-                            src="IMG/excluir.png" class="fecharcaracteres"></span>
-                    <h2 class="titulocaracteres">Remover caracteres</h2>
-                    <div class="containercaracteres">
-                        <input type="text" id="numeroOriginalcaracteres" placeholder="Digite o número original">
-                        <button id="removecaracteres" class="btn-limparcaracteres"
-                            onclick="removerCaracteres()"><b>REMOVER
-                                CARACTERES</b></button>
-                        <p id="numeroResultadocaracteres"></p>
-                        <div id="buttonsContainercaracteres">
-                            <button id="copyButtoncaracteres" class="btn-copiarcaracteres"
-                                onclick="copyToClipboard()">COPIAR</button>
-                            <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
-                        </div>
-                    </div>
-                </main>
             </section>
 
             <section id="secSgaCiaAssist" class="rotinas" style="display: none;">
@@ -517,6 +497,26 @@
                         </div>
                     </div>
                 </main>
+            </section>
+
+            <section id="caracteres" class="rotinas" style="display: none;">
+                <main class="caracteres1">
+                        <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                                src="IMG/excluir.png" class="fecharcaracteres"></span>
+                        <h2 class="titulocaracteres">Remover caracteres</h2>
+                        <div class="containercaracteres">
+                            <input type="text" id="numeroOriginalcaracteres" placeholder="Digite o número original">
+                            <button id="removecaracteres" class="btn-limparcaracteres"
+                                onclick="removerCaracteres()"><b>REMOVER
+                                    CARACTERES</b></button>
+                            <p id="numeroResultadocaracteres"></p>
+                            <div id="buttonsContainercaracteres">
+                                <button id="copyButtoncaracteres" class="btn-copiarcaracteres"
+                                    onclick="copyToClipboard()">COPIAR</button>
+                                <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
+                            </div>
+                        </div>
+                    </main>
             </section>
 
             <div class="sistemasSections">

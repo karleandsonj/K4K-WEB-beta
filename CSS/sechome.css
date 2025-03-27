@@ -413,7 +413,7 @@
 }
 
 /* Select ocupando a maior parte do espaço */
-select#registro {
+select#registro, select#registroErrosSped {
     flex: 1; /* Ocupa todo o espaço disponível */
     padding: 2px 12px;
     border-radius: 5px;
@@ -470,7 +470,8 @@ select#registro {
     display: grid;
 }
 
-#xmlFileInput-avisoSped {
+#xmlFileInput-avisoSped,
+#xmlFileInput-ErrosSped {
     display: none;
 }
 
@@ -516,6 +517,7 @@ select#registro {
     left: 50%;
     transform: translate(-50%);
     border-radius: 10px;
+    z-index: 9999;
 }
 
 .fechar-aba {
@@ -526,7 +528,16 @@ select#registro {
     right: 5px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: red;
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
 }
+
+.fechar-aba:hover {
+    transform: scale3d(1.5, 1.5, 0.3);
+    -webkit-transform: scale3d(1.5, 1.5, 0.3);
+    -moz-transform: scale3d(1.5, 1.5, 0.3);
+} 
 
 .pAvisoSped {
     text-align: center;
@@ -539,14 +550,15 @@ select#registro {
 /* Container dos botões fixos */
 .botoes {
     position: fixed;
-    bottom: 0;
+/*     bottom: 0; */
     left: 0;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, auto); /* 2 colunas */
     justify-content: center;
     gap: 10px;
-    padding: 10px;
+    margin-top: 10px;
+/*     padding: 10px; */
 }
 
 #copyResultSPED {
@@ -602,7 +614,7 @@ select#registro {
     background-color: #e1f0ff;
     position: relative;
     margin: 0 auto;
-    margin-top: 5px;
+    margin-top: 15px;
     margin-bottom: 5px;
     width: 99%;
     border-radius: 5px;

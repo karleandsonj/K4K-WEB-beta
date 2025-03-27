@@ -612,7 +612,7 @@ ajudaSpedAviso.addEventListener('click', (event) => {
   event.stopPropagation(); // Impede que o clique propague para o document
   if (registro1.value === 'C170') {
     spanAvisoSped.style.display = 'block';
-    pAvisoSped.innerHTML = `Essa opção ira trazer todos os produtos que constam o 'CST PIS e COFINS' invalido para a operação!`
+    pAvisoSped.innerHTML = `Essa opção ira trazer todos os produtos que constam o 'CST PIS e COFINS' invalido para a operação! <br><br> Obs. Salvar as informações do validador SPED no modelo XML/JRPXML`
   }
 });
 
