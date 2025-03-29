@@ -566,6 +566,9 @@ function abrirAbasSGAeCIA() {
     case 'Servidor(SGA)':
       document.querySelector('.abaServSGA').style.display = 'block';
       break;
+    case 'Terminal(SGA)':
+      document.querySelector('.abaTermSGA').style.display = 'block';
+      break;
     case 'SGAPDV':
       document.querySelector('.abaSgaPDV').style.display = 'block';
       break;
@@ -588,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!avisoDiv) return;
 
-  document.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
     if (!avisoDiv.contains(e.target) && avisoDiv.style.display === 'block') {
       avisoDiv.style.display = 'none';
     }
@@ -600,6 +603,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+const selectServSga = document.querySelector('#selectServSga');
+const resultSelectServSGA = document.querySelector('#resultSelectServSGA');
+
+const atualizar = () => {
+  resultSelectServSGA.innerHTML = 
+  selectServSga.value === 'ConfigServSga' ? 
+    `
+    <h3>Check-List</h3>
+    <button class="btnExportPdfConfSgaserv" onclick="exportToPDF()" title="Salvar em PDF">💾 PDF</button> 
+    <div class="passosConfigSistem">
+        <label>
+            <input type="checkbox" value="1"> Instalar Firebird
+        </label>
+        <label>
+            <input type="checkbox" value="2"> Configurar Compartilhamento e Rede
+        </label>
+        <label>
+            <input type="checkbox" value="3"> Configurar Portas Firewall
+        </label>
+        <label>
+            <input type="checkbox" value="5"> fazer aquela parada
+        </label>
+        <label>
+            <input type="checkbox" value="6"> instalar aquela outra
+        </label>
+        <label>
+            <input type="checkbox" value="7"> cofigurar aquela la
+        </label>      
+        <label>
+            <input type="checkbox" value="8"> abrir sistema
+        </label>      
+    </div>                
+    ` : 
+  selectServSga.value === 'PortaFirewall' ? 
+    `
+    <div class="divCopyPortasFirewall">
+      <h5>PORTAS DO FIREWALL <span class="ajudaConfigPortaFire" id="ajudaConfigPortaFireCopy">❔</span></h5> 
+      <br/>
+      <p id="txtPortFireCopy">65123, 65100, 64123, 9092, 4899, 4096, 3050,992, 993, 995, 587, 465, 445, 80, 21</p>
+      <button onclick="copyToPortFire()" id="btnCopyPortFire"> 📄Copiar </button>
+      <br/>
+      <hr/>
+      <br/>
+      <h5>DOWNLOAD DO .BAT <span class="ajudaConfigPortaFire" id="ajudaConfigPortaFireDown">❔</span></h5> 
+      <button> ↡ Download </button>
+    </div>
+    ` : 
+    ''; //DEFAULT
+};
+
+document.addEventListener('DOMContentLoaded', atualizar);
+selectServSga.addEventListener('change', atualizar);
 
 let ajudaSpedAviso = document.querySelector('#ajudaAvisoSped');
 let spanAvisoSped = document.querySelector('.spanAvisoSped');
@@ -633,3 +689,60 @@ spanAvisoSped.addEventListener('click', (event) => {
   event.stopPropagation();
 });
 
+/* EXPORTAR PARA PDF */
+
+function exportToPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Título do documento
+  const title = "Configurações do Sistema SGA Servidor";
+  doc.setFontSize(18);
+  doc.text(title, 10, 15);
+  
+  // Lista de checkboxes
+  let yPosition = 30;
+  doc.setFontSize(12);
+  
+  // Captura todos os checkboxes
+  const checkboxes = document.querySelectorAll('#resultSelectServSGA input[type="checkbox"]');
+  
+  checkboxes.forEach(checkbox => {
+    const label = checkbox.nextSibling.textContent.trim();
+    const status = checkbox.checked ? " - OK" : " - faltou";
+    
+    // Adiciona cada item como texto simples
+    doc.text(`${label} ${status}`, 10, yPosition);
+    yPosition += 7; // Espaço entre linhas
+  });
+  
+  // Adiciona data no rodapé
+  const date = new Date().toLocaleString();
+  doc.setFontSize(10);
+  doc.text(`Documento gerado em: ${date}`, 10, doc.internal.pageSize.getHeight() - 10);
+  
+  // Salva o PDF
+  doc.save('check-config-sga-serv.pdf');
+}
+
+
+function copyToPortFire() {
+  const txtPortFireCopy = document.getElementById("txtPortFireCopy").innerText;
+  const tempInput = document.createElement("textarea");
+  tempInput.value = txtPortFireCopy;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+
+}
+
+const btnCopyPortFire = document.querySelector("#btnCopyPortFire");
+btnCopyPortFire.addEventListener('click', () => {
+  btnCopyPortFire.innerText = 'Copiado ✔';
+  setTimeout(() => {
+    btnCopyPortFire.innerText = 'Copiar';
+  }, 2000);
+
+  copiar();
+});

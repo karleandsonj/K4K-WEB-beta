@@ -409,12 +409,15 @@
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre os elementos */
+    gap: 10px;
+    /* Espaço entre os elementos */
 }
 
 /* Select ocupando a maior parte do espaço */
-select#registro, select#registroErrosSped {
-    flex: 1; /* Ocupa todo o espaço disponível */
+select#registro,
+select#registroErrosSped {
+    flex: 1;
+    /* Ocupa todo o espaço disponível */
     padding: 2px 12px;
     border-radius: 5px;
     border: 1px solid #ced4da;
@@ -423,8 +426,10 @@ select#registro, select#registroErrosSped {
     font-size: 13px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin: 0; /* Removemos as margens anteriores */
-    min-width: 120px; /* Largura mínima */
+    margin: 0;
+    /* Removemos as margens anteriores */
+    min-width: 120px;
+    /* Largura mínima */
 }
 
 /* Elemento de ajuda/modificação compacto */
@@ -432,7 +437,8 @@ select#registro, select#registroErrosSped {
     margin-top: -3px;
     background-color: #000000;
     border-radius: 5px;
-    height: 17px; /* Aumentamos para alinhar com o select */
+    height: 17px;
+    /* Aumentamos para alinhar com o select */
     padding: 0 1px;
     color: white;
     display: flex;
@@ -443,8 +449,10 @@ select#registro, select#registroErrosSped {
     text-transform: uppercase;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     transition: background-color 0.2s;
-    white-space: nowrap; /* Impede quebra de texto */
-    flex-shrink: 0; /* Impede que diminua */
+    white-space: nowrap;
+    /* Impede quebra de texto */
+    flex-shrink: 0;
+    /* Impede que diminua */
     cursor: pointer;
 }
 
@@ -455,18 +463,19 @@ select#registro, select#registroErrosSped {
     text-align: justify;
     border: 1px solid #ccc;
     border-radius: 5px;
-    height: 100%; /* Altura ajustável */
+    height: 100%;
+    /* Altura ajustável */
     width: 100%;
     resize: none;
     overflow-y: auto;
     box-sizing: border-box;
     background-color: white;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .input-xml-aviso {
     margin: 5px;
-/*     background-color: #0080ff; */
+    /*     background-color: #0080ff; */
     display: grid;
 }
 
@@ -481,12 +490,18 @@ select#registro, select#registroErrosSped {
     padding: 1px 5px;
     border: 2px dashed rgb(128, 128, 128);
     border-radius: 5px;
-    white-space: nowrap;       /* Impede quebra de linha */
-    overflow: hidden;         /* Esconde o texto que ultrapassar */
-    text-overflow: ellipsis;  /* Adiciona "..." quando cortado */
-    max-width: 100%;        /* Largura máxima antes de cortar */
-    display: inline-block;    /* Necessário para width funcionar */
-    vertical-align: middle;  /* Alinhamento vertical */
+    white-space: nowrap;
+    /* Impede quebra de linha */
+    overflow: hidden;
+    /* Esconde o texto que ultrapassar */
+    text-overflow: ellipsis;
+    /* Adiciona "..." quando cortado */
+    max-width: 100%;
+    /* Largura máxima antes de cortar */
+    display: inline-block;
+    /* Necessário para width funcionar */
+    vertical-align: middle;
+    /* Alinhamento vertical */
     text-align: center;
 }
 
@@ -522,7 +537,7 @@ select#registro, select#registroErrosSped {
 
 .fechar-aba {
     position: fixed;
-/*     background-color: #000000; */
+    /*     background-color: #000000; */
     cursor: pointer;
     top: 2px;
     right: 5px;
@@ -537,7 +552,7 @@ select#registro, select#registroErrosSped {
     transform: scale3d(1.5, 1.5, 0.3);
     -webkit-transform: scale3d(1.5, 1.5, 0.3);
     -moz-transform: scale3d(1.5, 1.5, 0.3);
-} 
+}
 
 .pAvisoSped {
     text-align: center;
@@ -550,21 +565,22 @@ select#registro, select#registroErrosSped {
 /* Container dos botões fixos */
 .botoes {
     position: fixed;
-/*     bottom: 0; */
+    /*     bottom: 0; */
     left: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, auto); /* 2 colunas */
+    grid-template-columns: repeat(2, auto);
+    /* 2 colunas */
     justify-content: center;
     gap: 10px;
     margin-top: 10px;
-/*     padding: 10px; */
+    /*     padding: 10px; */
 }
 
 #copyResultSPED {
     position: relative;
     background-color: #0080ff;
-/*     border: 1px solid black; */
+    /*     border: 1px solid black; */
     text-align: start;
     border-radius: 5px;
     cursor: copy;
@@ -607,7 +623,7 @@ select#registro, select#registroErrosSped {
     right: 0;
     left: 0;
     bottom: 0;
-/*     top: 50px; */
+    /*     top: 50px; */
 }
 
 #resultadoDiv {
@@ -618,12 +634,13 @@ select#registro, select#registroErrosSped {
     margin-bottom: 5px;
     width: 99%;
     border-radius: 5px;
-/*     border: 0.5px solid black; */
+    /*     border: 0.5px solid black; */
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.753);
-/*     padding: 5px 1px; */
+    /*     padding: 5px 1px; */
     min-height: 10px;
     max-height: 200px;
-    overflow: hidden;;
+    overflow: hidden;
+    ;
 }
 
 .divresult {
@@ -631,7 +648,7 @@ select#registro, select#registroErrosSped {
     position: relative;
     margin: 0;
     width: 100%;
-/*     border: 0.5px  black; */
+    /*     border: 0.5px  black; */
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.753);
     padding: 5px 1px;
     min-height: 10px;
@@ -660,8 +677,8 @@ select#registro, select#registroErrosSped {
 .divresult::-webkit-scrollbar-thumb,
 .txterros::-webkit-scrollbar-thumb {
     background: #747373;
-/*     border-top-right-radius: 5px; */
-/*     border-bottom-right-radius: 5px; */
+    /*     border-top-right-radius: 5px; */
+    /*     border-bottom-right-radius: 5px; */
     /* Cor do indicador de rolagem */
     /* Raio de borda do indicador de rolagem */
 }
@@ -734,166 +751,123 @@ select#registro, select#registroErrosSped {
 
 /*  */
 
+/* Main Container */
 .mainSgaCiaAssist {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-radius: 15px;
-    z-index: 1;
-    top: 80px;
     position: absolute;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #bdb8ad;
     width: 75vw;
     height: 75vh;
+    background-color: #bdb8ad;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
     text-align: center;
 }
 
+/* Navigation Container */
 .mainNavSgaCIA {
-    overflow-x: auto;
-    /* Permite rolagem horizontal se necessário */
-    overflow-y: hidden;
-    /* Esconde a rolagem vertical */
     width: 100%;
     position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
     z-index: -1;
-    /* Ajuste o z-index conforme necessário */
 }
 
+/* Navigation Scrollbar */
 .mainNavSgaCIA::-webkit-scrollbar {
-    /* Raio de borda do indicador de rolagem */
-    background-color: #a7a298;
-    /* Define o fundo da barra de rolagem como transparente */
     width: 6px;
-    /* Largura da barra de rolagem */
-    /*     height: 15px; */
-    /* Altura da barra de rolagem horizontal */
+    height: 5px;
+    background-color: #a7a298;
 }
 
 .mainNavSgaCIA::-webkit-scrollbar-thumb {
     background: #747373;
-    /* Cor do indicador de rolagem */
-    /* Raio de borda do indicador de rolagem */
 }
 
 .mainNavSgaCIA::-webkit-scrollbar-thumb:hover {
     background-color: #3d3d3d;
     cursor: default;
-    /* Cor do indicador de rolagem ao passar o mouse */
 }
 
+/* Navigation List */
 .navSgaCia {
-    position: relative;
-    height: auto;
     display: flex;
     list-style: none;
     font-size: 12px;
     justify-content: flex-start;
-    /* Alinha os itens à esquerda */
-    margin: 0 auto;
-    margin-top: 10px;
     gap: 5px;
-    /*     margin-left: 10px; */
+    margin-top: 5px;
     padding: 0;
-    /* Remove padding padrão da lista */
     white-space: nowrap;
-    /* Impede que os itens quebrem para a próxima linha */
+    height: auto;
+    position: relative;
 }
 
+/* Navigation Items */
 .navSGAeCIA {
     cursor: pointer;
     color: #000000;
-    margin-left: -1px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 3px;
     border-top: 1px solid #5b635c;
     border-right: 1px solid #5b635c;
     border-left: 1px solid #5b635c;
     border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 3px;
     width: 100px;
     text-align: center;
-    margin-bottom: 5px;
-    z-index: 1;
-    align-content: center;
-    align-self: center;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin: 4px auto;
+    margin: -3px auto;
     flex-shrink: 0;
-    /* Impede que os itens encolham */
+    z-index: 1;
+    align-self: center;
 }
 
-@media screen and (max-width: 732px) {
-    .navSGAeCIA {
-        margin-bottom: -6px;
-    }
-}
-
+/* Active Navigation Item */
 .sgaeCiaAtivo {
+    background-color: #a7a298;
     border-top: 1px solid #969089;
     border-right: 1px solid #969089;
     border-left: 1px solid #969089;
-    background-color: #a7a298;
     margin-top: -8px;
 }
 
+/* Main Content Area */
 .corpoSgaCia {
-    border-top: 2px solid #a7a298;
-    margin-top: -10px;
-    z-index: 9;
-    background-color: #a7a298;
+    position: relative;
+    background-color: #99958e;
+    border-top: 2px solid #99958e;
+    /*     margin-top: -10px; */
     height: 100%;
+    z-index: 9;
 }
 
-.desativar {
-    display: none;
-}
-
-.corpoSgaCia h4 {
-    margin-top: 10px;
-}
-
-.corpoabas {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    justify-content: center;
-}
-
+/* Form Sections */
 .camposSgaeCIA {
     display: grid;
-    background-color: #efffa8;
+    background-color: #d3ceb2;
     gap: 8px;
     padding: 3px;
     border-radius: 10px;
+    border: 1px solid #000000;
 }
 
 .topcamposSgaeCIA {
-    /*     background-color: #0056b3; */
-    justify-content: center;
-    /*     display: grid;
-    grid-template-columns: repeat(2, 1fr); */
     position: relative;
-    /* Adicionado para permitir posicionamento absoluto do ícone */
+    justify-content: center;
 }
 
+/* Warning Icon */
 .avisoSGAeCIA {
     position: absolute;
-    /* Posiciona o ícone em relação à div pai */
     top: 0;
-    /* Alinha no topo */
     right: 0;
-    /* Alinha à direita */
     width: 15px;
-    /* Mantém o tamanho do ícone */
     height: 15px;
-    /* Mantém o tamanho do ícone */
 }
 
+/* Warning Box */
 .avisoDiv {
     position: absolute;
     background-color: #ff8989;
@@ -902,12 +876,174 @@ select#registro, select#registroErrosSped {
     left: 50%;
     transform: translate(-50%);
     z-index: 999;
-    border: #000 solid 1px;
+    border: 1px solid #000;
     border-radius: 10px;
     display: none;
 }
 
-.transicaoAvisoDiv {
-    display: block;
-    transition: background-color 1.0s ease;
+/* Results Container */
+#resultSelectServSGA {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #bdb8ad;
+    border: 1px solid #bdb8ad;
+    border-radius: 15px;
+    margin: 10px auto 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Configuration Steps Grid */
+.passosConfigSistem {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+    gap: 10px;
+    height: 330px;
+    width: 100%;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+/* Form Labels */
+.passosConfigSistem label {
+    text-align: start;
+    padding: 14px 16px;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.passosConfigSistem label::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+}
+
+/* Scrollbar for Results */
+#resultSelectServSGA::-webkit-scrollbar {
+    background-color: #a7a298;
+    width: 10px;
+/*     z-index: 999; */
+}
+
+#resultSelectServSGA::-webkit-scrollbar-thumb {
+    background: #747373;
+/*     z-index: 999; */
+}
+
+#resultSelectServSGA::-webkit-scrollbar-thumb:hover {
+    background-color: #3d3d3d;
+    cursor: default;
+/*     z-index: 999; */
+}
+
+/* Utility Classes */
+.desativar {
+    display: none;
+}
+
+.corpoabas {
+    margin-top: 15px;
+}
+
+.titleSgaCia {
+    padding: 2px 35px;
+}
+
+.btnExportPdfConfSgaserv {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    border-bottom-right-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btnExportPdfConfSgaserv:hover {
+    background-color: #3d3d3d;
+    border-color: #000;
+    color: white;
+}
+
+#selectServSga {
+    width: 90%;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 896px) {
+    .navSGAeCIA {
+        margin-bottom: -6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .passosConfigSistem {
+        grid-template-columns: 1fr;
+        /* Muda para 1 coluna em telas pequenas */
+    }
+
+}
+
+.divCopyPortasFirewall {
+    padding: 10px 0;
+}
+
+.divCopyPortasFirewall button{
+    margin: 10px;
+}
+
+.ajudaConfigPortaFire {
+    background-color: #000000;
+    padding: 2px 0;
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    -ms-border-radius: 9px;
+    -o-border-radius: 9px;
+    cursor: help;
+}
+
+#txtPortFireCopy {
+    position: relative;
+    background-color: whitesmoke;
+    width: 90%;
+    margin: 0 auto;
+    padding: 3px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+/* Scrollbar for Results */
+#txtPortFireCopy::-webkit-scrollbar {
+    background-color: #a7a298;
+    width: 10px;
+    height: 5px;
+/*     z-index: 999; */
+}
+
+#txtPortFireCopy::-webkit-scrollbar-thumb {
+    background: #747373;
+/*     z-index: 999; */
+}
+
+#txtPortFireCopy::-webkit-scrollbar-thumb:hover {
+    background-color: #3d3d3d;
+    cursor: default;
+/*     z-index: 999; */
 }

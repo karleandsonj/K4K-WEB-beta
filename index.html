@@ -10,14 +10,16 @@
     <link rel="stylesheet" type="text/css" href="CSS/form.css">
     <link rel="stylesheet" type="text/css" href="CSS/editform.css">
     <link rel="stylesheet" type="text/css" href="CSS/sechome.css">
+    <link rel="stylesheet" type="text/css" href="CSS/indexMenu.css">
+    <link rel="stylesheet" type="text/css" href="CSS/sistemasSec.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 
 <body>
 
-    <a href="#" onclick="reloadPage();" class="aLOGO">
-        <div class="logo">
-            <img src="IMG/LOGO.png" class="logoKK" alt="HOME">
+    <a href="#" onclick="reloadPage();" class="aLogoMenu">
+        <div class="divLogoMenu">
+            <img src="IMG/LOGO.png" class="imgLogoMenu" alt="HOME">
         </div>
     </a>
 
@@ -25,19 +27,18 @@
         <label>
             <h1 class="titulo">Karl4Knows</h1>
         </label>
-        <div id="openForm" class="form">
+        <div id="openForm" class="openForm">
             <a class="but_card" id="but_card">Cad. Erro</a> <a id="but_alert">⚠️</a>
             <div id="senhaContainer" style="display: none;">
                 <input type="password" id="senhaInput" placeholder="Digite a senha">
                 <button id="verificarSenha">✔️</button>
             </div>
         </div>
-
     </header>
 
     <aside id="custom-scroll">
         <div class="scroll-content">
-            <ul>
+            <ul class="listaSistemasMenu">
                 <a id="abrir-rotina" class="icons" href="#" onclick="showSection('SGA'); setSelected(this);"
                     title="SGA"><img src="Icones/SGA.png" class="icones">SGA</a>
                 <a id="abrir-rotina" class="icons" href="#" onclick="showSection('SGABOXNEW'); setSelected(this);"
@@ -399,10 +400,13 @@
                             </div>
                             <!-- <textarea class="txtXMLSped" id="txtxmlAviso"></textarea> -->
                             <div id="resultadoDiv" style="display: none;">
-                                <div class="divresult"><p id="resultado"></p></div>
-                                <button id="copyResultSPED" class="btnerros" onclick="copyResSPED()"><span id="iconCopySped">📄 COPIAR</span></button>         
+                                <div class="divresult">
+                                    <p id="resultado"></p>
+                                </div>
+                                <button id="copyResultSPED" class="btnerros" onclick="copyResSPED()"><span
+                                        id="iconCopySped">📄 COPIAR</span></button>
                             </div>
-                                
+
                             <div class="botoes">
                                 <button id="btnerros" class="btnerros" type="button">GERAR</button>
                                 <button id="btnlimpar" class="btnerros" type="button">LIMPAR</button>
@@ -421,6 +425,7 @@
                     <div class="mainNavSgaCIA">
                         <ul class="navSgaCia">
                             <li class="navSGAeCIA sgaeCiaAtivo" onclick="ativarAbasSgaCia(this)">Servidor(SGA)</li>
+                            <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">Terminal(SGA)</li>
                             <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGAPDV</li>
                             <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SOBOX(2010)</li>
                             <li class="navSGAeCIA" onclick="ativarAbasSgaCia(this)">SGABOX(2010)</li>
@@ -430,70 +435,46 @@
                     <div class="corpoSgaCia">
                         <div class="avisoDiv"></div>
                         <div class="abaServSGA desativar" style="display: block;">
-                            <h4>CONFIG SERV</h4>
+                            <h4>SERVIDOR SGA</h4>
                             <div class="corpoabas">
-                                <div class="camposSgaeCIA">
-                                    <div class="topcamposSgaeCIA">
-                                        <p>Portas FireWall</p>
-                                        <span class="spanInfoSGAeCIA"
-                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
-                                            <img width="15" height="15" class="avisoSGAeCIA"
-                                                src="https://img.icons8.com/office/40/info-squared.png"
-                                                alt="info-squared" />
-                                        </span>
-                                    </div>
-                                    <button>Download</button>
+                                <select id="selectServSga">
+                                    <option value="ConfigServSga">Passos Configuração</option>
+                                    <option value="PortaFirewall">Portas Firewall</option>
+                                    <option value="">Reinicializador do ROBOT</option>
+                                    <option value="">Cadeia de Certificados</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                                <div id="resultSelectServSGA">
+                                    
                                 </div>
-                                <div class="camposSgaeCIA">
-                                    <div class="topcamposSgaeCIA">
-                                        <p>Portas FireWall</p>
-                                        <span class="spanInfoSGAeCIA"
-                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
-                                            <img width="15" height="15" class="avisoSGAeCIA"
-                                                src="https://img.icons8.com/office/40/info-squared.png"
-                                                alt="info-squared" />
-                                        </span>
-                                    </div>
-
-                                    <button>Copiar</button>
-                                </div>
-                                <div class="camposSgaeCIA">
-                                    <div class="topcamposSgaeCIA">
-                                        <p>Portas FireWall</p>
-                                        <span class="spanInfoSGAeCIA"
-                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
-                                            <img width="15" height="15" class="avisoSGAeCIA"
-                                                src="https://img.icons8.com/office/40/info-squared.png"
-                                                alt="info-squared" />
-                                        </span>
-                                    </div>
-                                    <button>Copiar</button>
-                                </div>
-                                <div class="camposSgaeCIA">
-                                    <div class="topcamposSgaeCIA">
-                                        <p>Portas FireWall</p>
-                                        <span class="spanInfoSGAeCIA"
-                                            title="Execute o arquivo como ADMINISTRADOR e as portas serão adicionadas no Ent e Sai">
-                                            <img width="15" height="15" class="avisoSGAeCIA"
-                                                src="https://img.icons8.com/office/40/info-squared.png"
-                                                alt="info-squared" />
-                                        </span>
-                                    </div>
-                                    <button>Copiar</button>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="abaTermSGA desativar">
+                            <h4>CONFIG TERM SGA</h4>
+                            <div class="corpoabas">
                             </div>
                         </div>
                         <div class="abaSgaPDV desativar">
                             <h4>CONFIG SGA-PDV</h4>
+                            <div class="corpoabas">
+                            </div>
                         </div>
                         <div class="abaSOBOX desativar">
                             <h4>CONFIG SOBOX</h4>
+                            <div class="corpoabas">
+                            </div>
                         </div>
                         <div class="abasgabox desativar">
                             <h4>CONFIG SGA-BOX(2010)</h4>
+                            <div class="corpoabas">
+                            </div>
                         </div>
                         <div class="abadispositivo desativar">
                             <h4>CONFIG DISPOSITIVOS</h4>
+                            <div class="corpoabas">
+                            </div>
                         </div>
                     </div>
                 </main>
@@ -501,22 +482,22 @@
 
             <section id="caracteres" class="rotinas" style="display: none;">
                 <main class="caracteres1">
-                        <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
-                                src="IMG/excluir.png" class="fecharcaracteres"></span>
-                        <h2 class="titulocaracteres">Remover caracteres</h2>
-                        <div class="containercaracteres">
-                            <input type="text" id="numeroOriginalcaracteres" placeholder="Digite o número original">
-                            <button id="removecaracteres" class="btn-limparcaracteres"
-                                onclick="removerCaracteres()"><b>REMOVER
-                                    CARACTERES</b></button>
-                            <p id="numeroResultadocaracteres"></p>
-                            <div id="buttonsContainercaracteres">
-                                <button id="copyButtoncaracteres" class="btn-copiarcaracteres"
-                                    onclick="copyToClipboard()">COPIAR</button>
-                                <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
-                            </div>
+                    <span class="closecaracteres" id="closeModalcaracteres" onclick="reloadPage();"><img
+                            src="IMG/excluir.png" class="fecharcaracteres"></span>
+                    <h2 class="titulocaracteres">Remover caracteres</h2>
+                    <div class="containercaracteres">
+                        <input type="text" id="numeroOriginalcaracteres" placeholder="Digite o número original">
+                        <button id="removecaracteres" class="btn-limparcaracteres"
+                            onclick="removerCaracteres()"><b>REMOVER
+                                CARACTERES</b></button>
+                        <p id="numeroResultadocaracteres"></p>
+                        <div id="buttonsContainercaracteres">
+                            <button id="copyButtoncaracteres" class="btn-copiarcaracteres"
+                                onclick="copyToClipboard()">COPIAR</button>
+                            <button id="limparcaracteres" onclick="limparConteudo()">LIMPAR</button>
                         </div>
-                    </main>
+                    </div>
+                </main>
             </section>
 
             <div class="sistemasSections">
@@ -964,6 +945,9 @@
     <script src="JS/script.js"></script>
     <script src="JS/form.js"></script>
     <script src="JS/removercarac.js"></script>
+    <!-- Export PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 
 </html>

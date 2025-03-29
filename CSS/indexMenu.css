@@ -1,0 +1,224 @@
+/* LOGO */
+.divLogoMenu {
+    z-index: 3;
+    position: absolute;
+    display: flex;
+    background-color: #c6d4e1;
+    height: 105px;
+    width: 105px;
+    border-radius: 50%;
+    left: -12px;
+    top: -18px;
+    box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.8);
+    /* Adiciona uma sombra */
+    align-items: center;
+    /* Centraliza verticalmente */
+}
+
+.imgLogoMenu {
+    margin-top: -5px;
+    margin-left: 15px;
+    height: 90px;
+    width: 80px;
+}
+
+.aLogoMenu {
+    text-decoration: none;
+    background-color: none;
+}
+
+/* HEADER */
+header {
+    z-index: 2;
+    top: 0;
+    position: absolute;
+    display: flex;
+    background-color: #c6d4e1;
+    height: 50px;
+    width: 100%;
+    box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.8);
+    align-items: center;
+}
+
+@media (max-width: 330px) {
+    .titulo {
+        left: 50%;
+        margin-inline-start: 110px;
+        font-size: 8vw;
+    }
+}
+
+/* Botão para abrir Form */
+.openForm {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background-color: #44749d;
+    border: none;
+    cursor: pointer;
+    right: 0;
+    padding: 10px;
+    padding-bottom: 8px;
+    padding-top: 5px;
+    border-radius: 20px 0 0 20px;
+}
+
+.openForm:hover {
+    background-color: #bdb8ad;
+}
+
+#senhaContainer {
+    top: 50px;
+}
+
+#senhaInput {
+    border: none;
+    /* Remover sublinhado */
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#senhaInput:focus {
+    border: none;
+    /* Remover sublinhado */
+    background-color: #c5ffb0;
+}
+
+#verificarSenha {
+    margin-top: 2px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+#verificarSenha:hover {
+    background-color: #9de782;
+    margin-top: 2px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 480px) {
+    .but_card {
+        display: none;
+    }
+}
+
+/* MENU LATERAL ASIDE */
+aside {
+    height: 100vh;
+}
+
+ul.listaSistemasMenu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+    align-items: flex-start;
+    margin-top: 90px;
+}
+
+#custom-scroll {
+    z-index: 2;
+    position: absolute;
+    background-color: #c6d4e1;
+    width: 70px;
+    height: 100%;
+    /* Altura igual à altura da viewport */
+    top: 0;
+    bottom: 0;
+    box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.8);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.scroll-content {
+    margin-top: 24px;
+    margin-bottom: 32px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alinhar ao topo */
+    align-items: center;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    bottom: 0;
+}
+
+.scroll-content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.scroll-content::-webkit-scrollbar-corner {
+    display: none;
+}
+
+.icons {
+    border-top: 0.5px solid #494949;
+    border-bottom: 0.5px solid #494949;
+    background-color: #c6d4e1;
+    font-size: 60%;
+    margin: 0;
+    padding: 5px 0px 5px 0px;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.icons:hover {
+    background-color: #bdb8ad;
+    color: rgb(255, 255, 255);
+}
+
+.icons.selected { /* Mantem icones selecionados */
+    background-color: #44749d;
+    color: #fff;
+}
+
+.icones {
+    width: 60%;
+    position: relative;
+    display: grid;
+    margin: 3% auto;
+}
+
+.scroll-up {
+    border-bottom: solid 1px #464646;
+    width: 65px;
+    background-color: #c6d4e1;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 70px;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 20px 0px 0px 5px;
+    user-select: none;
+    order: 1;
+}
+
+.scroll-down {
+    border-top: solid 1px #464646;
+    width: 65px;
+    background-color: #c6d4e1;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    bottom: 0;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 9px 0px 0px 5px;
+    user-select: none;
+    order: 2;
+}
+
+.scroll-up:hover,
+.scroll-down:hover {
+    background-color: #bdb8ad;
+    color: rgb(255, 255, 255);
+}
