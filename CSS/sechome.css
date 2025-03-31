@@ -701,6 +701,7 @@ select#registroErrosSped {
 }
 
 .navbarSPED {
+/*     background-color: #0080ff; */
     position: relative;
     height: auto;
     display: flex;
@@ -709,7 +710,7 @@ select#registroErrosSped {
     justify-content: center;
     margin: 0 auto;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: -50px;
     z-index: -1;
 }
 
