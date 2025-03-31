@@ -716,7 +716,6 @@ select#registroErrosSped {
 .liSPED {
     cursor: pointer;
     color: #000000;
-    /*     background-color: #c9c6bf; */
     margin-left: -1px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -836,6 +835,7 @@ select#registroErrosSped {
 /* Main Content Area */
 .corpoSgaCia {
     position: relative;
+/*     bottom: 0; */
     background-color: #99958e;
     border-top: 2px solid #99958e;
     /*     margin-top: -10px; */
@@ -865,20 +865,6 @@ select#registroErrosSped {
     right: 0;
     width: 15px;
     height: 15px;
-}
-
-/* Warning Box */
-.avisoDiv {
-    position: absolute;
-    background-color: #ff8989;
-    width: 300px;
-    height: 250px;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 999;
-    border: 1px solid #000;
-    border-radius: 10px;
-    display: none;
 }
 
 /* Results Container */
@@ -951,7 +937,10 @@ select#registroErrosSped {
 }
 
 .corpoabas {
-    margin-top: 15px;
+    position: fixed;
+    top: 110px;
+    bottom: 30px;
+    width: 100%;
 }
 
 .titleSgaCia {
@@ -1013,6 +1002,10 @@ select#registroErrosSped {
     cursor: help;
 }
 
+.ajudaConfigPortaFire:hover {
+    background-color: #383838;
+}
+
 #txtPortFireCopy {
     position: relative;
     background-color: whitesmoke;
@@ -1046,4 +1039,230 @@ select#registroErrosSped {
     background-color: #3d3d3d;
     cursor: default;
 /*     z-index: 999; */
+}
+
+#btnCopyPortFire {
+    cursor: pointer;
+    white-space: normal;
+    /* Permite quebra de linha */
+    word-wrap: break-word;
+    /* Quebra palavras longas */
+    overflow-wrap: break-word;
+    justify-content: center;
+    /* Alternativa para forçar a quebra */
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+/*     margin: 0 auto; */
+    width: 50%;
+    margin-top: 10px;
+    display: flex;
+    position: relative;
+    padding: 5px 30px;
+    background-color: #ebe7e0;
+    border: #000 solid 1px;
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 80%;
+    text-indent: 5px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+#btnDownPortFire {
+    cursor: pointer;
+    white-space: normal;
+    /* Permite quebra de linha */
+    word-wrap: break-word;
+    /* Quebra palavras longas */
+    overflow-wrap: break-word;
+    /* Alternativa para forçar a quebra */
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    margin-top: 10px;
+    display: flex;
+    position: relative;
+    padding: 5px 30px;
+    background-color: #ebe7e0;
+    border: #000 solid 1px;
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 80%;
+    text-align: center;
+    text-indent: 5px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+#btnDownPortFire:hover, #btnCopyPortFire:hover {
+    background-color: #bdb8ad;
+}
+
+#btnDownPortFire:before,
+#btnDownPortFire:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 15px;
+    top: 52%;
+}
+
+#btnDownPortFire:before {
+    width: 10px;
+    height: 2px;
+    border-style: solid;
+    border-width: 0 2px 2px;
+}
+
+#btnDownPortFire:after {
+    width: 0;
+    height: 0;
+    margin-left: 3px;
+    margin-top: -7px;
+    border-style: solid;
+    border-width: 4px 4px 0 4px;
+    border-color: transparent;
+    border-top-color: inherit;
+    animation: downloadArrow 1s linear infinite;
+    animation-play-state: paused;
+}
+
+#btnDownPortFire:hover:before {
+    border-color: #ffffff;
+}
+
+#btnDownPortFire:hover:after {
+    border-top-color: #ffffff;
+    animation-play-state: running;
+}
+
+@keyframes downloadArrow {
+    0% {
+        margin-top: -7px;
+        opacity: 1;
+    }
+
+    0.001% {
+        margin-top: -10px;
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 0;
+        opacity: 0.4;
+    }
+}
+
+.abaServSGA h4 {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+@media (max-width: 403px) {
+.abaServSGA h4 {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+}
+}
+
+/* ===== Estilos para a Caixa de Aviso ===== */
+
+/* ===== Caixa Principal ===== */
+.avisoDiv {
+    position: relative;
+    background-color: #dbffe9;
+    width: 50vw;
+    min-height: 50px;
+    max-height: 350px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 30px;
+    overflow: hidden; /* Garante que nada saia da div */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+/* ===== Barra Superior do Aviso ===== */
+.avisoDiv .topAvisoDiv {
+    background-color: #b8ffd3;
+    width: 100%;
+    height: 20px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+/* ===== Conteúdo do Aviso ===== */
+.avisoDiv .infoAviso {
+    position: relative;
+    background-color: #dbffe9;
+/*     background-color: #025f26; */
+    text-align: center;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 10px;
+    max-height: 340px;
+    min-height: 40px;
+}
+
+.infoAviso p {
+    margin: 5px 0;
+}
+
+/* Barra de rolagem personalizada */
+.avisoDiv .infoAviso::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+.avisoDiv .infoAviso::-webkit-scrollbar-thumb {
+    background: #747373;
+}
+
+.avisoDiv .infoAviso::-webkit-scrollbar-thumb:hover {
+    background-color: #3d3d3d;
+}
+
+/* ===== Botão de Fechar ===== */
+.avisoDiv .closeAviso {
+    position: absolute;
+    cursor: pointer;
+    font-size: 12px;
+    right: 5px;
+    top: 2px;
+    transition: transform 0.5s, color 0.1s;
+}
+
+.avisoDiv .closeAviso:hover {
+    transform: scale(1.5);
+}
+
+
+
+
+/* DESFOQUE */
+.desfoqueDiv {
+    position: absolute;
+    display: none;
+    background-color: #0000003a;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
 }

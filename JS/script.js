@@ -353,17 +353,17 @@ function limparPesquisa() {
 
 /* FIM Function do CNPJ */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const xmlFileInput = document.getElementById("xmlFileInput-avisoSped");
   const fileNameSpan = document.getElementById("fileName");
-  
+
   // Atualiza o nome do arquivo quando um arquivo é selecionado
-  xmlFileInput.addEventListener('change', function() {
-      if (this.files.length > 0) {
-          fileNameSpan.textContent = `Nome: ${this.files[0].name}`;
-      } else {
-          fileNameSpan.textContent = 'Nenhum arquivo selecionado';
-      }
+  xmlFileInput.addEventListener('change', function () {
+    if (this.files.length > 0) {
+      fileNameSpan.textContent = `Nome: ${this.files[0].name}`;
+    } else {
+      fileNameSpan.textContent = 'Nenhum arquivo selecionado';
+    }
   });
 });
 
@@ -385,7 +385,7 @@ btnerros.addEventListener("click", async () => {
 
   const file = xmlFileInput.files[0];
   const registro1 = registro.value;
-  
+
   try {
     const fileContent = await readFileContent(file);
     processXMLContent(fileContent, registro1);
@@ -400,10 +400,10 @@ btnerros.addEventListener("click", async () => {
 function readFileContent(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    
+
     reader.onload = (event) => resolve(event.target.result);
     reader.onerror = (error) => reject(error);
-    
+
     reader.readAsText(file);
   });
 }
@@ -448,16 +448,16 @@ btnlimpar.addEventListener("click", () => {
   try {
     const xmlFileInput = document.getElementById("xmlFileInput-avisoSped");
     const fileNameSpan = document.getElementById("fileName");
-    
+
     if (!xmlFileInput || !fileNameSpan) {
       throw new Error("Elementos do formulário não encontrados");
     }
-    
+
     xmlFileInput.value = '';
     fileNameSpan.textContent = 'Nenhum arquivo selecionado';
     resultDiv.style.display = 'none';
     result.innerText = '';
-    
+
   } catch (error) {
     console.error("Erro ao limpar formulário:", error);
     alert("Erro para limpar!");
@@ -467,49 +467,49 @@ btnlimpar.addEventListener("click", () => {
 function copyResSPED() {
 
   const result = document.getElementById("resultado");
-  
+
   if (!result || !result.textContent.trim()) {
-      alert("Show, Copiou nada!");
-      return;
+    alert("Show, Copiou nada!");
+    return;
   }
 
   navigator.clipboard.writeText(result.textContent)
-      .then(() => {
+    .then(() => {
+      const iconCopySped = document.getElementById("iconCopySped");
+      if (iconCopySped) {
+        iconCopySped.textContent = "✓ COPIADO";
+        setTimeout(() => {
+          iconCopySped.textContent = "📄 COPIAR";
+        }, 2000);
+      }
+    })
+    .catch(err => {
+      console.error("Falha ao copiar:", err);
+
+      const textArea = document.createElement("textarea");
+      textArea.value = result.textContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
           const iconCopySped = document.getElementById("iconCopySped");
           if (iconCopySped) {
-              iconCopySped.textContent = "✓ COPIADO";
-              setTimeout(() => {
-                  iconCopySped.textContent = "📄 COPIAR";
-              }, 2000);
+            iconCopySped.textContent = "✓ COPIADO";
+            setTimeout(() => {
+              iconCopySped.textContent = "📄 COPIAR";
+            }, 2000);
           }
-      })
-      .catch(err => {
-          console.error("Falha ao copiar:", err);
-          
-          const textArea = document.createElement("textarea");
-          textArea.value = result.textContent;
-          document.body.appendChild(textArea);
-          textArea.select();
-          
-          try {
-              const successful = document.execCommand('copy');
-              if (successful) {
-                  const iconCopySped = document.getElementById("iconCopySped");
-                  if (iconCopySped) {
-                      iconCopySped.textContent = "✓ COPIADO";
-                      setTimeout(() => {
-                          iconCopySped.textContent = "📄 COPIAR";
-                      }, 2000);
-                  }
-              } else {
-                  alert("DEU ERRO AI MENO, SE VIRA");
-              }
-          } catch (err) {
-              alert("DEU ERRO AI MENO, SE VIRA");
-          }
-          
-          document.body.removeChild(textArea);
-      });
+        } else {
+          alert("DEU ERRO AI MENO, SE VIRA");
+        }
+      } catch (err) {
+        alert("DEU ERRO AI MENO, SE VIRA");
+      }
+
+      document.body.removeChild(textArea);
+    });
 }
 
 function ativarAbasSped(element) {
@@ -556,13 +556,13 @@ function ativarAbasSgaCia(element) {
 function abrirAbasSGAeCIA() {
   let sgaeCiaAtivo = document.querySelector('.sgaeCiaAtivo');
   let desativar = document.querySelectorAll('.desativar');
-  
+
   if (!sgaeCiaAtivo) return;
-  
+
   sgaeCiaAtivo = sgaeCiaAtivo.textContent;
   desativar.forEach(el => el.style.display = "none");
 
-  switch(sgaeCiaAtivo) {
+  switch (sgaeCiaAtivo) {
     case 'Servidor(SGA)':
       document.querySelector('.abaServSGA').style.display = 'block';
       break;
@@ -585,74 +585,94 @@ function abrirAbasSGAeCIA() {
 }
 
 // Gerenciamento de avisos
-document.addEventListener('DOMContentLoaded', () => {
-  let avisoDiv = document.querySelector('.avisoDiv');
-  let avisoSGAeCIAList = document.querySelectorAll('.avisoSGAeCIA');
-
-  if (!avisoDiv) return;
-
-    document.addEventListener('click', (e) => {
-    if (!avisoDiv.contains(e.target) && avisoDiv.style.display === 'block') {
-      avisoDiv.style.display = 'none';
-    }
-
-    avisoSGAeCIAList.forEach((element) => {
-      if (e.target === element) {
-        avisoDiv.style.display = 'block';
-      }
-    });
-  });
-});
 
 const selectServSga = document.querySelector('#selectServSga');
 const resultSelectServSGA = document.querySelector('#resultSelectServSGA');
+const avisoDiv = document.querySelector('.avisoDiv');
 
-const atualizar = () => {
-  resultSelectServSGA.innerHTML = 
-  selectServSga.value === 'ConfigServSga' ? 
-    `
+// Conteúdos das opções
+const conteudos = {
+  ConfigServSga: `
     <h3>Check-List</h3>
     <button class="btnExportPdfConfSgaserv" onclick="exportToPDF()" title="Salvar em PDF">💾 PDF</button> 
     <div class="passosConfigSistem">
-        <label>
-            <input type="checkbox" value="1"> Instalar Firebird
-        </label>
-        <label>
-            <input type="checkbox" value="2"> Configurar Compartilhamento e Rede
-        </label>
-        <label>
-            <input type="checkbox" value="3"> Configurar Portas Firewall
-        </label>
-        <label>
-            <input type="checkbox" value="5"> fazer aquela parada
-        </label>
-        <label>
-            <input type="checkbox" value="6"> instalar aquela outra
-        </label>
-        <label>
-            <input type="checkbox" value="7"> cofigurar aquela la
-        </label>      
-        <label>
-            <input type="checkbox" value="8"> abrir sistema
-        </label>      
-    </div>                
-    ` : 
-  selectServSga.value === 'PortaFirewall' ? 
-    `
+        <label><input type="checkbox" value="1"> Instalar Firebird</label>
+        <label><input type="checkbox" value="2"> Configurar Compartilhamento e Rede</label>
+        <label><input type="checkbox" value="3"> Configurar Portas Firewall</label>
+        <label><input type="checkbox" value="5"> Fazer aquela parada</label>
+        <label><input type="checkbox" value="6"> Instalar aquela outra</label>
+        <label><input type="checkbox" value="7"> Configurar aquela lá</label>      
+        <label><input type="checkbox" value="8"> Abrir sistema</label>      
+    </div>`,
+
+  PortaFirewall: `
     <div class="divCopyPortasFirewall">
-      <h5>PORTAS DO FIREWALL <span class="ajudaConfigPortaFire" id="ajudaConfigPortaFireCopy">❔</span></h5> 
+      <h5>PORTAS DO FIREWALL <a class="ajudaConfigPortaFire" id="ajudaConfigPortaFireCopy">❔</a></h5> 
       <br/>
-      <p id="txtPortFireCopy">65123, 65100, 64123, 9092, 4899, 4096, 3050,992, 993, 995, 587, 465, 445, 80, 21</p>
-      <button onclick="copyToPortFire()" id="btnCopyPortFire"> 📄Copiar </button>
+      <p id="txtPortFireCopy">65123, 65100, 64123, 9092, 4899, 4096, 3050, 992, 993, 995, 587, 465, 445, 80, 21</p>
+      <a onclick="copyToPortFire()" id="btnCopyPortFire"> Copiar📄 </a>
       <br/>
       <hr/>
       <br/>
-      <h5>DOWNLOAD DO .BAT <span class="ajudaConfigPortaFire" id="ajudaConfigPortaFireDown">❔</span></h5> 
-      <button> ↡ Download </button>
-    </div>
-    ` : 
-    ''; //DEFAULT
+      <h5>DOWNLOAD DO .BAT <a class="ajudaConfigPortaFire" id="ajudaConfigPortaFireDown">❔</a></h5> 
+      <a onclick="downToPortFire()" id="btnDownPortFire" href="https://drive.google.com/u/0/uc?id=1wtRrdKdygfCXbQnURPrZ64mV6nr3SG3p&amp;export=download" target="_blank"> Download </a>
+    </div>`
 };
+
+// Função para atualizar o conteúdo
+const atualizar = () => {
+  resultSelectServSGA.innerHTML = conteudos[selectServSga.value] || '';
+
+  document.getElementById('ajudaConfigPortaFireCopy').addEventListener('click', function () {
+    document.querySelector('.desfoqueDiv').style.display = 'block';
+    document.querySelector('.avisoDiv').style.display = 'block';
+  });
+
+  document.getElementById('ajudaConfigPortaFireDown').addEventListener('click', function () {
+    document.querySelector('.desfoqueDiv').style.display = 'block';
+    document.querySelector('.avisoDiv').style.display = 'block';
+  });
+
+  document.querySelector('.desfoqueDiv').addEventListener('click', function () {
+    document.querySelector('.avisoDiv').style.display = 'none';
+    document.querySelector('.desfoqueDiv').style.display = 'none';
+    document.querySelector('.infoAviso').innerHTML = ``;
+  });
+
+  document.querySelector('.closeAviso').addEventListener('click', function () {
+    document.querySelector('.avisoDiv').style.display = 'none';
+    document.querySelector('.desfoqueDiv').style.display = 'none';
+    document.querySelector('.infoAviso').innerHTML = ``;
+  });
+
+  document.addEventListener('click', function (e) {
+    if (ajudaConfigPortaFireCopy.contains(e.target)) {
+      document.querySelector('.infoAviso').innerHTML = `
+      <p>1. Acesse <strong>Windows Defender Firewall com Segurança Avançada</strong>.</p><hr>
+      <p>2. No menu lateral, clique em <strong>Regras de Entrada</strong> e selecione <strong>Nova Regra</strong>.</p><hr>
+      <p>3. Escolha <strong>Porta</strong> e clique em <strong>Avançar</strong>.</p><hr>
+      <p>4. Selecione <strong>TCP</strong>, marque <strong>Portas locais específicas</strong> e insira as portas desejadas.</p><hr>
+      <p>5. Clique em <strong>Avançar</strong>, selecione <strong>Permitir a Conexão</strong> e continue clicando em <strong>Avançar</strong> até chegar à tela de nome.</p><hr>
+      <p>6. Defina um nome para a regra e clique em <strong>Concluir</strong>.</p><hr>
+      <p>7. Repita o mesmo procedimento, desta vez selecionando <strong>UDP</strong> em vez de <strong>TCP</strong>.</p><hr>
+
+      <p>Agora, siga os mesmos passos em <strong>Regras de Saída</strong>, inserindo as mesmas portas e opções configuradas nas regras de entrada.</p>
+      `;
+    } else if (ajudaConfigPortaFireDown.contains(e.target)) {
+      document.querySelector('.infoAviso').innerHTML = `
+      <p>1. Faça o Download do documento e extraia</p>
+      <p>2. Execute como Administrador o exe .bat e aguarde a execução!</p>
+      <p>3. Pronto, portas ja configuradas no FIREWALL</p>
+      `
+    }
+  });
+}
+
+// Event listener para o select
+selectServSga.addEventListener('change', atualizar);
+
+// Inicializa o conteúdo
+atualizar();
 
 document.addEventListener('DOMContentLoaded', atualizar);
 selectServSga.addEventListener('change', atualizar);
@@ -694,55 +714,50 @@ spanAvisoSped.addEventListener('click', (event) => {
 function exportToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-  
+
   // Título do documento
   const title = "Configurações do Sistema SGA Servidor";
   doc.setFontSize(18);
   doc.text(title, 10, 15);
-  
+
   // Lista de checkboxes
   let yPosition = 30;
   doc.setFontSize(12);
-  
+
   // Captura todos os checkboxes
   const checkboxes = document.querySelectorAll('#resultSelectServSGA input[type="checkbox"]');
-  
+
   checkboxes.forEach(checkbox => {
     const label = checkbox.nextSibling.textContent.trim();
-    const status = checkbox.checked ? " - OK" : " - faltou";
-    
+    const status = checkbox.checked ? "OK -" : "Faltou -";
+
     // Adiciona cada item como texto simples
-    doc.text(`${label} ${status}`, 10, yPosition);
+    doc.text(`${status} ${label}`, 10, yPosition);
     yPosition += 7; // Espaço entre linhas
   });
-  
+
   // Adiciona data no rodapé
   const date = new Date().toLocaleString();
   doc.setFontSize(10);
   doc.text(`Documento gerado em: ${date}`, 10, doc.internal.pageSize.getHeight() - 10);
-  
+
   // Salva o PDF
   doc.save('check-config-sga-serv.pdf');
 }
 
-
 function copyToPortFire() {
   const txtPortFireCopy = document.getElementById("txtPortFireCopy").innerText;
   const tempInput = document.createElement("textarea");
+  const btnCopyPortFire = document.querySelector("#btnCopyPortFire");
   tempInput.value = txtPortFireCopy;
   document.body.appendChild(tempInput);
   tempInput.select();
   document.execCommand("copy");
   document.body.removeChild(tempInput);
 
-}
-
-const btnCopyPortFire = document.querySelector("#btnCopyPortFire");
-btnCopyPortFire.addEventListener('click', () => {
   btnCopyPortFire.innerText = 'Copiado ✔';
   setTimeout(() => {
-    btnCopyPortFire.innerText = 'Copiar';
+    btnCopyPortFire.innerText = 'Copiar📄';
   }, 2000);
+}
 
-  copiar();
-});
