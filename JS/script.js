@@ -666,6 +666,16 @@ const atualizar = () => {
       `
     }
   });
+
+
+  /* let passosConfigSistem
+  let arrayCheklistConf = []
+
+  arrayCheklistConf = passosConfigSistem.value;
+
+  const ArrayJSON = JSON.stringify(arrayCheklistConf); //stringify, converte array para string no formato JSON
+  localStorage.setItem('SaveCheckList', ArrayJSON);
+ */
 }
 
 // Event listener para o select
