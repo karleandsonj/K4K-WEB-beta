@@ -523,45 +523,6 @@ select#registroErrosSped {
     border-color: #adb5bd;
 }
 
-.spanAvisoSped {
-    background-color: #495057;
-    position: absolute;
-    width: 250px;
-    height: auto;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%);
-    border-radius: 10px;
-    z-index: 9999;
-}
-
-.fechar-aba {
-    position: fixed;
-    /*     background-color: #000000; */
-    cursor: pointer;
-    top: 2px;
-    right: 5px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: red;
-    transition: .5s, color .10s;
-    -webkit-transition: .5s, color .10s;
-    -moz-transition: .5s, color .10s;
-}
-
-.fechar-aba:hover {
-    transform: scale3d(1.5, 1.5, 0.3);
-    -webkit-transform: scale3d(1.5, 1.5, 0.3);
-    -moz-transform: scale3d(1.5, 1.5, 0.3);
-}
-
-.pAvisoSped {
-    text-align: center;
-    margin: 15px;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 12px;
-}
-
 /* Container dos botões fixos */
 .botoes {
     position: fixed;
@@ -640,8 +601,14 @@ select#registroErrosSped {
     min-height: 10px;
     max-height: 200px;
     overflow: hidden;
-    ;
 }
+
+.scriptPisCofinsENT50 {
+    position: absolute;
+    left: 5px;
+    margin-top: 7px;
+}
+
 
 .divresult {
     background-color: #e1f0ff;
@@ -658,7 +625,7 @@ select#registroErrosSped {
 }
 
 #resultado {
-    text-align: justify;
+    text-align: start;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -691,7 +658,7 @@ select#registroErrosSped {
 }
 
 #copyResultSPED:hover {
-    background-color: #83fabe
+    background-color: #000a92;
 }
 
 .sectionSped {
@@ -1179,7 +1146,46 @@ select#registroErrosSped {
 }
 }
 
-/* ===== Estilos para a Caixa de Aviso ===== */
+/* ===== EAviso SPED ===== */
+
+.spanAvisoSped {
+    background-color: #495057;
+    position: absolute;
+    width: 250px;
+    height: auto;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+.fechar-aba {
+    position: fixed;
+    /*     background-color: #000000; */
+    cursor: pointer;
+    top: 2px;
+    right: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: red;
+    transition: .5s, color .10s;
+    -webkit-transition: .5s, color .10s;
+    -moz-transition: .5s, color .10s;
+}
+
+.fechar-aba:hover {
+    transform: scale3d(1.5, 1.5, 0.3);
+    -webkit-transform: scale3d(1.5, 1.5, 0.3);
+    -moz-transform: scale3d(1.5, 1.5, 0.3);
+}
+
+.pAvisoSped {
+    text-align: center;
+    margin: 15px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
 
 /* ===== Caixa Principal ===== */
 .avisoDiv {

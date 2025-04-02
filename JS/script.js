@@ -376,6 +376,8 @@ const btnlimpar = document.getElementById("btnlimpar");
 const result = document.getElementById("resultado");
 const resultDiv = document.getElementById("resultadoDiv");
 const registro = document.getElementById("registro");
+const scriptPisCofinsENT50 = document.querySelector('#scriptPisCofinsENT50');
+
 
 btnerros.addEventListener("click", async () => {
   if (!xmlFileInput.files.length) {
@@ -432,7 +434,23 @@ function processXMLContent(input, registro1) {
     }
 
     if (resultadosSet.size > 0) {
-      result.innerHTML = Array.from(resultadosSet).join(", ");
+      if (scriptPisCofinsENT50.checked) {
+        result.innerHTML = 
+`<p>SELECT <br> 
+  distinct d.IDNFDET, p.CSTPRO_PIS_ENT as CST_PIS_ENT, p.CSTPRO_COFINS_ENT as CST_COFINS_ENT --Corrigir na MOV <br> 
+  --distinct p.IDPRODUTO, p.NOMEPRODUTO, p.CSTPRO_PIS_ENT, d.CST_PIS_ENT, p.CSTPRO_COFINS_ENT, d.CST_COFINS_ENT --Verificar Cad. Prod e Movimentação <br> 
+FROM NFMASTER m <br> 
+  JOIN nfdet d ON m.IDNFMASTER=d.IDNFMASTER<br> 
+  JOIN produtos p ON p.IDPRODUTO = d.IDPRODUTO<br> 
+HERE m.ENTSAI = 1 <br> 
+  AND m.SERIE = 'NF-E' <br> 
+  AND m.DATAENTSAI >= (:DATA_INICIO) <br> 
+  AND (d.CST_COFINS_ENT = '50' <br> 
+      OR d.CST_PIS_ENT = '50') <br> 
+  AND p.CODIGOPRODUTO IN (${Array.from(resultadosSet).join(", ")})</p>`;
+      } else {
+        result.innerHTML = Array.from(resultadosSet).join(", ");
+      }
     } else {
       result.innerHTML = `Registro ${registro1} não encontrado no arquivo!`;
     }
@@ -584,6 +602,37 @@ function abrirAbasSGAeCIA() {
   }
 }
 
+let ajudaSpedAviso = document.querySelector('#ajudaAvisoSped');
+let spanAvisoSped = document.querySelector('.spanAvisoSped');
+let pAvisoSped = document.querySelector('.pAvisoSped');
+let fecharAba = document.querySelector('.fechar-aba');
+let registro1 = document.querySelector('#registro');
+
+// Abre o aviso quando clicar no ajudaSpedAviso
+ajudaSpedAviso.addEventListener('click', (event) => {
+  event.stopPropagation(); // Impede que o clique propague para o document
+  if (registro1.value === 'C170') {
+    spanAvisoSped.style.display = 'block';
+    pAvisoSped.innerHTML = `Essa opção ira trazer todos os produtos que constam o 'CST PIS e COFINS' invalido para a operação! <br><br> Obs. Salvar as informações do validador SPED no modelo XML/JRPXML`
+  }
+});
+
+
+// Fecha o aviso quando clicar no botão fechar
+fecharAba.addEventListener('click', () => {
+  spanAvisoSped.style.display = 'none';
+});
+// Impede que o clique dentro do spanAvisoSped feche o aviso
+spanAvisoSped.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+// Fecha o aviso quando clicar em qualquer lugar fora dele
+document.addEventListener('click', (event) => {
+  if (!spanAvisoSped.contains(event.target)) {
+    spanAvisoSped.style.display = 'none';
+  }
+});
+
 // Gerenciamento de avisos
 
 const selectServSga = document.querySelector('#selectServSga');
@@ -686,38 +735,6 @@ atualizar();
 
 document.addEventListener('DOMContentLoaded', atualizar);
 selectServSga.addEventListener('change', atualizar);
-
-let ajudaSpedAviso = document.querySelector('#ajudaAvisoSped');
-let spanAvisoSped = document.querySelector('.spanAvisoSped');
-let pAvisoSped = document.querySelector('.pAvisoSped');
-let fecharAba = document.querySelector('.fechar-aba');
-let registro1 = document.querySelector('#registro');
-
-// Abre o aviso quando clicar no ajudaSpedAviso
-ajudaSpedAviso.addEventListener('click', (event) => {
-  event.stopPropagation(); // Impede que o clique propague para o document
-  if (registro1.value === 'C170') {
-    spanAvisoSped.style.display = 'block';
-    pAvisoSped.innerHTML = `Essa opção ira trazer todos os produtos que constam o 'CST PIS e COFINS' invalido para a operação! <br><br> Obs. Salvar as informações do validador SPED no modelo XML/JRPXML`
-  }
-});
-
-// Fecha o aviso quando clicar no botão fechar
-fecharAba.addEventListener('click', () => {
-  spanAvisoSped.style.display = 'none';
-});
-
-// Fecha o aviso quando clicar em qualquer lugar fora dele
-document.addEventListener('click', (event) => {
-  if (!spanAvisoSped.contains(event.target)) {
-    spanAvisoSped.style.display = 'none';
-  }
-});
-
-// Impede que o clique dentro do spanAvisoSped feche o aviso
-spanAvisoSped.addEventListener('click', (event) => {
-  event.stopPropagation();
-});
 
 /* EXPORTAR PARA PDF */
 
