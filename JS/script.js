@@ -223,12 +223,13 @@ function pesquisaCNPJ() {
 
     async function consultarCNPJ(cnpjconst) {
       try {
+        updateProgressBar(10);
         // Monta a URL com o CNPJ desejado
         const url = `https://brasilapi.com.br/api/cnpj/v1/`;
         let urlcnpj = url + cnpjconst;
 
         // Atualiza a barra de progresso para 20%
-        updateProgressBar(0);
+        updateProgressBar(20);
 
         // Faz a requisição à API
         const response = await fetch(urlcnpj);
@@ -298,7 +299,7 @@ function pesquisaCNPJ() {
         setTimeout(() => {
           resetProgressBar();
           loading.style.display = 'none';
-        }, 1000);
+        }, 300);
       }
     }
   } else {

@@ -16,6 +16,7 @@ body {
 
 /* FIM DO INDEX */
 
+
 .hr-rot {
     background-color: #000000;
     height: 1px;
@@ -157,11 +158,6 @@ pre {
 
 option {
     text-align: center;
-}
-
-h1 {
-    left: 50%;
-    margin-inline-start: 110px;
 }
 
 main {
