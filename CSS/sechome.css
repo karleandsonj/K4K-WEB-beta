@@ -249,6 +249,27 @@
     padding: 10px;
 }
 
+.divPesquisaCNPJ::-webkit-scrollbar {
+    /* Raio de borda do indicador de rolagem */
+    background-color: transparent;
+    /* Define o fundo da barra de rolagem como transparente */
+    width: 5px;
+    /* Largura da barra de rolagem */
+    height: 15px;
+    /* Altura da barra de rolagem horizontal */
+}
+
+.divPesquisaCNPJ::-webkit-scrollbar-thumb {
+    background: #747373;
+    /* Cor do indicador de rolagem */
+    /* Raio de borda do indicador de rolagem */
+}
+
+.divPesquisaCNPJ::-webkit-scrollbar-thumb:hover {
+    background-color: #3d3d3d;
+    /* Cor do indicador de rolagem ao passar o mouse */
+}
+
 .regiaosite {
     margin: 5px;
     border-bottom: solid 1.5px black;
@@ -306,27 +327,6 @@
 }
 
 .divSitesConsulta::-webkit-scrollbar-thumb:hover {
-    background-color: #3d3d3d;
-    /* Cor do indicador de rolagem ao passar o mouse */
-}
-
-.divPesquisaCNPJ::-webkit-scrollbar {
-    /* Raio de borda do indicador de rolagem */
-    background-color: transparent;
-    /* Define o fundo da barra de rolagem como transparente */
-    width: 5px;
-    /* Largura da barra de rolagem */
-    height: 15px;
-    /* Altura da barra de rolagem horizontal */
-}
-
-.divPesquisaCNPJ::-webkit-scrollbar-thumb {
-    background: #747373;
-    /* Cor do indicador de rolagem */
-    /* Raio de borda do indicador de rolagem */
-}
-
-.divPesquisaCNPJ::-webkit-scrollbar-thumb:hover {
     background-color: #3d3d3d;
     /* Cor do indicador de rolagem ao passar o mouse */
 }
