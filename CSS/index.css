@@ -345,7 +345,8 @@ main::-webkit-scrollbar-thumb:hover{
 
 .containerD {
     position: relative;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     /* Oculta a barra de rolagem fora da borda */
     border-radius: 20px;
     border: 3px #000000 solid;
